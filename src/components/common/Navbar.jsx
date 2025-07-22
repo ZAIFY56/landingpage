@@ -1,4 +1,5 @@
-import logoImg from "/src/assets/Vector.png";
+import logoImg from "/Vector.png";
+import { IconButton } from '@/components/common/button'
 import { FaArrowRight } from "react-icons/fa";
 export default function Navbar() {
     const navItems = [
@@ -20,7 +21,7 @@ export default function Navbar() {
         },
     ]
     return (
-          <div className="max-w-screen-xl mx-auto px-12 py-3 flex justify-between items-center">
+          <div className="container mx-auto px-2 py-3 flex justify-between items-center">
             <div className="w-[14rem] h-[4rem]">
                 <img src={logoImg} alt="logo-img" />
             </div>
@@ -36,10 +37,7 @@ export default function Navbar() {
                 })}
 
             </div>
-            <div className="bg-[#4B9795] text-white p-4 flex gap-2 text-center items-center rounded-md">
-                 <button className="">Call Now</button>
-            <FaArrowRight className="mt-1"/>
-            </div>
+            <IconButton icon={<FaArrowRight />}>Call Now</IconButton>
         </div>
     )
 }

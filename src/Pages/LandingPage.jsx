@@ -1,7 +1,9 @@
 import React from 'react'
-import Hero from '../components/Hero'
-import Service from '../components/Service'
-import WhyChoose from '../components/WhyChoose'
+import Hero from '@/components/sections/Hero'
+import Service from '@/components/sections/Service'
+import WhyChoose from '@/components/sections/WhyChoose'
+import Purpose from '@/components/sections/Purpose'
+import Feedback from '@/components/sections/Feedback'
 
 export default function LandingPage() {
   return (
@@ -9,6 +11,8 @@ export default function LandingPage() {
     <Hero/>
     <Service/>
     <WhyChoose/>
+    <Purpose/>
+    <Feedback/>
     </>
   )
 }
