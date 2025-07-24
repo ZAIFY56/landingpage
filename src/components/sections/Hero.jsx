@@ -31,10 +31,10 @@ export default function Hero() {
                     <img
                         src={heroImg2}
                         alt="People with boxes"
-                        className="absolute top-0 md:top-32 right-4 sm:right-8 md:right-12 w-[50%] z-10 object-contain"
+                        className="absolute top-8 md:top-32  right-4 sm:right-8 md:right-12 w-[50%] z-10 object-contain"
                     />
 
-                    <div className="absolute top-24 sm:top-36 md:top-52 left-52 sm:left-46 md:left-36 z-20">
+                    <div className="absolute top-20 md:top-52 left-32 sm:left-46 md:left-36 z-20">
                         <h3 className="text-[#4B9795] font-bold text-xl sm:text-2xl md:text-4xl leading-tight">
                             ON TIME
                         </h3>
@@ -46,10 +46,10 @@ export default function Hero() {
                     <img
                         src={heroImg}
                         alt="Delivery Van"
-                        className="absolute bottom-0 md:bottom-10 right-0 sm:right-4 w-full sm:w-[90%] md:w-[85%] z-30 object-contain"
+                        className="absolute bottom-12 md:bottom-10 right-0 sm:right-4 w-full sm:w-[90%] md:w-[85%] z-30 object-contain"
                     />
 
-                    <div className="absolute bottom-36 sm:bottom-20 md:bottom-40 left-64 md:left-[60%] transform -translate-x-1/2 z-40">
+                    <div className="absolute bottom-36 sm:bottom-20 md:bottom-40 left-48 md:left-[60%] transform -translate-x-1/2 z-40">
                         <img
                             src={logoImg}
                             alt="Logo on Van"

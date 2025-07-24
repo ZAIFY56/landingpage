@@ -38,7 +38,6 @@ export default function SustainabilityFeatures() {
       icon={service.icon}
       title={service.title}
       description={service.description}
-      className="!border-b-2 !border-gray-400"
     />
   ))}
 </div>

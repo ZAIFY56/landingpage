@@ -40,11 +40,12 @@ const ContactUs = () => {
 
                 <div className="w-5/6">
                   <textarea
-                    id="message"
-                    rows={4}
-                    placeholder="Message"
-                    className="w-full px-4 py-2 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4B9795] min-h-[120px] align-top pt-3 resize-y"
-                  />
+  id="message"
+  rows={4}
+  placeholder="Message"
+  className="w-full px-4 py-2 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4B9795] min-h-[120px] align-top pt-3 resize-none"
+/>
+
                 </div>
 
                 <PrimaryButton type="submit" className="w-5/6">
