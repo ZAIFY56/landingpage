@@ -28,7 +28,7 @@ export default function Navbar() {
     return (
         <div className="container mx-auto px-4 py-3">
             <div className="flex justify-between items-center">
-                <div className="w-[8rem] md:w-[14rem] md:h-[4rem]">
+                <div className="w-[8rem] md:w-[14rem] md:h-[4rem] ">
                     <img src={logoImg} alt="logo-img" className="w-full h-full object-contain" />
                 </div>
 
