@@ -36,16 +36,16 @@ export default function WhyChoose() {
                             Why <span className='text-[#4B9795]'>Choose Us</span>
                         </h2>
                     </div>
-                    <div className="w-2/3">
+                    <div className="md:w-2/3 ">
                         <p className="text-sm text-center">
                             At Rapid Response Couriers, we understand that in business, time isn't just money — it's everything. That's why when it's urgent, we're unstoppable. We specialize in fast, secure deliveries with zero excuses. From pickup to drop-off, we operate with precision timing, ensuring every parcel is delivered with care and delivered on time. Because in our world, delays aren't an option
                         </p>
-                        <p className='text-sm ml-[22rem]'>— your emergency is our express route."</p>
+                        <p className='text-sm ml-[7rem] md:ml-[22rem]'>— your emergency is our express route."</p>
                     </div>
                 </div>
                 
             </div>
-            <div className="container mx-auto px-2 py-[3rem] flex flex-col-reverse md:flex-row items-center justify-between">
+                <div className="container mx-auto grid grid-cols-2 justify-items-center md:grid-cols-3 lg:grid-cols-4 mt-20 gap-4">
                     {features.map((feature, index) => (
                        <Card 
                        key={index}

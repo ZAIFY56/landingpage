@@ -35,10 +35,10 @@ export default function Service() {
                     <h2 className="text-4xl md:text-5xl font-semibold text-center text-[#4B9795] mb-3">
                         Services <span className='text-black'>You Can</span> Trust
                     </h2>
-                    <p className="text-sm text-center mx-[16rem] mb-6">
+                    <p className="text-sm text-center md:mx-[16rem] mb-6">
 Trust Rapid Response Couriers for fast, secure, and reliable courier services that ensure your parcels arrive safely and on time. Count on us for dependable logistics you can rely on every step of the way.                    </p>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-20 gap-4">
+                    <div className="grid grid-cols-2 justify-items-center md:grid-cols-3 lg:grid-cols-4 mt-20 gap-4">
                     {services.map((service, index) => (
                         <Card
                             key={index}
