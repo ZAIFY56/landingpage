@@ -4,7 +4,11 @@ export default {
     "./index.css",
     "./src/**/*.{jsx,tsx,js,ts}"],
    theme: {
-     extend: {},
+     extend: {
+       padding: {
+        '240': '240px',
+      }
+     },
    },
    plugins: [],
  }

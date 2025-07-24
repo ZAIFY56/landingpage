@@ -12,7 +12,7 @@ const Input = React.forwardRef(({
     <input
       type={type}
       placeholder={placeholder}
-      className={`px-4 py-2 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4B9795] ${className}`}
+      className={` px-4 py-2 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4B9795] ${className}`}
       value={value}
       onChange={onChange}
       ref={ref}

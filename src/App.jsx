@@ -1,6 +1,6 @@
-import Navbar from './components/common/Navbar';
+import Navbar from '@/components/common/navbar/Navbar';
 import LandingPage from './pages/LandingPage';
-import Footer from '@/components/common/Footer'
+import Footer from '@/components/common/footer/Footer'
 
 
 function App() {
