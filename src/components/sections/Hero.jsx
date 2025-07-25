@@ -34,17 +34,17 @@ export default function Hero() {
                     <img
                         src={heroImg2}
                         alt="Team handling packages professionally"
-                        className="absolute dark:filter dark:grayscale top-2 md:top-32 lg:top-20 2xl:top-20 right-2 sm:right-8 md:right-12 2xl:right-54 w-[50%] 2xl:w-[54%] z-10 object-contain"
+                        className="absolute dark:filter dark:grayscale top-2 md:top-32 lg:top-20 xl:top-8  2xl:top-10 right-2 sm:right-8 md:right-12  2xl:right-54 w-[50%] 2xl:w-[45%] z-10 object-contain"
                         width={499}
                         height={330}
                         loading="lazy"
                     />
 
-                    <div className="absolute top-20 md:top-44 lg:top-36 2xl:top-54 left-44 sm:left-46 md:left-36 lg:left-60 2xl:left-72 z-20">
-                        <h3 className="text-[#4B9795] font-bold text-xl sm:text-2xl md:text-2xl 2xl:text-5xl leading-tight">
+                    <div className="absolute top-20 md:top-44 lg:top-36 xl:top-28  2xl:top-36 left-44 sm:left-46 md:left-36 lg:left-60 xl:left-72 2xl:left-96 z-20">
+                        <h3 className="text-[#4B9795] font-bold text-xl sm:text-2xl md:text-2xl xl:text-4xl 2xl:text-4xl leading-tight">
                             ON TIME
                         </h3>
-                        <h2 className="text-[#4B9795] font-bold text-2xl sm:text-3xl md:text-2xl 2xl:text-6xl leading-tight">
+                        <h2 className="text-[#4B9795] font-bold text-2xl sm:text-3xl md:text-2xl xl:text-4xl  2xl:text-5xl leading-tight">
                             EVERY TIME
                         </h2>
                     </div>
@@ -52,7 +52,7 @@ export default function Hero() {
                     <img
                         src={heroImg}
                         alt="Modern delivery van in motion"
-                        className="absolute bottom-10 md:bottom-10 lg:bottom-8 2xl:top-80 right-0 sm:right-4 w-full sm:w-[90%] md:w-[85%]  z-30 object-contain"
+                        className="absolute bottom-10 md:bottom-10 lg:bottom-8 xl:bottom-0  2xl:top-56 right-0 sm:right-4 w-full sm:w-[90%] md:w-[85%]  z-30 object-contain"
                         width={800}
                         height={600}
                         loading="lazy"
