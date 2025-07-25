@@ -25,7 +25,7 @@ export default function Hero() {
                     </p>
                     </div>
                     <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
-                        <Button variant="primary"  className="w-[191px] h-[48px] sm:w-auto">Book a Delivery</Button>
+                        <Button variant="primary" onClick={() => navigate("/instant-quote/form")}  className="w-[191px] h-[48px] sm:w-auto">Book a Delivery</Button>
                         <Button variant="outline" onClick={() => navigate("/instant-quote")} className="w-[175px] h-[48px] sm:w-auto">Instant Quote</Button>
                     </div>
                 </div>
