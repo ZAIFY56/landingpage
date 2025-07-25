@@ -45,7 +45,6 @@ const vanOptions = [
 function GetQuotesPage() {
   return (
  <div className="bg-white relative">
-      {/* Hero Section */}
       <div className="relative">
         <img 
           src={heroimg} 
@@ -53,7 +52,6 @@ function GetQuotesPage() {
           className="w-full 2xl:mx-[28rem] 2xl:w-[1920px] h-[360px] object-cover" 
         />
         
-        {/* Instant Quotes Title */}
         <div className="absolute mx-[4rem] md:mx-[16rem] 2xl:mx-[64rem] 2xl:rounded-lg 2xl:top-68 top-80 left-0 right-0">
           <h2 className="bg-white text-black p-6 text-xl md:text-4xl font-bold text-center rounded-md">
             Instant Quotes
@@ -61,7 +59,6 @@ function GetQuotesPage() {
         </div>
       </div>
    
-      {/* Info Bar */}
       <div className="mt-10 md:mt-14 flex flex-wrap justify-between items-center bg-[#4B9795] text-white p-4 rounded-md max-w-5xl mx-auto mb-8">
         <InfoItem icon={vectoricon} label="Pickup from:" value="EC1A 1NT" />
         <InfoItem icon={vectoricon} label="Destination:" value="E17JF" />
@@ -69,7 +66,6 @@ function GetQuotesPage() {
         <BackButton icon={backIcon} />
       </div>
    
-      {/* Van Options Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-4 pb-10">
         {vanOptions.map((van, index) => (
           <VanCard key={index} van={van} />
@@ -82,7 +78,6 @@ function GetQuotesPage() {
   )
 }
 
-// Extracted components for better readability and reusability
 function InfoItem({ icon, label, value }) {
   return (
     <div className="flex items-center gap-2">

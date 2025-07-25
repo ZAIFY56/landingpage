@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import logoImg from "/Vector.png";
 import { Button } from '@/components/common';
 import { FaArrowRight, FaTimes, FaBars } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 const NAV_ITEMS = [
   { label: "Services", path: "/services" },
@@ -12,6 +13,7 @@ const NAV_ITEMS = [
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate=useNavigate();
   
   const toggleMenu = useCallback(() => {
     setIsMenuOpen(prev => !prev);
@@ -26,6 +28,7 @@ export default function Navbar() {
       <div className="flex justify-between items-center">
         <div className="w-32 md:w-[14rem] h-[4rem]">
           <img 
+          onClick={() => navigate("/")}
             src={logoImg} 
             alt="Company Logo" 
             className="w-full cursor-pointer h-full object-contain"

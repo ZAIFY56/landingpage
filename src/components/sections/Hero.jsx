@@ -3,8 +3,10 @@ import heroImg from "/hero/hero.png";
 import heroImg2 from "/hero/hero2.png";
 import logoImg from "/Vector.png";
 import { Button } from "@/components/common";
+import { useNavigate } from 'react-router-dom';
 
 export default function Hero() {
+    const navigate=useNavigate();
     return (
         <section className="relative bg-white overflow-hidden">
             <div className="container mx-auto sm:px-4 2xl:px-15 2xl:py-0 2xl:mb-20 sm:py-8 md:py-0 flex flex-col-reverse md:flex-row items-center justify-between">
@@ -23,8 +25,8 @@ export default function Hero() {
                     </p>
                     </div>
                     <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
-                        <Button variant="primary" className="w-[191px] h-[48px] sm:w-auto">Book a Delivery</Button>
-                        <Button variant="outline" className="w-[175px] h-[48px] sm:w-auto">Instant Quote</Button>
+                        <Button variant="primary"  className="w-[191px] h-[48px] sm:w-auto">Book a Delivery</Button>
+                        <Button variant="outline" onClick={() => navigate("/instant-quote")} className="w-[175px] h-[48px] sm:w-auto">Instant Quote</Button>
                     </div>
                 </div>
 

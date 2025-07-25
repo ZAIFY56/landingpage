@@ -1,8 +1,10 @@
 import React, { useMemo } from 'react';
 import rapidLogo from "/footer/Vector.png";
 import { Input, Button } from "@/components/common";
-
+import { useNavigate } from 'react-router-dom';
 const Footer = () => {
+      const navigate=useNavigate();
+
     const navItems = useMemo(() => [
         { label: "Services" },
         { label: "Track Order" },
@@ -37,6 +39,7 @@ const Footer = () => {
                         </nav>
                         <div className="mt-6 cursor-pointer 2xl:mt-12 2xl:w-[488px] 2xl:h-[137px] 2xl:mb-0 md:mb-6">
                             <img 
+                            onClick={() => navigate("/")}
                                 src={rapidLogo}
                                 alt="Rapid Response Couriers Logo"
                                 width={300}

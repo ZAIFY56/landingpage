@@ -8,7 +8,7 @@ import SustainabilityFeatures from '@/components/sections/SustainabilityFeatures
 import CourierPartners from '@/components/sections/CourierPartners'
 import NewsAndArticles from '../components/sections/NewsAndArticles'
 import TrackShipment from '../components/sections/TrackShipment'
-import Contact from '../components/sections/Contact'
+import Contact from '../components/sections/Contact';
 
 export default function LandingPage() {
   return (
