@@ -38,14 +38,14 @@ export default function NewsAndArticles() {
                     <h2 className="text-3xl md:text-4xl 2xl:text-6xl font-semibold text-[#4B9795]">
                         <span className="text-black">Our Latest</span> News & Articles
                     </h2>
-                    <p className="mt-4 text-sm text-black 2xl:text-[20px] 2xl:mx-[26rem] md:mx-[16rem]">
+                    <p className="mt-4 text-sm text-black 2xl:text-[20px] 2xl:mx-[26rem] md:[12rem] lg:mx-[12rem]">
                         Stay updated with our latest news and articles, showcasing innovations and tips in the courier industry. 
                         Discover insights on delivery efficiency, safety, and customer satisfaction. 
                         Keep informed about our newest services and company achievements.
                     </p>
                 </header>
 
-                <div className="2xl:mt-24 flex flex-col lg:flex-row gap-8">
+                <div className="2xl:mt-24 flex flex-col md:flex-row      lg:flex-row gap-8">
                     <div className="md:w-1/2">
                         <img 
                             src={image1} 

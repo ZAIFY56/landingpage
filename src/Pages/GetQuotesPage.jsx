@@ -52,7 +52,7 @@ function GetQuotesPage() {
           className="w-full 2xl:mx-[28rem] 2xl:w-[1920px] h-[360px] object-cover" 
         />
         
-        <div className="absolute mx-[4rem] md:mx-[16rem] 2xl:mx-[64rem] 2xl:rounded-lg 2xl:top-68 top-80 left-0 right-0">
+        <div className="absolute mx-[4rem] lg:mx-[16rem] 2xl:mx-[64rem] 2xl:rounded-lg 2xl:top-68 top-80 left-0 right-0">
           <h2 className="bg-white text-black p-6 text-xl md:text-4xl font-bold text-center rounded-md">
             Instant Quotes
           </h2>

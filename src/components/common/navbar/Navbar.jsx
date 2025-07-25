@@ -26,7 +26,7 @@ export default function Navbar() {
   return (
     <header className="container mx-auto sm:px-6 2xl:px-15 py-3 relative">
       <div className="flex justify-between items-center">
-        <div className="w-32 md:w-[14rem] h-[4rem]">
+        <div className="w-32 md:w-[12rem] h-[4rem]">
           <img 
           onClick={() => navigate("/")}
             src={logoImg} 

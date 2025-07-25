@@ -32,12 +32,12 @@ export default function SustainabilityFeatures() {
                     <h2 className="text-4xl md:text-5xl 2xl:text-6xl font-semibold text-center text-[#4B9795] mb-3">
                         Delivering, <span className='text-black'>not polluting</span>
                     </h2>
-                    <p className="text-md 2xl:text-[20px] 2xl:mx-[26rem] text-center md:mx-[14rem] mb-6">
+                    <p className="text-md 2xl:text-[20px] 2xl:mx-[26rem] text-center md:mx-[10rem] lg:mx-[14rem] mb-6">
                         Delivering products efficiently while prioritizing eco-friendly practices to minimize environmental impact. Committed to sustainable logistics that protect our planet.
                     </p>
                 </header>
                 
-                <div className="container md:mx-[8rem] grid grid-cols-1 justify-items-center md:grid-cols-3 lg:grid-cols-4 2xl:mt-20 mt-10 gap-4">
+                <div className="container lg:mx-[8rem] grid grid-cols-1 justify-items-center md:grid-cols-3 lg:grid-cols-4 2xl:mt-20 mt-10 gap-4">
                     {services.map((service, index) => (
                         <Card
                             className="!w-full"

@@ -32,7 +32,7 @@ export default function CourierPartners() {
                     <h2 className="text-2xl md:text-5xl 2xl:text-6xl font-semibold text-[#4B9795] mb-4">
                         <span className="text-black">Our Trusted</span> Courier Partner
                     </h2>
-                    <p className="text-md 2xl:text-[20px] 2xl:mx-[6rem] md:mx-[12rem] text-gray-600">
+                    <p className="text-md 2xl:text-[20px] 2xl:mx-[6rem] md:[10rem] lg:mx-[12rem] text-gray-600">
                         At Rapid Response Couriers, we are committed to delivering your parcels quickly,
                         safely, and reliably. Whether you're sending documents across town or shipping
                         goods nationwide, our comprehensive courier solutions are designed to meet your needs.

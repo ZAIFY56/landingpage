@@ -20,7 +20,7 @@ export default function Feedback() {
     const feedbacks = useMemo(() => FEEDBACK_DATA, []);
 
     return (
-        <section className='py-2 md:pt-32 2xl:pt-52'>
+        <section className='py-2 md:mt-52 lg:pt-32 2xl:pt-52'>
             <div className="container mx-auto px-2 py-2 items-center justify-between w-full">
                 <header> 
                     <h2 className="text-xl md:text-3xl 2xl:text-6xl font-bold text-center text-[#4B9795]">
@@ -34,7 +34,7 @@ export default function Feedback() {
                     {feedbacks.map((feedback, index) => (
                         <Card
                             key={`feedback-${index}`} 
-                            className="!bg-white !p-6 !rounded-lg border !border-[#4B9795] !flex !flex-col md:!flex-row !w-full md:!w-[45%] 2xl:!w-[48%] !max-w-none"
+                            className="!bg-white !p-6 !rounded-lg border !border-[#4B9795] !flex !flex-col md:!flex-row !w-full lg  :!w-[45%] 2xl:!w-[48%] !max-w-none"
                             hoverEffect={false}
                             containerProps={{
                                 className: "!w-full !h-auto !min-h-0 !p-0 !bg-transparent !shadow-none"
@@ -53,12 +53,12 @@ export default function Feedback() {
                                 <img 
                                     src={feedback.icon} 
                                     alt={`${feedback.title} profile`} 
-                                    className="2xl:w-[140px] 2xl:h-[140px] w-28 h-28 rounded-full object-cover mb-3"
+                                    className="2xl:w-[140px] 2xl:h-[140px]lg:w-28 h-28 rounded-full object-cover mb-3"
                                     width={140} 
                                     height={140}
                                     loading="lazy"
                                 />
-                                <h3 className="font-bold 2xl:text-[20px] text-md text-gray-800 text-center md:text-left">
+                                <h3 className="font-bold 2xl:text-[20px] text-md text-gray-800 text-center lg:text-left">
                                     {feedback.title}
                                 </h3>
                             </div>
@@ -70,7 +70,7 @@ export default function Feedback() {
                                     ))}
                                 </div>
                                 
-                                <blockquote className="text-sm text-bold 2xl:text-[20px] text-center md:text-left">
+                                <blockquote className="text-sm text-bold 2xl:text-[20px] text-center lg:text-left">
                                     "{feedback.description}"
                                 </blockquote>
                             </div>
