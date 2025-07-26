@@ -7,7 +7,7 @@ const TermsAndConditionsPage = () => {
   return (
     <div className="bg-white min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div className="container px-4 mx-auto w-full">
-        <h1 className="text-3xl font-semibold text-[#4B9795] 2xl:text-6xl mb-8">
+        <h1 className="text-3xl font-semibold text-primary 2xl:text-6xl mb-8">
           Our Terms & Conditions
         </h1>
 
@@ -15,7 +15,7 @@ const TermsAndConditionsPage = () => {
           <div className="lg:w-2/3">
             <div className="flex flex-col">
               <section className="mb-8">
-                <h2 className="text-2xl font-semibold 2xl:text-[32px] text-[#4B9795] mb-4">
+                <h2 className="text-2xl font-semibold 2xl:text-[32px] text-primary mb-4">
                   Introduction
                 </h2>
                 <p className="mb-4 2xl:text-[20px]">
@@ -27,7 +27,7 @@ const TermsAndConditionsPage = () => {
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl 2xl:text-[32px]  font-semibold text-[#4B9795] mb-4">
+                <h2 className="text-2xl 2xl:text-[32px]  font-semibold text-primary mb-4">
                   Definitions
                 </h2>
                 <ul className="list-disc 2xl:text-[20px] pl-6 space-y-2 mb-4">
@@ -48,7 +48,7 @@ const TermsAndConditionsPage = () => {
               </section>
 
               <section className="mb-8">
-                <h2 className="text-2xl 2xl:text-[32px]  font-semibold text-[#4B9795] mb-4">
+                <h2 className="text-2xl 2xl:text-[32px]  font-semibold text-primary mb-4">
                   Service Provision
                 </h2>
                 <ul className="list-disc 2xl:text-[20px] pl-6 space-y-2 mb-4">
@@ -66,7 +66,7 @@ const TermsAndConditionsPage = () => {
             </div>
 
             <section className="mb-8">
-              <h2 className="text-2xl 2xl:text-[32px]  font-semibold text-[#4B9795] mb-4">
+              <h2 className="text-2xl 2xl:text-[32px]  font-semibold text-primary mb-4">
                 Booking & Payment
               </h2>
               <ul className="list-disc 2xl:text-[20px] pl-6 space-y-2 mb-4">
@@ -88,7 +88,7 @@ const TermsAndConditionsPage = () => {
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl 2xl:text-[32px]  font-semibold text-[#4B9795] mb-4">
+              <h2 className="text-2xl 2xl:text-[32px]  font-semibold text-primary mb-4">
                 Customer Responsibilities
               </h2>
               <ul className="list-disc 2xl:text-[20px] pl-6 space-y-2 mb-4">
@@ -122,7 +122,7 @@ const TermsAndConditionsPage = () => {
 
         <div className="mt-8">
           <section className="mb-8  p-6 ">
-            <h2 className="text-2xl 2xl:text-[32px]  font-semibold text-[#4B9795] mb-4">
+            <h2 className="text-2xl 2xl:text-[32px]  font-semibold text-primary mb-4">
               Liability and Insurance
             </h2>
             <ul className="list-disc 2xl:text-[20px] pl-6 space-y-2 mb-4">
@@ -142,7 +142,7 @@ const TermsAndConditionsPage = () => {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl 2xl:text-[32px]  font-semibold text-[#4B9795] mb-4">
+            <h2 className="text-2xl 2xl:text-[32px]  font-semibold text-primary mb-4">
               Prohibited Items
             </h2>
             <div className=" p-6">
@@ -157,7 +157,7 @@ const TermsAndConditionsPage = () => {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl 2xl:text-[32px]  font-semibold text-[#4B9795] mb-4">
+            <h2 className="text-2xl 2xl:text-[32px]  font-semibold text-primary mb-4">
               Delivery Timeframes
             </h2>
             <ul className="list-disc 2xl:text-[20px] pl-6 space-y-2">
@@ -172,7 +172,7 @@ const TermsAndConditionsPage = () => {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl 2xl:text-[32px]  font-semibold text-[#4B9795] mb-4">
+            <h2 className="text-2xl 2xl:text-[32px]  font-semibold text-primary mb-4">
               Claims and Complaints
             </h2>
             <ul className="list-disc 2xl:text-[20px] pl-6 space-y-2">
@@ -188,7 +188,7 @@ const TermsAndConditionsPage = () => {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl 2xl:text-[32px]  font-semibold text-[#4B9795] mb-3">
+            <h2 className="text-xl 2xl:text-[32px]  font-semibold text-primary mb-3">
               Data Protection
             </h2>
             <ul className="list-disc 2xl:text-[20px] pl-6 space-y-2">
@@ -204,7 +204,7 @@ const TermsAndConditionsPage = () => {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl 2xl:text-[32px]  font-semibold text-[#4B9795] mb-3">
+            <h2 className="text-xl 2xl:text-[32px]  font-semibold text-primary mb-3">
               Termination
             </h2>
             <ul className="list-disc 2xl:text-[20px] pl-6 space-y-2">
@@ -217,7 +217,7 @@ const TermsAndConditionsPage = () => {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-xl 2xl:text-[32px] font-semibold text-[#4B9795] mb-3">
+            <h2 className="text-xl 2xl:text-[32px] font-semibold text-primary mb-3">
               Governing Law
             </h2>
             <ul className="list-disc 2xl:text-[20px] pl-6 space-y-2">

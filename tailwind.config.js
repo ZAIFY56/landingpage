@@ -3,8 +3,8 @@ export default {
   content: ["./index.css", "./src/**/*.{jsx,tsx,js,ts}"],
   theme: {
     extend: {
-      padding: {
-        240: "240px",
+      colors: {
+        primary: "#4B9795",
       },
     },
   },

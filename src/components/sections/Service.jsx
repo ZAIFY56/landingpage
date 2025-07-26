@@ -36,7 +36,7 @@ export default function Service() {
     <section className="py-2 2xl:mt-12">
       <div className="container px-4 mx-auto w-full">
         <header className="text-center mb-10">
-          <h2 className="text-2xl md:text-5xl 2xl:text-6xl font-semibold text-center text-[#4B9795] mb-3">
+          <h2 className="text-2xl md:text-5xl 2xl:text-6xl font-semibold text-center text-primary mb-3">
             Services <span className="text-black">You Can</span> Trust
           </h2>
           <p className="2xl:text-[20px] text-sm text-center md:mx-[10rem] lg:mx-[15rem] 2xl:mx-[24rem] mb-6">

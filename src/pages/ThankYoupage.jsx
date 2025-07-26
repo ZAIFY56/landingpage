@@ -32,7 +32,7 @@ export default function ThankYouPage() {
               />
             </div>
 
-            <h1 className="text-3xl md:text-4xl 2xl:text-5xl font-bold text-[#4B9795] mb-4">
+            <h1 className="text-3xl md:text-4xl 2xl:text-5xl font-bold text-primary mb-4">
               Thank You!
             </h1>
 
@@ -46,20 +46,17 @@ export default function ThankYouPage() {
         <div className="flex justify-between items-center mb-4">
           <div className="flex flex-col items-center">
             <div
-              className="w-10 h-10 rounded-full bg-[#4B9795] text-white flex items-center justify-center mb-2"
+              className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center mb-2"
               aria-label="Step 1: Order received"
             >
               <span className="font-bold">1</span>
             </div>
-            <span className="text-sm md:text-base font-medium text-[#4B9795]">
+            <span className="text-sm md:text-base font-medium text-primary">
               Order received
             </span>
           </div>
 
-          <div
-            className="flex-1 h-1 bg-[#4B9795] mx-2"
-            aria-hidden="true"
-          ></div>
+          <div className="flex-1 h-1 bg-primary mx-2" aria-hidden="true"></div>
 
           <div className="flex flex-col items-center">
             <div

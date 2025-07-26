@@ -41,7 +41,7 @@ export default function WhyChoose() {
         <div className="flex flex-col mt-10 md:flex-row gap-16">
           <div className="md:w-1/3 text-center md:my-2 md:text-start">
             <h2 className="text-3xl md:text-4xl 2xl:text-6xl font-bold">
-              Why <span className="text-[#4B9795]">Choose Us</span>
+              Why <span className="text-primary">Choose Us</span>
             </h2>
           </div>
           <div className="md:w-2/3">

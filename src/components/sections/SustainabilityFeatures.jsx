@@ -32,7 +32,7 @@ export default function SustainabilityFeatures() {
     <section className="py-12 2xl:pt-32">
       <div className="container px-2 mx-auto items-center justify-between w-full">
         <header className="text-center">
-          <h2 className="text-4xl md:text-5xl 2xl:text-6xl font-semibold text-center text-[#4B9795] mb-3">
+          <h2 className="text-4xl md:text-5xl 2xl:text-6xl font-semibold text-center text-primary mb-3">
             Delivering, <span className="text-black">not polluting</span>
           </h2>
           <p className="text-md 2xl:text-[20px] 2xl:mx-[26rem] text-center md:mx-[10rem] lg:mx-[14rem] mb-6">

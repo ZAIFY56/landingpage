@@ -46,7 +46,7 @@ export default function Navbar() {
             <a
               key={item.path}
               href={item.path}
-              className="flex items-center justify-center  2xl:text-[20px] text-gray-800 hover:text-[#4B9795] transition-colors duration-200"
+              className="flex items-center justify-center  2xl:text-[20px] text-gray-800 hover:text-primary transition-colors duration-200"
             >
               {item.label}
             </a>
@@ -102,7 +102,7 @@ export default function Navbar() {
             <a
               key={item.path}
               href={item.path}
-              className="px-6 py-4 text-gray-800 hover:text-[#4B9795] transition-colors duration-200"
+              className="px-6 py-4 text-gray-800 hover:text-primary transition-colors duration-200"
               onClick={closeMenu}
             >
               {item.label}

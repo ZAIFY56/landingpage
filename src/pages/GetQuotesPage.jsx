@@ -59,7 +59,7 @@ function GetQuotesPage() {
         </div>
       </div>
 
-      <div className="mt-10 md:mt-14 flex flex-wrap justify-between items-center bg-[#4B9795] text-white p-4 rounded-md max-w-5xl mx-auto mb-8">
+      <div className="mt-10 md:mt-14 flex flex-wrap justify-between items-center bg-primary text-white p-4 rounded-md max-w-5xl mx-auto mb-8">
         <InfoItem icon={vectoricon} label="Pickup from:" value="EC1A 1NT" />
         <InfoItem icon={vectoricon} label="Destination:" value="E17JF" />
         <InfoItem
@@ -111,8 +111,8 @@ function VanCard({ van }) {
   const total = van.price + van.vat;
 
   return (
-    <div className="border border-[#4B9795] rounded-md p-4 shadow-sm">
-      <h4 className="font-semibold bg-[#4B9795] p-2 text-center rounded-se-md text-white 2xl:text-lg w-[140px] 2xl:w-[156px] mb-2">
+    <div className="border border-primary rounded-md p-4 shadow-sm">
+      <h4 className="font-semibold bg-primary p-2 text-center rounded-se-md text-white 2xl:text-lg w-[140px] 2xl:w-[156px] mb-2">
         {van.title}
       </h4>
       <img
@@ -122,7 +122,7 @@ function VanCard({ van }) {
       />
       <SpecsList specs={van.specs} />
       <PriceInfo price={van.price} vat={van.vat} total={total} />
-      <button className="w-full bg-[#4B9795] text-white py-2 rounded hover:bg-[#3c7e7c] transition">
+      <button className="w-full bg-primary text-white py-2 rounded hover:bg-[#3c7e7c] transition">
         Choose this Option
       </button>
     </div>

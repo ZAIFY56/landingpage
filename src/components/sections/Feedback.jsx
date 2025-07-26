@@ -25,7 +25,7 @@ export default function Feedback() {
     <section className="py-2 md:mt-52 lg:pt-32 2xl:pt-52">
       <div className="container mx-auto px-2 py-2 items-center justify-between w-full">
         <header>
-          <h2 className="text-xl md:text-3xl 2xl:text-6xl font-bold text-center text-[#4B9795]">
+          <h2 className="text-xl md:text-3xl 2xl:text-6xl font-bold text-center text-primary">
             <span className="text-black">What</span> People & Businesses
             <br />
             <span className="text-black">Say About Our</span> Services
@@ -36,7 +36,7 @@ export default function Feedback() {
           {feedbacks.map((feedback, index) => (
             <Card
               key={`feedback-${index}`}
-              className="!bg-white !p-6 !rounded-lg border !border-[#4B9795] !flex !flex-col md:!flex-row !w-full lg  :!w-[45%] 2xl:!w-[48%] !max-w-none"
+              className="!bg-white !p-6 !rounded-lg border !border-primary !flex !flex-col md:!flex-row !w-full lg  :!w-[45%] 2xl:!w-[48%] !max-w-none"
               hoverEffect={false}
               containerProps={{
                 className:

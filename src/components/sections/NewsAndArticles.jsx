@@ -37,7 +37,7 @@ export default function NewsAndArticles() {
         <header className="text-center mb-12">
           {" "}
           {/* Added semantic header */}
-          <h2 className="text-3xl md:text-4xl 2xl:text-6xl font-semibold text-[#4B9795]">
+          <h2 className="text-3xl md:text-4xl 2xl:text-6xl font-semibold text-primary">
             <span className="text-black">Our Latest</span> News & Articles
           </h2>
           <p className="mt-4 text-sm text-black 2xl:text-[20px] 2xl:mx-[26rem] md:[12rem] lg:mx-[12rem]">

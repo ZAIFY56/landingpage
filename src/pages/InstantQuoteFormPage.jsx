@@ -14,20 +14,20 @@ const AddressSection = ({ title }) => (
       <Input
         type="text"
         placeholder="First Name *"
-        className="w-full !bg-white !border !border-[#4B9795] placeholder:font-medium"
+        className="w-full !bg-white !border !border-primary placeholder:font-medium"
         required
       />
       <Input
         type="text"
         placeholder="Last Name *"
-        className="w-full !bg-white !border !border-[#4B9795] placeholder:font-medium"
+        className="w-full !bg-white !border !border-primary placeholder:font-medium"
         required
       />
       <div className="md:col-span-2">
         <Input
           type="tel"
           placeholder="Telephone number *"
-          className="w-full !bg-white !border !border-[#4B9795] placeholder:font-medium"
+          className="w-full !bg-white !border !border-primary placeholder:font-medium"
           required
         />
       </div>
@@ -35,20 +35,20 @@ const AddressSection = ({ title }) => (
         <Input
           type="text"
           placeholder="Address Line *"
-          className="w-full !bg-white !border !border-[#4B9795] placeholder:font-medium"
+          className="w-full !bg-white !border !border-primary placeholder:font-medium"
           required
         />
       </div>
       <Input
         type="text"
         placeholder="City *"
-        className="w-full !bg-white !border !border-[#4B9795] placeholder:font-medium"
+        className="w-full !bg-white !border !border-primary placeholder:font-medium"
         required
       />
       <Input
         type="text"
         placeholder="Postcode *"
-        className="w-full !bg-white !border !border-[#4B9795] placeholder:font-medium"
+        className="w-full !bg-white !border !border-primary placeholder:font-medium"
         required
       />
     </div>
@@ -56,11 +56,11 @@ const AddressSection = ({ title }) => (
 );
 
 const BackButton = () => (
-  <Button className="flex items-center gap-2 !bg-white !text-[#4B9795]">
+  <Button className="flex items-center gap-2 !bg-white !text-primary">
     <img
       src={backIcon}
       alt="Back"
-      className="h-3 w-3 2xl:w-[16px] 2xl:w-[12px]"
+      className="h-3 w-3 2xl:w-[12px]"
       style={{
         filter:
           "brightness(0) saturate(100%) invert(48%) sepia(13%) saturate(1532%) hue-rotate(122deg) brightness(90%) contrast(87%)",
@@ -82,7 +82,7 @@ export default function InstantQuoteFormPage() {
           loading="lazy"
         />
         <div className="absolute mx-[4rem] lg:mx-[16rem] 2xl:rounded-lg 2xl:top-68 top-80 left-0 right-0">
-          <h2 className="bg-white text-[#4B9795] p-6 text-xl md:text-4xl 2xl:text-6xl font-semibold text-center rounded-md">
+          <h2 className="bg-white text-primary p-6 text-xl md:text-4xl 2xl:text-6xl font-semibold text-center rounded-md">
             Instant Quotes
           </h2>
         </div>
@@ -102,25 +102,25 @@ export default function InstantQuoteFormPage() {
               <Input
                 type="text"
                 placeholder="First Name *"
-                className="w-full !bg-white !border !border-[#4B9795] placeholder:font-medium"
+                className="w-full !bg-white !border !border-primary placeholder:font-medium"
                 required
               />
               <Input
                 type="text"
                 placeholder="Last Name *"
-                className="w-full !bg-white !border !border-[#4B9795] placeholder:font-medium"
+                className="w-full !bg-white !border !border-primary placeholder:font-medium"
                 required
               />
               <Input
                 type="email"
                 placeholder="Email *"
-                className="w-full !bg-white !border !border-[#4B9795] placeholder:font-medium"
+                className="w-full !bg-white !border !border-primary placeholder:font-medium"
                 required
               />
               <Input
                 type="tel"
                 placeholder="Telephone number *"
-                className="w-full !bg-white !border !border-[#4B9795] placeholder:font-medium"
+                className="w-full !bg-white !border !border-primary placeholder:font-medium"
                 required
               />
             </div>
@@ -166,7 +166,7 @@ export default function InstantQuoteFormPage() {
             <Input
               type="text"
               placeholder="Any additional details to help your delivery..."
-              className="w-full 2xl:text-[16px] !2xl:w-[464px] !bg-white !border !border-[#4B9795] placeholder:font-medium h-12 pt-2"
+              className="w-full 2xl:text-[16px] !2xl:w-[464px] !bg-white !border !border-primary placeholder:font-medium h-12 pt-2"
               required
             />
           </div>
@@ -176,7 +176,7 @@ export default function InstantQuoteFormPage() {
               <input
                 type="checkbox"
                 id="terms"
-                className="mr-2 h-4 w-4 appearance-none border border-[#4B9795] rounded checked:bg-[#4B9795] checked:border-transparent focus:ring-0 focus:ring-offset-0"
+                className="mr-2 h-4 w-4 appearance-none border border-primary rounded checked:bg-primary checked:border-transparent focus:ring-0 focus:ring-offset-0"
                 required
               />
               <span className="text-sm 2xl:text-[20px]">
@@ -188,7 +188,7 @@ export default function InstantQuoteFormPage() {
               <input
                 type="checkbox"
                 id="loading"
-                className="mr-2 h-4 w-4 appearance-none border border-[#4B9795] rounded checked:bg-[#4B9795] checked:border-transparent focus:ring-0 focus:ring-offset-0"
+                className="mr-2 h-4 w-4 appearance-none border border-primary rounded checked:bg-primary checked:border-transparent focus:ring-0 focus:ring-offset-0"
                 required
               />
               <span className="text-sm 2xl:text-[20px]">
@@ -200,7 +200,7 @@ export default function InstantQuoteFormPage() {
 
           <div className="p-6 flex flex-col items-start pt-6">
             <div className="mb-2">
-              <p className="text-2xl font-bold text-[#4B9795]">
+              <p className="text-2xl font-bold text-primary">
                 £90.00{" "}
                 <span className="text-sm font-normal text-gray-500">
                   (no VAT)
@@ -209,7 +209,7 @@ export default function InstantQuoteFormPage() {
             </div>
             <Button
               variant="primary"
-              className="mt-4 px-8 py-3 bg-[#4B9795] text-white rounded font-medium flex items-center transition"
+              className="mt-4 px-8 py-3 bg-primary text-white rounded font-medium flex items-center transition"
               onClick={() => navigate("/thank-you")}
             >
               Book Now <FaArrowRight className="md:ml-2" />

@@ -27,7 +27,7 @@ const TrackShipment = () => {
     <section className="py-10">
       <div className="container px-2 mx-auto flex flex-col md:flex-row gap-8 w-full">
         <div className="w-full md:w-1/2 bg-white p-6">
-          <h1 className="text-3xl 2xl:text-6xl font-semibold text-[#4B9795] mb-6">
+          <h1 className="text-3xl 2xl:text-6xl font-semibold text-primary mb-6">
             <span className="text-black">Track</span> Your Shipment
           </h1>
 
@@ -50,7 +50,7 @@ const TrackShipment = () => {
           </div>
 
           <div className="relative pl-6">
-            <div className="absolute left-[19px] top-0 bottom-0 w-0.5 bg-[#4B9795]"></div>
+            <div className="absolute left-[19px] top-0 bottom-0 w-0.5 bg-primary"></div>
 
             <div className="space-y-12 py-12">
               {statusSteps.map((step, index) => (
@@ -60,14 +60,14 @@ const TrackShipment = () => {
                 >
                   <div
                     className={`absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 -ml-[12px] rounded-full border-2 
-                              ${step.completed ? "bg-[#4B9795] border-[#4B9795]" : "bg-white border-[#4B9795]"}`}
+                              ${step.completed ? "bg-primary border-primary" : "bg-white border-primary"}`}
                   ></div>
 
                   <div className="pl-4 flex text-center gap-20">
                     <h3 className="font-semibold 2xl:text-[24px] mt-2 text-gray-800">
                       {step.title}
                     </h3>
-                    <p className="text-sm 2xl:text-[16px] text-[#4B9795] mt-2">
+                    <p className="text-sm 2xl:text-[16px] text-primary mt-2">
                       {step.time}
                     </p>
                   </div>

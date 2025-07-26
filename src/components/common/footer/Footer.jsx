@@ -13,7 +13,7 @@ const Footer = () => {
       { label: "About" },
       { label: "Contact" },
     ],
-    [],
+    []
   );
 
   const supportItems = useMemo(
@@ -23,7 +23,7 @@ const Footer = () => {
       { label: "Terms of Use", path: "/terms-condition" },
       { label: "Privacy Notice" },
     ],
-    [],
+    []
   );
 
   const handleNavigation = (path) => {
@@ -33,7 +33,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#4B9795] text-white py-8 px-4 border-t border-gray-200">
+    <footer className="bg-primary text-white py-8 px-4 border-t border-gray-200">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row gap-8 mb-8">
           <div className="md:w-1/2">

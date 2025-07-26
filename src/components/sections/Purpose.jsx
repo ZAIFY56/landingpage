@@ -8,7 +8,7 @@ export default function Purpose() {
       <div className="container mx-auto px-2 py-2 flex flex-col md:flex-row">
         <div className="md:w-1/2">
           <h1 className="text-xl md:text-3xl text-center md:text-start 2xl:text-6xl font-bold mb-6">
-            Our <span className="text-[#4B9795]">Mission</span>
+            Our <span className="text-primary">Mission</span>
           </h1>
           <div className="space-y-4 text-sm md:text-md relative">
             <p className="mx-auto text-center md:text-start 2xl:text-[20px] pr-12">
@@ -38,7 +38,7 @@ export default function Purpose() {
 
         <div className="md:w-1/2">
           <h1 className="text-xl md:text-3xl text-center md:text-start 2xl:text-6xl font-bold mb-6">
-            Our <span className="text-[#4B9795]">Vision</span>
+            Our <span className="text-primary">Vision</span>
           </h1>
           <div className="space-y-4 text-sm md:text-md">
             <p className="mx-auto text-center md:text-start 2xl:text-[20px] pr-12">

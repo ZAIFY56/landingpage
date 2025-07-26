@@ -29,7 +29,7 @@ export default function CourierPartners() {
     <section className="py-20">
       <div className="container mx-auto px-4">
         <header className="text-center max-w-4xl mx-auto mb-16">
-          <h2 className="text-2xl md:text-5xl 2xl:text-6xl font-semibold text-[#4B9795] mb-4">
+          <h2 className="text-2xl md:text-5xl 2xl:text-6xl font-semibold text-primary mb-4">
             <span className="text-black">Our Trusted</span> Courier Partner
           </h2>
           <p className="text-md 2xl:text-[20px] 2xl:mx-[6rem] md:[10rem] lg:mx-[12rem] text-gray-600">

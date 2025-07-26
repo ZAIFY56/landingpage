@@ -7,7 +7,7 @@ const ContactUs = () => {
     <section className="py-12">
       <div className="container mx-auto px-4">
         <div className="bg-white overflow-hidden">
-          <h2 className="text-3xl text-[#4B9795] 2xl:text-6xl font-bold">
+          <h2 className="text-3xl text-primary 2xl:text-6xl font-bold">
             Contact <span className="text-black">Us</span>
           </h2>
           <div className="p-6 md:p-1 grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -52,7 +52,7 @@ const ContactUs = () => {
                     name="message"
                     rows={4}
                     placeholder="Message"
-                    className="w-full px-4 py-2 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4B9795] min-h-[120px] align-top pt-3 resize-none"
+                    className="w-full px-4 py-2 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-primary min-h-[120px] align-top pt-3 resize-none"
                     aria-label="Your message"
                   />
                 </div>
@@ -83,7 +83,7 @@ const ContactUs = () => {
                 <p className="text-gray-600 2xl:text-[20px] text-md">
                   <a
                     href="mailto:helloworld@rapidresponsecourier.com"
-                    className="hover:text-[#4B9795] transition-colors"
+                    className="hover:text-primary transition-colors"
                   >
                     helloworld@rapidresponsecourier.com
                   </a>
@@ -91,7 +91,7 @@ const ContactUs = () => {
                 <p className="text-gray-600 2xl:text-[20px] text-md mt-2">
                   <a
                     href="tel:+9710000000000"
-                    className="hover:text-[#4B9795] transition-colors"
+                    className="hover:text-primary transition-colors"
                   >
                     +971 000 0000 0000
                   </a>
