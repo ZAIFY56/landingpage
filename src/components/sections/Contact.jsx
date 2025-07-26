@@ -28,7 +28,7 @@ const ContactUs = () => {
                 </div>
                 <div>
                   <Input
-                    type="tel" 
+                    type="tel"
                     id="number"
                     name="phone"
                     placeholder="Number"
@@ -56,9 +56,9 @@ const ContactUs = () => {
                     aria-label="Your message"
                   />
                 </div>
-                <Button 
-                  variant="primary" 
-                  type="submit" 
+                <Button
+                  variant="primary"
+                  type="submit"
                   className="!w-5/6"
                   aria-label="Submit form"
                 >
@@ -81,12 +81,18 @@ const ContactUs = () => {
                   Contact Info
                 </h3>
                 <p className="text-gray-600 2xl:text-[20px] text-md">
-                  <a href="mailto:helloworld@rapidresponsecourier.com" className="hover:text-[#4B9795] transition-colors">
+                  <a
+                    href="mailto:helloworld@rapidresponsecourier.com"
+                    className="hover:text-[#4B9795] transition-colors"
+                  >
                     helloworld@rapidresponsecourier.com
                   </a>
                 </p>
                 <p className="text-gray-600 2xl:text-[20px] text-md mt-2">
-                  <a href="tel:+9710000000000" className="hover:text-[#4B9795] transition-colors">
+                  <a
+                    href="tel:+9710000000000"
+                    className="hover:text-[#4B9795] transition-colors"
+                  >
                     +971 000 0000 0000
                   </a>
                 </p>
@@ -97,12 +103,8 @@ const ContactUs = () => {
                   Opening hours
                 </h3>
                 <ul className="space-y-2 text-gray-600 mt-6">
-                  <li className="2xl:text-[20px] text-md">
-                    Monday-Friday
-                  </li>
-                  <li className="2xl:text-[20px] text-md">
-                    9am - 5pm
-                  </li>
+                  <li className="2xl:text-[20px] text-md">Monday-Friday</li>
+                  <li className="2xl:text-[20px] text-md">9am - 5pm</li>
                   <li className="2xl:text-[20px] text-md">
                     We are closed on weekends and national holidays
                   </li>

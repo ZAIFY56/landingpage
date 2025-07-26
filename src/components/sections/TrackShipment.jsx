@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useMemo } from "react";
 import { Button } from "@/components/common";
-import { Input } from '@/components/common';
+import { Input } from "@/components/common";
 
 const TRACKING_STEPS = [
   {
@@ -51,31 +51,41 @@ const TrackShipment = () => {
 
           <div className="relative pl-6">
             <div className="absolute left-[19px] top-0 bottom-0 w-0.5 bg-[#4B9795]"></div>
-            
+
             <div className="space-y-12 py-12">
               {statusSteps.map((step, index) => (
-                <div key={`step-${index}`} className="relative flex items-start min-h-[40px]">
-                  <div 
+                <div
+                  key={`step-${index}`}
+                  className="relative flex items-start min-h-[40px]"
+                >
+                  <div
                     className={`absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 -ml-[12px] rounded-full border-2 
-                              ${step.completed ? 'bg-[#4B9795] border-[#4B9795]' : 'bg-white border-[#4B9795]'}`}
+                              ${step.completed ? "bg-[#4B9795] border-[#4B9795]" : "bg-white border-[#4B9795]"}`}
                   ></div>
-                  
+
                   <div className="pl-4 flex text-center gap-20">
-                    <h3 className="font-semibold 2xl:text-[24px] mt-2 text-gray-800">{step.title}</h3>
-                    <p className="text-sm 2xl:text-[16px] text-[#4B9795] mt-2">{step.time}</p>
+                    <h3 className="font-semibold 2xl:text-[24px] mt-2 text-gray-800">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm 2xl:text-[16px] text-[#4B9795] mt-2">
+                      {step.time}
+                    </p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-          <p className="mt-4 2xl:text-[16px]">Tracking Number: 0000 0000 0000</p>
+          <p className="mt-4 2xl:text-[16px]">
+            Tracking Number: 0000 0000 0000
+          </p>
         </div>
 
         <div className="w-full md:w-1/2 bg-white p-6">
           <div className="">
             <p className="text-sm 2xl:text-[20px] text-end">
-              Track Your Shipment offers real-time updates on your packaging location and delivery status.
-              Stay informed and have peace of mind with our reliable courier tracking service.
+              Track Your Shipment offers real-time updates on your packaging
+              location and delivery status. Stay informed and have peace of mind
+              with our reliable courier tracking service.
             </p>
           </div>
           <div className="aspect-w-16 mt-8 aspect-h-9 dark:filter dark:grayscale">

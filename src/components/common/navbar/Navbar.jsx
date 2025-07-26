@@ -1,8 +1,8 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 import logoImg from "/Vector.png";
-import { Button } from '@/components/common';
+import { Button } from "@/components/common";
 import { FaArrowRight, FaTimes, FaBars } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const NAV_ITEMS = [
   { label: "Services", path: "/services" },
@@ -13,10 +13,10 @@ const NAV_ITEMS = [
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate=useNavigate();
-  
+  const navigate = useNavigate();
+
   const toggleMenu = useCallback(() => {
-    setIsMenuOpen(prev => !prev);
+    setIsMenuOpen((prev) => !prev);
   }, []);
 
   const closeMenu = useCallback(() => {
@@ -27,10 +27,10 @@ export default function Navbar() {
     <header className="container mx-auto sm:px-6 2xl:px-15 py-3 relative">
       <div className="flex justify-between items-center">
         <div className="w-32 md:w-[12rem] h-[4rem]">
-          <img 
-          onClick={() => navigate("/")}
-            src={logoImg} 
-            alt="Company Logo" 
+          <img
+            onClick={() => navigate("/")}
+            src={logoImg}
+            alt="Company Logo"
             className="w-full cursor-pointer h-full object-contain"
             width={220}
             height={61}
@@ -38,7 +38,10 @@ export default function Navbar() {
           />
         </div>
 
-        <nav className="hidden md:flex gap-4 lg:gap-10" aria-label="Main navigation">
+        <nav
+          className="hidden md:flex gap-4 lg:gap-10"
+          aria-label="Main navigation"
+        >
           {NAV_ITEMS.map((item) => (
             <a
               key={item.path}
@@ -52,24 +55,24 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <div className="hidden md:block">
-            <Button 
-              variant="primary" 
-              icon={<FaArrowRight aria-hidden="true" />} 
+            <Button
+              variant="primary"
+              icon={<FaArrowRight aria-hidden="true" />}
               className="px-5 py-2"
             >
               Call Now
             </Button>
           </div>
-          
+
           <div className="md:hidden flex items-center gap-3">
-            <Button 
-              variant="primary" 
-              size="sm" 
+            <Button
+              variant="primary"
+              size="sm"
               icon={<FaArrowRight aria-hidden="true" />}
             >
               Call Now
             </Button>
-            <button 
+            <button
               onClick={toggleMenu}
               className="p-1.5 text-gray-800 rounded-md hover:bg-gray-100 transition-colors"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -85,7 +88,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      <nav 
+      <nav
         className={`
           md:hidden bg-white shadow-lg rounded-b-xl
           absolute left-0 right-0 z-50
