@@ -1,3 +1,5 @@
+import { cn } from "@/utils";
+
 const Card = ({
   icon,
   title,
@@ -8,13 +10,11 @@ const Card = ({
 }) => {
   return (
     <div
-      className={`
-        bg-[#F3F3F3] w-full flex flex-col items-center cursor-pointer
-        max-w-[240px] lg:w-[300px] min-h-[180px] p-4 rounded-xl 
-        2xl:max-w-[342px] 2xl:w-[380px] 2xl:min-h-[200px]  transition-all duration-300
-        ${hoverEffect ? "hover:shadow-2xl" : ""}
-        ${className}
-      `}
+      className={cn(
+        "bg-[#F3F3F3] w-full flex flex-col items-center cursor-pointer max-w-[240px] lg:w-[300px] min-h-[180px] p-4 rounded-xl 2xl:max-w-[342px] 2xl:w-[380px] 2xl:min-h-[200px] transition-all duration-300",
+        hoverEffect && "hover:shadow-2xl",
+        className
+      )}
     >
       {icon && (
         <div className="2xl:w-16 2xl:h-16 h-12 w-12 rounded-full p-2 mb-2 bg-white">

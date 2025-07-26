@@ -71,22 +71,20 @@ const Footer = () => {
                 Powered by Precision
               </h2>
             </div>
-            <form className="flex 2xl:w-[488px] 2xl:h-[59px] w-22 md:w-3/4">
+            <div className="relative w-full max-w-sm 2xl:max-w-xl">
               <Input
-                type="email"
+                type="text"
                 placeholder="Enter your email"
-                className="flex-grow !bg-white rounded-r-none"
-                aria-label="Email for newsletter subscription"
+                className="flex-grow bg-white w-full py-3 h-14"
+                aria-label="Enter your email"
               />
               <Button
-                variant="primary"
-                className="rounded-l-none border-2"
-                type="submit"
-                aria-label="Subscribe to newsletter"
+                className="absolute top-1/2 right-2 -translate-y-1/2 h-10 md:h-12 px-6"
+                aria-label="Track shipment"
               >
                 Subscribe
               </Button>
-            </form>
+            </div>
           </div>
         </div>
 
