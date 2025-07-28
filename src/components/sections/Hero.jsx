@@ -93,10 +93,10 @@ export default function Hero() {
 
   return (
     <section className="relative bg-white overflow-hidden">
-      <div className="container mx-auto sm:px-4 2xl:px-15 2xl:py-0 2xl:mb-20 sm:py-8 md:py-0 flex flex-col-reverse md:flex-row items-center justify-between">
-        <div className="md:w-1/2 w-full text-center md:text-left mb-8 md:mb-0">
+      <div className="container px-4 mx-auto w-full flex flex-col-reverse md:flex-row items-center  md:justify-between">
+        <div className="md:w-1/2 w-full text-center align-middle md:text-left mb-8 md:mb-0">
           <motion.div
-            className="text-3xl sm:text-4xl md:text-4xl 2xl:text-6xl font-semibold leading-tight flex"
+            className="text-2xl sm:text-4xl md:text-4xl 2xl:text-6xl font-semibold leading-tight justify-center flex"
             custom={0}
             initial="hidden"
             animate="visible"
@@ -110,7 +110,7 @@ export default function Hero() {
             />
           </motion.div>
           <motion.div
-            className="text-3xl sm:text-4xl md:text-4xl 2xl:text-6xl font-semibold mb-4 leading-tight flex"
+            className="text-2xl sm:text-4xl md:text-4xl 2xl:text-6xl font-semibold mb-4 leading-tight justify-center flex"
             custom={1}
             initial="hidden"
             animate="visible"
@@ -130,7 +130,7 @@ export default function Hero() {
             animate="visible"
             variants={textVariants}
           >
-            <p className="text-gray-700 mb-6    2xl:text-[20px] md:text-[16px] leading-[100%] tracking-[-0.04em] align-middle">
+            <p className="text-gray-700 mb-6  text-sm  2xl:text-[20px] md:text-[16px] leading-[100%] tracking-[-0.04em] align-middle">
               Our team specializes in fast, reliable deliveries for urgent
               needs. No matter the deadline, we're already on the move to ensure
               your order arrives on time. Trust us to handle your last-minute
@@ -165,7 +165,7 @@ export default function Hero() {
           <motion.img
             src={heroImg2}
             alt="Team handling packages professionally"
-            className="absolute dark:filter dark:grayscale top-2 md:top-32 lg:top-12 xl:top-8  2xl:top-10 right-2 sm:right-8 md:right-42 2xl:right-54 w-[50%] 2xl:w-[45%] z-10 object-contain"
+            className="absolute dark:filter dark:grayscale top-4 md:top-32 lg:top-12 xl:top-8  2xl:top-10 right-2 sm:right-8 md:right-42 2xl:right-54 w-[50%] 2xl:w-[45%] z-10 object-contain"
             width={499}
             height={330}
             loading="lazy"
@@ -175,7 +175,7 @@ export default function Hero() {
           />
 
           <motion.div
-            className="absolute top-20 md:top-44 lg:top-32 xl:top-28  2xl:top-36 left-44 sm:left-46 md:left-36 lg:left-56 xl:left-72 2xl:left-96 z-20"
+            className="absolute top-16 md:top-44 lg:top-32 xl:top-28  2xl:top-36 left-44 sm:left-46 md:left-36 lg:left-56 xl:left-72 2xl:left-96 z-20"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
@@ -191,7 +191,7 @@ export default function Hero() {
           <motion.img
             src={heroImg}
             alt="Modern delivery van in motion"
-            className="absolute bottom-10 md:bottom-10 lg:bottom-10 xl:bottom-4 2xl:bottom-8  2xl:top-56 right-0 sm:right-4 w-full sm:w-[90%] md:w-[85%]  z-30 object-contain"
+            className="absolute bottom-16 md:bottom-10 lg:bottom-10 xl:bottom-4 2xl:bottom-8  2xl:top-56 right-0 sm:right-4 w-full sm:w-[90%] md:w-[85%]  z-30 object-contain"
             width={800}
             height={600}
             loading="lazy"
