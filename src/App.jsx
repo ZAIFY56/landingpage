@@ -6,6 +6,7 @@ import GetQuotesPage from "./pages/GetQuotesPage";
 import InstantQuoteFormPage from "./pages/InstantQuoteFormPage";
 import TermsConditionPage from "./pages/TermsConditionPage";
 import ThankYoupage from "./pages/ThankYoupage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow">
-          <Routes path="*">
+          <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/instant-quote" element={<GetQuotesPage />} />
             <Route
@@ -22,6 +23,7 @@ function App() {
             />
             <Route path="/terms-condition" element={<TermsConditionPage />} />
             <Route path="/thank-you" element={<ThankYoupage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
         <Footer />
