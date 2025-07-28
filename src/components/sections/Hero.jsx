@@ -54,7 +54,7 @@ export default function Hero() {
   const vanX = useTransform(scrollY, [0, 500], [0, -400]); // Move van from right to left edge
   const vanOpacity = useTransform(scrollY, [0, 300], [1, 0.8]); // Slight opacity change
 
-  // Animation variants
+  // Animation Variants
   const textVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i) => ({
