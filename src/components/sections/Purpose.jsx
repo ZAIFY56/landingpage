@@ -75,7 +75,7 @@ export default function Purpose() {
       <div className="container mx-auto px-2 py-2 flex flex-col md:flex-row">
         <div className="md:w-1/2">
           <motion.h1
-            className="text-xl md:text-3xl text-center md:text-start 2xl:text-6xl font-bold mb-6 flex"
+            className="text-xl justify-center md:justify-start md:text-3xl text-center md:text-start 2xl:text-6xl font-bold mb-6 flex"
             custom={0}
             initial="hidden"
             whileInView="visible"
@@ -128,7 +128,7 @@ export default function Purpose() {
 
         <div className="md:w-1/2">
           <motion.h1
-            className="text-xl md:text-3xl text-center md:text-start 2xl:text-6xl font-bold mb-6 flex"
+            className="text-xl justify-center md:justify-start md:text-3xl text-center md:text-start 2xl:text-6xl font-bold mb-6 flex"
             custom={2}
             initial="hidden"
             whileInView="visible"

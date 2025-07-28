@@ -93,10 +93,10 @@ export default function Hero() {
 
   return (
     <section className="relative bg-white overflow-hidden">
-      <div className="container px-4 mx-auto w-full flex flex-col-reverse md:flex-row items-center  md:justify-between">
-        <div className="md:w-1/2 w-full text-center align-middle md:text-left mb-8 md:mb-0">
+      <div className="container px-4 mx-auto w-full flex flex-col md:flex-row items-center  md:justify-between">
+        <div className=" my-8 md:w-1/2 w-full text-center font-inter font-feature-default antialiased align-middle md:text-left mb-8 md:mb-0">
           <motion.div
-            className="text-2xl sm:text-4xl md:text-4xl 2xl:text-6xl font-semibold leading-tight justify-center flex"
+            className="text-2xl sm:text-4xl md:text-4xl 2xl:text-6xl font-semibold leading-tight justify-center md:justify-start flex"
             custom={0}
             initial="hidden"
             animate="visible"
@@ -110,7 +110,7 @@ export default function Hero() {
             />
           </motion.div>
           <motion.div
-            className="text-2xl sm:text-4xl md:text-4xl 2xl:text-6xl font-semibold mb-4 leading-tight justify-center flex"
+            className="text-2xl sm:text-4xl md:text-4xl 2xl:text-6xl font-semibold mb-4 leading-tightjustify-center md:justify-start flex"
             custom={1}
             initial="hidden"
             animate="visible"
@@ -130,7 +130,7 @@ export default function Hero() {
             animate="visible"
             variants={textVariants}
           >
-            <p className="text-gray-700 mb-6  text-sm  2xl:text-[20px] md:text-[16px] leading-[100%] tracking-[-0.04em] align-middle">
+            <p className="text-gray-600 mb-6  text-sm  2xl:text-[20px] md:text-[16px] leading-[100%] tracking-[-0.04em] align-middle">
               Our team specializes in fast, reliable deliveries for urgent
               needs. No matter the deadline, we're already on the move to ensure
               your order arrives on time. Trust us to handle your last-minute
