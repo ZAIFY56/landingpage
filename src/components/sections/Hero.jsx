@@ -165,7 +165,7 @@ export default function Hero() {
           <motion.img
             src={heroImg2}
             alt="Team handling packages professionally"
-            className="absolute dark:filter dark:grayscale top-2 md:top-32 lg:top-20 xl:top-8  2xl:top-10 right-2 sm:right-8 md:right-12  2xl:right-54 w-[50%] 2xl:w-[45%] z-10 object-contain"
+            className="absolute dark:filter dark:grayscale top-2 md:top-32 lg:top-12 xl:top-8  2xl:top-10 right-2 sm:right-8 md:right-42 2xl:right-54 w-[50%] 2xl:w-[45%] z-10 object-contain"
             width={499}
             height={330}
             loading="lazy"
@@ -175,15 +175,15 @@ export default function Hero() {
           />
 
           <motion.div
-            className="absolute top-20 md:top-44 lg:top-36 xl:top-28  2xl:top-36 left-44 sm:left-46 md:left-36 lg:left-60 xl:left-72 2xl:left-96 z-20"
+            className="absolute top-20 md:top-44 lg:top-32 xl:top-28  2xl:top-36 left-44 sm:left-46 md:left-36 lg:left-56 xl:left-72 2xl:left-96 z-20"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            <div className="text-primary font-bold text-xl sm:text-2xl md:text-2xl xl:text-4xl 2xl:text-4xl leading-tight">
+            <div className="text-primary font-bold text-xl sm:text-2xl md:text-2xl xl:text-2xl 2xl:text-4xl leading-tight">
               <AnimatedText text="ON TIME" delay={1.2} />
             </div>
-            <div className="text-primary font-bold text-2xl sm:text-3xl md:text-2xl xl:text-4xl  2xl:text-5xl leading-tight">
+            <div className="text-primary font-bold text-2xl sm:text-3xl md:text-4xl xl:text-4xl  2xl:text-5xl leading-tight">
               <AnimatedText text="EVERY TIME" delay={1.4} />
             </div>
           </motion.div>
@@ -191,7 +191,7 @@ export default function Hero() {
           <motion.img
             src={heroImg}
             alt="Modern delivery van in motion"
-            className="absolute bottom-10 md:bottom-10 lg:bottom-8 xl:bottom-0  2xl:top-56 right-0 sm:right-4 w-full sm:w-[90%] md:w-[85%]  z-30 object-contain"
+            className="absolute bottom-10 md:bottom-10 lg:bottom-10 xl:bottom-4 2xl:bottom-8  2xl:top-56 right-0 sm:right-4 w-full sm:w-[90%] md:w-[85%]  z-30 object-contain"
             width={800}
             height={600}
             loading="lazy"
@@ -203,28 +203,6 @@ export default function Hero() {
               opacity: vanOpacity,
             }}
           />
-
-          <motion.div
-            className="absolute bottom-36 md:bottom-32 lg:bottom-40 2xl:bottom-24 left-52 md:left-[62%] lg:left-[60%] 2xl:left-[64%] transform -translate-x-1/2 z-40"
-            variants={floatingAnimation}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.5 }}
-          >
-            <img
-              src={logoImg}
-              alt="Company logo badge"
-              className="w-24 md:w-32 2xl:w-52 opacity-90"
-              width={128}
-              height={128}
-              loading="lazy"
-              style={{
-                position: "relative",
-                left: "50%",
-                transform: "translateX(-50%)",
-              }}
-            />
-          </motion.div>
         </div>
       </div>
     </section>

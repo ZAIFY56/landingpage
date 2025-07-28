@@ -140,7 +140,11 @@ export default function Feedback() {
               whileTap={{ scale: 0.98 }}
             >
               <Card
-                className="!bg-white !p-6 !rounded-lg border !border-primary !flex !flex-col md:!flex-row !w-full lg:!w-[45%] 2xl:!w-[48%] !max-w-none"
+                className="
+               bg-[#F3F3F3] w-full flex flex-col items-center cursor-pointer
+               max-w-[240px] lg:w-[300px] min-h-[180px] p-4 rounded-xl 
+               2xl:max-w-[342px] 2xl:w-[380px] 2xl:min-h-[200px]  transition-all duration-300
+              !bg-white !p-6 !rounded-lg border !border-[#4B9795] !flex !flex-col md:!flex-row !w-full lg  :!w-[45%] 2xl:!w-[48%] !max-w-none"
                 hoverEffect={false}
                 containerProps={{
                   className:
