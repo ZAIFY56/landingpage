@@ -9,8 +9,8 @@ export default function Hero() {
     const navigate=useNavigate();
     return (
         <section className="relative bg-white overflow-hidden">
-            <div className="container mx-auto sm:px-4 2xl:px-15 2xl:py-0 2xl:mb-20 sm:py-8 md:py-0 flex flex-col-reverse md:flex-row items-center justify-between">
-                <div className="md:w-1/2 w-full text-center md:text-left mb-8 md:mb-0">
+            <div className="container mx-auto sm:px-4 2xl:px-15 2xl:py-0 2xl:mb-20 sm:py-8 md:py-0 flex flex-col md:flex-row items-center justify-between">
+                <div className="md:w-1/2 w-full py-4 text-center md:text-left mb-8 md:mb-0">
                     <h1 className="text-3xl sm:text-4xl md:text-4xl 2xl:text-6xl font-semibold leading-tight">
                         Speed Is <span className='text-[#4B9795]'>Our Priority</span>
                     </h1>

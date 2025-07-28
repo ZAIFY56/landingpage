@@ -37,10 +37,10 @@ export default function SustainabilityFeatures() {
                     </p>
                 </header>
                 
-                <div className="container lg:mx-[8rem] grid grid-cols-1 justify-items-center md:grid-cols-3 lg:grid-cols-4 2xl:mt-20 mt-10 gap-4">
+                <div className="flex flex-col items-center md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 w-full px-4">
                     {services.map((service, index) => (
                         <Card
-                            className="!w-full"
+                            className="!w-full md:!w-full !max-w-md md:!max-w-none"
                             key={`sustainability-${index}`} 
                             icon={service.icon}
                             title={service.title}

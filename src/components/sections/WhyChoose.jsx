@@ -50,13 +50,14 @@ export default function WhyChoose() {
                     </div>
                 </div>
             </div>
-            <div className="container mx-auto grid grid-cols-1 justify-items-center md:grid-cols-3 lg:grid-cols-4 mt-20 gap-4">
+                <div className="flex flex-col items-center md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 w-full px-4">
                 {features.map((feature, index) => (
                     <Card 
                         key={`feature-${index}`} 
                         icon={feature.icon}
                         title={feature.title}
                         description={feature.description}
+                            className="!w-full md:!w-full !max-w-md md:!max-w-none"
                     />
                 ))}
             </div>
