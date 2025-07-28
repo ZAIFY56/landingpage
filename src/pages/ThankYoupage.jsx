@@ -132,7 +132,7 @@ export default function ThankYouPage() {
         />
 
         <motion.div
-          className="absolute top-22 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl px-4"
+          className="absolute top-72 md:left-1/4 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl px-4"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
@@ -189,7 +189,7 @@ export default function ThankYouPage() {
       </motion.div>
 
       <motion.div
-        className="mt-44 mb-8 w-full max-w-2xl container mx-auto"
+        className="mt-64 mb-8 w-full max-w-2xl container mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}

@@ -134,11 +134,11 @@ const TrackShipment = () => {
               <Input
                 type="text"
                 placeholder="Enter tracking number"
-                className="w-full h-12 md:h-14 2xl:h-[70px] pr-36 rounded-md"
+                className="w-full !border-none h-12 md:h-14 2xl:h-[70px] pr-36 rounded-md"
                 aria-label="Tracking number input"
               />
               <Button
-                className="absolute top-1/2 right-5 -translate-y-1/2 h-10 md:h-12 px-6"
+                className="absolute top-1/2 right-2 -translate-y-1/2 h-10 md:h-12 px-6"
                 aria-label="Track shipment"
               >
                 Track Shipment

@@ -117,14 +117,14 @@ const ContactUs = () => {
               <h2 className="text-xl 2xl:text-[44px] font-semibold mt-2">
                 Submit your Details
               </h2>
-              <form className="space-y-4 py-4" noValidate>
+              <form className="space-y-4 py-4 " noValidate>
                 <motion.div custom={0} variants={fieldVariants}>
                   <Input
                     type="text"
                     id="name"
                     name="name"
                     placeholder="Name"
-                    className="w-5/6"
+                    className="w-5/6 !border-none"
                     aria-label="Your name"
                   />
                 </motion.div>
@@ -134,7 +134,7 @@ const ContactUs = () => {
                     id="number"
                     name="phone"
                     placeholder="Number"
-                    className="w-5/6"
+                    className="w-5/6 !border-none"
                     aria-label="Phone number"
                   />
                 </motion.div>
@@ -144,12 +144,12 @@ const ContactUs = () => {
                     id="email"
                     name="email"
                     placeholder="Email"
-                    className="w-5/6"
+                    className="w-5/6 !border-none"
                     aria-label="Email address"
                   />
                 </motion.div>
                 <motion.div
-                  className="w-5/6"
+                  className="w-5/6 !border-none"
                   custom={3}
                   variants={fieldVariants}
                 >
@@ -158,7 +158,7 @@ const ContactUs = () => {
                     name="message"
                     rows={4}
                     placeholder="Message"
-                    className="w-full px-4 py-2 border-none bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-primary min-h-[120px] align-top pt-3 resize-none"
+                    className="w-full !border-none px-4 py-2 border-none bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-primary min-h-[120px] align-top pt-3 resize-none"
                     aria-label="Your message"
                   />
                 </motion.div>
