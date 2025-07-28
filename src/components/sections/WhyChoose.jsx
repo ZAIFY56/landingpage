@@ -145,7 +145,7 @@ export default function WhyChoose() {
         </div>
       </div>
       <motion.div
-        className="container mx-auto grid grid-cols-1 justify-items-center md:grid-cols-3 lg:grid-cols-4 mt-20 gap-4"
+        className="container mx-auto grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-4 mt-20 gap-6 px-4"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
@@ -155,17 +155,15 @@ export default function WhyChoose() {
             key={`feature-${index}`}
             custom={index}
             variants={cardVariants}
-            whileHover={{
-              y: -10,
-              scale: 1.05,
-              transition: { duration: 0.3 },
-            }}
+            whileHover={{ y: -10, scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            className="w-full max-w-[320px]"
           >
             <Card
               icon={feature.icon}
               title={feature.title}
               description={feature.description}
+              className="h-full" // Ensure Card fills container
             />
           </motion.div>
         ))}

@@ -134,7 +134,7 @@ export default function SustainabilityFeatures() {
               whileTap={{ scale: 0.95 }}
             >
               <Card
-                className="!w-full"
+                className="!w-full h-full"
                 icon={service.icon}
                 title={service.title}
                 description={service.description}
