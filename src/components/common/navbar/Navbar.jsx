@@ -24,7 +24,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="container mx-auto px-2 md:px-6 2xl:px-15 py-3 relative">
+    <header className="container mx-auto px-2 md:px-4 2xl:px-15 py-3 relative">
       <div className="flex justify-between items-center">
         <div className="w-32 md:w-[12rem] h-[4rem]">
           <img

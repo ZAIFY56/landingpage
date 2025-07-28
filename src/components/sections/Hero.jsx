@@ -93,7 +93,7 @@ export default function Hero() {
 
   return (
     <section className="relative bg-white overflow-hidden">
-      <div className="container px-4 mx-auto w-full flex flex-col md:flex-row items-center  md:justify-between">
+      <div className="container px-2 md:px-4 mx-auto w-full flex flex-col md:flex-row items-center  md:justify-between">
         <div className=" my-8 md:w-1/2 w-full text-center font-inter font-feature-default antialiased align-middle md:text-left mb-8 md:mb-0">
           <motion.div
             className="text-2xl sm:text-4xl md:text-4xl 2xl:text-6xl font-semibold leading-tight justify-center md:justify-start flex"

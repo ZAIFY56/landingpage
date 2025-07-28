@@ -95,7 +95,7 @@ const ContactUs = () => {
 
   return (
     <section className="py-12">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-2 md:px-4">
         <div className="bg-white overflow-hidden">
           <motion.h2
             className="text-3xl text-primary 2xl:text-6xl font-bold"
