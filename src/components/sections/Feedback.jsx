@@ -138,13 +138,10 @@ export default function Feedback() {
                 transition: { duration: 0.3 },
               }}
               whileTap={{ scale: 0.98 }}
+              className="w-full md:w-[600px] lg:w-[700px] xl:w-[800px] 2xl:w-[900px]" // Added responsive width classes
             >
               <Card
-                className="
-               bg-[#F3F3F3] w-full flex flex-col items-center cursor-pointer
-               max-w-[240px] lg:w-[300px] min-h-[180px] p-4 rounded-xl 
-               2xl:max-w-[342px] 2xl:w-[380px] 2xl:min-h-[200px]  transition-all duration-300
-              !bg-white !p-6 !rounded-lg border !border-[#4B9795] !flex !flex-col md:!flex-row !w-full lg  :!w-[45%] 2xl:!w-[48%] !max-w-none"
+                className="!bg-white !p-6 !rounded-lg border !border-primary !flex !flex-col md:!flex-row !w-full !max-w-none"
                 hoverEffect={false}
                 containerProps={{
                   className:
@@ -160,11 +157,11 @@ export default function Feedback() {
                   className: "!hidden",
                 }}
               >
-                <div className="flex flex-col items-center md:items-center md:w-1/3 md:pr-6 md:mb-0">
+                <div className="flex flex-col items-center md:items-center md:w-1/4 md:pr-6 md:mb-0">
                   <motion.img
                     src={feedback.icon}
                     alt={`${feedback.title} profile`}
-                    className="2xl:w-[140px] 2xl:h-[140px]lg:w-28 h-28 rounded-full object-cover mb-3"
+                    className="2xl:w-[140px] 2xl:h-[140px] lg:w-28 h-28 rounded-full object-cover mb-3"
                     width={140}
                     height={140}
                     loading="lazy"
@@ -178,7 +175,7 @@ export default function Feedback() {
                   </h3>
                 </div>
 
-                <div className="md:w-2/3 md:pl-6">
+                <div className="md:w-3/4 md:pl-6">
                   <motion.div
                     className="flex justify-center md:justify-end mb-3 text-yellow-400"
                     aria-hidden="true"
