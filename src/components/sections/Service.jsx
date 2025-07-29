@@ -131,7 +131,7 @@ export default function Service() {
         </motion.header>
 
         <motion.div
-          className="flex flex-col items-center md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 w-full px-4"
+          className="container mx-auto grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-4 mt-20 gap-6 px-4"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -147,9 +147,10 @@ export default function Service() {
                 transition: { duration: 0.3 },
               }}
               whileTap={{ scale: 0.95 }}
+              className="w-full max-w-[320px]"
             >
               <Card
-                className="!w-full md:!w-full !max-w-md md:!max-w-none"
+                className="!w-full !h-full md:!w-full !max-w-md md:!max-w-none"
                 icon={service.icon}
                 title={service.title}
                 description={service.description}
