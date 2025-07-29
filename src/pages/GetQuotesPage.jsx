@@ -5,10 +5,11 @@ import tvan from "/getquote/tvan.png";
 import mvan from "/getquote/mvan.jpg";
 import xvan from "/getquote/xvan.png";
 import lvan from "/getquote/lvan.jpg";
-import vectoricon from "/getquote/Vector.png";
 import vanIcon from "/getquote/vanicon.png";
+import { useState, useCallback } from "react";
 import backIcon from "/getquote/prevoius.png";
 import personimg from "/getquote/person.jpg";
+import axios from "axios";
 
 // Drop letter animation component
 const DropLetter = ({ children, delay = 0, className = "" }) => {
@@ -88,7 +89,292 @@ const vanOptions = [
   },
 ];
 
+// Debounce function
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+// Autocomplete component
+const AutocompleteInput = ({ placeholder, defaultValue, onSelect }) => {
+  const [inputValue, setInputValue] = useState(defaultValue || "");
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const fetchSuggestions = async (input, token) => {
+    if (!input || input.length < 3) {
+      setSuggestions([]);
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const response = await axios.get(
+        `https://maps.googleapis.com/maps/api/place/js/AutocompletionService.GetPredictions`,
+        {
+          params: {
+            input: input,
+            key: "1sa&4sen-GB&6m6&1m2&1d51.237805414764146&2d-0.5605847306899191&2m2&1d51.776794585235855&2d0.3053847306899191&15e3&20s25B8D6AEC7A54673A44FD579E3BD7375x6eg&21m1&2e1&r_url=https%3A%2F%2Fuk.gophr.com%2F&callback=_xdc_._iejq01&key=AIzaSyCJcqmicfdQ5kc_IKf6cvmIe-y46hgZmeY",
+            token: token,
+          },
+        }
+      );
+
+      const results = response.data.predictions.map((prediction) => ({
+        description: prediction.description,
+        place_id: prediction.place_id,
+      }));
+
+      setSuggestions(results);
+      setShowSuggestions(true);
+    } catch (error) {
+      console.error("Error fetching autocomplete suggestions:", error);
+      setSuggestions([]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const debouncedFetchSuggestions = useCallback(
+    debounce(fetchSuggestions, 300),
+    []
+  );
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setInputValue(value);
+    debouncedFetchSuggestions(value);
+  };
+
+  const handleSelect = (value) => {
+    setInputValue(value);
+    setShowSuggestions(false);
+    onSelect(value);
+  };
+
+  return (
+    <div className="relative w-full">
+      <input
+        type="text"
+        value={inputValue}
+        onChange={handleInputChange}
+        placeholder={placeholder}
+        className="w-full p-2 rounded text-gray-800 border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary-light"
+      />
+      {isLoading && (
+        <div className="absolute right-2 top-2">
+          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-600"></div>
+        </div>
+      )}
+      {showSuggestions && suggestions.length > 0 && (
+        <ul className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto">
+          {suggestions.map((item, index) => (
+            <li
+              key={index}
+              className="p-2 hover:bg-gray-100 cursor-pointer text-sm"
+              onClick={() => handleSelect(item.description)}
+            >
+              {item.description}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+const BackButton = ({ icon }) => {
+  return (
+    <motion.div
+      className="mt-3 flex items-center gap-2 cursor-pointer hover:underline"
+      initial={{ opacity: 0, x: 20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      whileHover={{
+        scale: 1.05,
+        x: -5,
+        transition: { duration: 0.2 },
+      }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <motion.img
+        src={icon}
+        alt="Back"
+        className="2xl:w-[32px] 2xl:h-[32px]"
+        whileHover={{
+          x: -3,
+          transition: { duration: 0.2 },
+        }}
+      />
+      <h3 className="2xl:text-[18px] font-semibold text-md md:text-lg">Back</h3>
+    </motion.div>
+  );
+};
+
+const SpecsList = ({ specs }) => {
+  const specVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -10 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.4 },
+    },
+  };
+
+  return (
+    <motion.ul
+      className="text-sm space-y-1 mb-4"
+      variants={specVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    >
+      {Object.entries(specs).map(([key, value]) => (
+        <motion.li
+          key={key}
+          className="flex justify-between"
+          variants={itemVariants}
+        >
+          <span>{key.charAt(0).toUpperCase() + key.slice(1)}:</span>
+          <span>{value}</span>
+        </motion.li>
+      ))}
+    </motion.ul>
+  );
+};
+
+const PriceLine = ({ label, value, isBold = false, variants }) => {
+  return (
+    <motion.p
+      className={`flex justify-between ${isBold ? "font-semibold" : ""}`}
+      variants={variants}
+    >
+      <span>{label}</span>
+      <span>£{value.toFixed(2)}</span>
+    </motion.p>
+  );
+};
+
+const PriceInfo = ({ price, vat, total }) => {
+  const priceVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.4,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4 },
+    },
+  };
+
+  return (
+    <motion.div
+      className="text-sm mb-2 space-y-1"
+      variants={priceVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    >
+      <PriceLine label="Price:" value={price} variants={itemVariants} />
+      <PriceLine label="VAT:" value={vat} variants={itemVariants} />
+      <PriceLine label="TOTAL:" value={total} isBold variants={itemVariants} />
+    </motion.div>
+  );
+};
+
+const VanCard = ({ van, index, variants }) => {
+  const total = van.price + van.vat;
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delay: 0.2,
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  return (
+    <motion.div
+      className="border border-primary rounded-md p-4 shadow-sm"
+      custom={index}
+      variants={variants}
+      whileHover="hover"
+      whileTap="tap"
+    >
+      <motion.h4
+        className="font-semibold bg-primary p-2 text-center rounded-se-md text-white 2xl:text-lg w-[140px] 2xl:w-[156px] mb-2"
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.1, duration: 0.5 }}
+      >
+        {van.title}
+      </motion.h4>
+      <motion.img
+        src={van.image}
+        alt={van.title}
+        className="w-full h-32 object-contain mb-4"
+        variants={imageVariants}
+        whileHover={{
+          scale: 1.1,
+          transition: { duration: 0.3 },
+        }}
+      />
+      <SpecsList specs={van.specs} />
+      <PriceInfo price={van.price} vat={van.vat} total={total} />
+      <motion.button
+        className="w-full bg-primary text-white py-2 rounded hover:bg-[#3c7e7c] transition"
+        whileHover={{
+          scale: 1.02,
+          backgroundColor: "#3c7e7c",
+          transition: { duration: 0.2 },
+        }}
+        whileTap={{ scale: 0.98 }}
+      >
+        Choose this Option
+      </motion.button>
+    </motion.div>
+  );
+};
+
 function GetQuotesPage() {
+  const [pickup, setPickup] = useState("");
+  const [destination, setDestination] = useState("");
+
   const heroVariants = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: {
@@ -180,19 +466,60 @@ function GetQuotesPage() {
       </motion.div>
 
       <motion.div
-        className="mt-10 md:mt-14 flex flex-wrap justify-between items-center bg-primary text-white p-4 rounded-md max-w-5xl mx-auto mb-8"
+        className="mt-10 md:mt-14 flex flex-wrap justify-between items-center bg-primary text-white p-4 rounded-md max-w-5xl mx-auto mb-8 gap-4"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={infoBarVariants}
       >
-        <InfoItem icon={vectoricon} label="Pickup from:" value="EC1A 1NT" />
-        <InfoItem icon={vectoricon} label="Destination:" value="E17JF" />
-        <InfoItem
-          icon={vanIcon}
-          label="Earliest Delivery:"
-          value="14:21 if Booked Now"
-        />
+        <div className="flex-1 min-w-[200px]">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <label className="block text-sm mb-1">Pickup from:</label>
+            <AutocompleteInput
+              placeholder="Enter pickup location"
+              defaultValue={pickup}
+              onSelect={(value) => setPickup(value)}
+            />
+          </motion.div>
+        </div>
+
+        <div className="flex-1 min-w-[200px]">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <label className="block text-sm mb-1">Destination:</label>
+            <AutocompleteInput
+              placeholder="Enter destination"
+              defaultValue={destination}
+              onSelect={(value) => setDestination(value)}
+            />
+          </motion.div>
+        </div>
+
+        <div className="flex-1 min-w-[200px]">
+          <motion.div
+            className="text-white flex p-2 mt-4 gap-4"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <img src={vanIcon} alt="van-icon" className="w-12 h-8 mt-2" />
+            <div>
+              <p className="text-sm font-semibold ">Earliest Delivery:</p>
+              <p className="text-sm font-semibold ">14:21 if Booked Now</p>
+            </div>
+          </motion.div>
+        </div>
+
         <BackButton icon={backIcon} />
       </motion.div>
 
@@ -228,228 +555,6 @@ function GetQuotesPage() {
         </motion.div>
       </motion.div>
     </div>
-  );
-}
-
-function InfoItem({ icon, label, value }) {
-  const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  return (
-    <motion.div
-      className="flex items-center gap-2"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      variants={itemVariants}
-      whileHover={{
-        scale: 1.05,
-        transition: { duration: 0.2 },
-      }}
-    >
-      <motion.img
-        src={icon}
-        alt={label}
-        className="2xl:w-[32px] 2xl:h-[32px]"
-        whileHover={{
-          rotate: 360,
-          transition: { duration: 0.5 },
-        }}
-      />
-      <div>
-        <p className="2xl:text-[18px] md:text-sm">{label}</p>
-        <h3 className="2xl:text-[18px] font-semibold md:text-lg">{value}</h3>
-      </div>
-    </motion.div>
-  );
-}
-
-function BackButton({ icon }) {
-  return (
-    <motion.div
-      className="flex items-center gap-2 cursor-pointer hover:underline"
-      initial={{ opacity: 0, x: 20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      whileHover={{
-        scale: 1.05,
-        x: -5,
-        transition: { duration: 0.2 },
-      }}
-      whileTap={{ scale: 0.95 }}
-    >
-      <motion.img
-        src={icon}
-        alt="Back"
-        className="2xl:w-[32px] 2xl:h-[32px]"
-        whileHover={{
-          x: -3,
-          transition: { duration: 0.2 },
-        }}
-      />
-      <h3 className="2xl:text-[18px] font-semibold text-md md:text-lg">Back</h3>
-    </motion.div>
-  );
-}
-
-function VanCard({ van, index, variants }) {
-  const total = van.price + van.vat;
-
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        delay: 0.2,
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  return (
-    <motion.div
-      className="border border-primary rounded-md p-4 shadow-sm"
-      custom={index}
-      variants={variants}
-      whileHover="hover"
-      whileTap="tap"
-    >
-      <motion.h4
-        className="font-semibold bg-primary p-2 text-center rounded-se-md text-white 2xl:text-lg w-[140px] 2xl:w-[156px] mb-2"
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.1, duration: 0.5 }}
-      >
-        {van.title}
-      </motion.h4>
-      <motion.img
-        src={van.image}
-        alt={van.title}
-        className="w-full h-32 object-contain mb-4"
-        variants={imageVariants}
-        whileHover={{
-          scale: 1.1,
-          transition: { duration: 0.3 },
-        }}
-      />
-      <SpecsList specs={van.specs} />
-      <PriceInfo price={van.price} vat={van.vat} total={total} />
-      <motion.button
-        className="w-full bg-primary text-white py-2 rounded hover:bg-[#3c7e7c] transition"
-        whileHover={{
-          scale: 1.02,
-          backgroundColor: "#3c7e7c",
-          transition: { duration: 0.2 },
-        }}
-        whileTap={{ scale: 0.98 }}
-      >
-        Choose this Option
-      </motion.button>
-    </motion.div>
-  );
-}
-
-function SpecsList({ specs }) {
-  const specVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: -10 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.4 },
-    },
-  };
-
-  return (
-    <motion.ul
-      className="text-sm space-y-1 mb-4"
-      variants={specVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-    >
-      {Object.entries(specs).map(([key, value]) => (
-        <motion.li
-          key={key}
-          className="flex justify-between"
-          variants={itemVariants}
-        >
-          <span>{key.charAt(0).toUpperCase() + key.slice(1)}:</span>
-          <span>{value}</span>
-        </motion.li>
-      ))}
-    </motion.ul>
-  );
-}
-
-function PriceInfo({ price, vat, total }) {
-  const priceVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.4,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.4 },
-    },
-  };
-
-  return (
-    <motion.div
-      className="text-sm mb-2 space-y-1"
-      variants={priceVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-    >
-      <PriceLine label="Price:" value={price} variants={itemVariants} />
-      <PriceLine label="VAT:" value={vat} variants={itemVariants} />
-      <PriceLine label="TOTAL:" value={total} isBold variants={itemVariants} />
-    </motion.div>
-  );
-}
-
-function PriceLine({ label, value, isBold = false, variants }) {
-  return (
-    <motion.p
-      className={`flex justify-between ${isBold ? "font-semibold" : ""}`}
-      variants={variants}
-    >
-      <span>{label}</span>
-      <span>£{value.toFixed(2)}</span>
-    </motion.p>
   );
 }
 
