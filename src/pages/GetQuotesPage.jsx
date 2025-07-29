@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 import heroimg from "/getquote/getqoute1.jpg";
-import vanimg from "/getquote/van.jpg";
+import svan from "/getquote/van.jpg";
+import tvan from "/getquote/tvan.png";
+import mvan from "/getquote/mvan.jpg";
+import xvan from "/getquote/xvan.png";
+import lvan from "/getquote/lvan.jpg";
 import vectoricon from "/getquote/Vector.png";
 import vanIcon from "/getquote/vanicon.png";
 import backIcon from "/getquote/prevoius.png";
@@ -49,35 +53,35 @@ const AnimatedText = ({ text, className = "", delay = 0 }) => {
 const vanOptions = [
   {
     title: "Small Van",
-    image: vanimg,
+    image: svan,
     specs: { length: "1.3m", width: "1.2m", height: "1.2m", weight: "400kg" },
     price: 75,
     vat: 15,
   },
   {
     title: "Transit Van",
-    image: vanimg,
+    image: tvan,
     specs: { length: "1.8m", width: "1.4m", height: "1.4m", weight: "900kg" },
     price: 83,
     vat: 17,
   },
   {
     title: "Medium Van",
-    image: vanimg,
+    image: mvan,
     specs: { length: "2.0m", width: "1.5m", height: "1.4m", weight: "950kg" },
     price: 90,
     vat: 18,
   },
   {
     title: "Xlwb Van",
-    image: vanimg,
+    image: xvan,
     specs: { length: "3.4m", width: "1.7m", height: "1.7m", weight: "1250kg" },
     price: 175,
     vat: 35,
   },
   {
     title: "Luton Van",
-    image: vanimg,
+    image: lvan,
     specs: { length: "4.0m", width: "2.0m", height: "2.2m", weight: "1000kg" },
     price: 170,
     vat: 34,

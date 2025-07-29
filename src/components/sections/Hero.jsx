@@ -96,7 +96,7 @@ export default function Hero() {
       <div className="container mx-auto px-6 md:px-2 lg:px-12 xl:px-12 2xl:px-12 lg:py-10 xl:py-12 2xl:py-12 2xl:mb-20 sm:py-8 md:py-0 flex flex-col md:flex-row items-center justify-between">
         <div className="mt-6 md:w-1/2 w-full text-center md:text-left mb-8 md:mb-40">
           <motion.div
-            className="text-2xl mb-2 justify-center md:justify-items-start md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold leading-tight flex"
+            className="text-2xl mb-2 justify-center md:justify-normal md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold leading-tight flex"
             custom={0}
             initial="hidden"
             animate="visible"
@@ -110,7 +110,7 @@ export default function Hero() {
             />
           </motion.div>
           <motion.div
-            className="text-2xl justify-center md:justify-items-start  md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold mb-4 leading-tight flex"
+            className="text-2xl justify-center md:justify-normal  md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold mb-4 leading-tight flex"
             custom={1}
             initial="hidden"
             animate="visible"
