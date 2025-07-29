@@ -112,11 +112,12 @@ export default function ThankYouPage() {
   return (
     <div className="bg-white">
       <motion.div
-        className="relative"
+        className="relative px-6 md:px-15 lg:px-12 xl:px-12 2xl:px-12"
         initial="hidden"
         animate="visible"
         variants={heroVariants}
       >
+        {/* Background image */}
         <motion.img
           src={image1}
           alt="Thank you background"
@@ -131,15 +132,16 @@ export default function ThankYouPage() {
           }}
         />
 
+        {/* Centered card container */}
         <motion.div
-          className="absolute top-72 md:left-1/4 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl px-4"
+          className="absolute left-0 right-0 top-1/2 transform -translate-y-1/2 mx-auto w-full max-w-2xl px-4"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={cardVariants}
         >
           <motion.div
-            className="bg-white p-8 rounded-lg shadow-lg text-center"
+            className="bg-white p-8 rounded-lg shadow-lg text-center mx-auto "
             whileHover={{
               y: -5,
               transition: { duration: 0.3 },
@@ -151,7 +153,7 @@ export default function ThankYouPage() {
             >
               <motion.img
                 src={icon}
-                alt="Checkmark icon indicating success"
+                alt="Checkmark icon"
                 className="h-16 w-16"
                 width={64}
                 height={64}
@@ -164,24 +166,11 @@ export default function ThankYouPage() {
               />
             </motion.div>
 
-            <motion.h1
-              className="text-3xl md:text-4xl 2xl:text-5xl font-bold text-primary mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
+            <motion.h1 className="text-3xl md:text-4xl 2xl:text-5xl font-bold text-primary mb-4">
               <AnimatedText text="Thank You!" delay={0.4} />
             </motion.h1>
 
-            <motion.p
-              className="text-md text-gray-600 mb-8"
-              aria-live="polite"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-            >
+            <motion.p className="text-md text-gray-600 mb-8">
               Your order has been received. We will contact you shortly.
             </motion.p>
           </motion.div>
@@ -189,7 +178,7 @@ export default function ThankYouPage() {
       </motion.div>
 
       <motion.div
-        className="mt-64 mb-8 w-full max-w-2xl container mx-auto"
+        className="mt-48 mb-8 w-full max-w-2xl container mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}

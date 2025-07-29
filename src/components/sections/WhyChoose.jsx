@@ -105,10 +105,10 @@ export default function WhyChoose() {
 
   return (
     <section className="py-8">
-      <div className="container mx-auto px-2 py-2 flex flex-col-reverse md:flex-row items-center justify-between">
+      <div className="container mx-auto px-6 md:px-15 lg:px-12 xl:px-12 2xl:px-12 py-2 flex flex-col-reverse md:flex-row items-center justify-between">
         <div className="flex flex-col mt-10 md:flex-row gap-16">
           <motion.div
-            className="md:w-1/3 text-center md:my-2 md:text-start text-3xl md:text-4xl 2xl:text-6xl font-bold flex"
+            className="md:w-1/3 justify-center md:my-2 md:text-start text-3xl md:text-3xl 2xl:text-6xl font-semibold flex"
             custom={0}
             initial="hidden"
             whileInView="visible"
@@ -138,14 +138,14 @@ export default function WhyChoose() {
               timing, ensuring every parcel is delivered with care and delivered
               on time. Because in our world, delays aren't an option
             </p>
-            <p className="text-xs md-text: ml-[7rem] 2xl:text-[20px] 2xl:text-end md:ml-[22rem]">
+            <p className="text-xs 2xl:text-[20px] 2xl:text-end ml-[3rem]  md:ml-[13rem]">
               — your emergency is our express route."
             </p>
           </motion.div>
         </div>
       </div>
       <motion.div
-        className="container mx-auto grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-4 mt-20 gap-6 px-4"
+        className="container mx-auto grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-4 mt-20 gap-6 px-4 md:px-4 lg:px-12 xl:px-12 2xl:px-12"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
@@ -163,7 +163,7 @@ export default function WhyChoose() {
               icon={feature.icon}
               title={feature.title}
               description={feature.description}
-              className="h-full" // Ensure Card fills container
+              className="!w-full !h-full md:!w-full !max-w-md md:!max-w-none"
             />
           </motion.div>
         ))}

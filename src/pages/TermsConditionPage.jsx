@@ -112,7 +112,7 @@ const TermsAndConditionsPage = () => {
   return (
     <div className="bg-white min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <motion.div
-        className="container px-4 mx-auto w-full"
+        className="container px-6 md:px-15 lg:px-12 xl:px-12 2xl:px-12 mx-auto w-full"
         initial="hidden"
         animate="visible"
         variants={containerVariants}

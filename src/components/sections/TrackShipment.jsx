@@ -114,7 +114,7 @@ const TrackShipment = () => {
 
   return (
     <section className="py-10">
-      <div className="container px-2 mx-auto flex flex-col md:flex-row gap-8 w-full">
+      <div className="container px-6 md:px-15 lg:px-12 xl:px-12 2xl:px-12 mx-auto flex flex-col md:flex-row gap-8 w-full">
         <motion.div
           className="w-full md:w-1/2 bg-white p-6"
           initial="hidden"
@@ -123,7 +123,7 @@ const TrackShipment = () => {
           variants={containerVariants}
         >
           <motion.h1
-            className="text-3xl 2xl:text-6xl font-semibold text-primary mb-6"
+            className="text-2xl 2xl:text-6xl text-center md:text-right font-semibold text-primary mb-6"
             variants={titleVariants}
           >
             <AnimatedText text="Track Your Shipment" delay={0.2} />
@@ -138,7 +138,7 @@ const TrackShipment = () => {
                 aria-label="Tracking number input"
               />
               <Button
-                className="absolute top-1/2 right-2 -translate-y-1/2 h-10 md:h-12 px-6"
+                className="absolute top-1/2 right-1 -translate-y-1/2 h-10 !text-sm md:h-12 px-6"
                 aria-label="Track shipment"
               >
                 Track Shipment

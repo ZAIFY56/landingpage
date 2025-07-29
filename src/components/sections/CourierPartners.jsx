@@ -94,7 +94,7 @@ export default function CourierPartners() {
 
   return (
     <section className="py-20">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-6 md:px-15 lg:px-12 xl:px-12 2xl:px-12">
         <motion.header
           className="text-center max-w-4xl mx-auto mb-16"
           initial="hidden"

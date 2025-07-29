@@ -93,10 +93,10 @@ export default function Hero() {
 
   return (
     <section className="relative bg-white overflow-hidden">
-      <div className="container mx-auto sm:px-4 2xl:px-15 2xl:py-0 2xl:mb-20 sm:py-8 md:py-0 flex flex-col-reverse md:flex-row items-center justify-between">
-        <div className="md:w-1/2 w-full text-center md:text-left mb-8 md:mb-0">
+      <div className="container mx-auto px-6 md:px-2 lg:px-12 xl:px-12 2xl:px-12 lg:py-10 xl:py-12 2xl:py-12 2xl:mb-20 sm:py-8 md:py-0 flex flex-col md:flex-row items-center justify-between">
+        <div className="mt-6 md:w-1/2 w-full text-center md:text-left mb-8 md:mb-40">
           <motion.div
-            className="text-3xl sm:text-4xl md:text-4xl 2xl:text-6xl font-semibold leading-tight flex"
+            className="text-2xl mb-2 justify-center md:justify-items-start md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold leading-tight flex"
             custom={0}
             initial="hidden"
             animate="visible"
@@ -110,7 +110,7 @@ export default function Hero() {
             />
           </motion.div>
           <motion.div
-            className="text-3xl sm:text-4xl md:text-4xl 2xl:text-6xl font-semibold mb-4 leading-tight flex"
+            className="text-2xl justify-center md:justify-items-start  md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold mb-4 leading-tight flex"
             custom={1}
             initial="hidden"
             animate="visible"
@@ -130,7 +130,7 @@ export default function Hero() {
             animate="visible"
             variants={textVariants}
           >
-            <p className="text-gray-700 mb-6    2xl:text-[20px] md:text-[16px] leading-[100%] tracking-[-0.04em] align-middle">
+            <p className="font-normal mb-6 xl:text-[20px] 2xl:text-[20px] md:text-[14px] leading-[100%] tracking-normal align-middle">
               Our team specializes in fast, reliable deliveries for urgent
               needs. No matter the deadline, we're already on the move to ensure
               your order arrives on time. Trust us to handle your last-minute
@@ -161,11 +161,11 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        <div className="2xl:mr-18   md:w-1/2 w-full relative h-[320px] sm:h-[400px] md:h-[400px] mb-8 md:mb-0">
+        <div className="2xl:ml-18 md:w-1/2 w-full relative h-[320px] md:h-[400px] lg:h-[500px] 2xl:h-[600px] mb-8 md:mb-0">
           <motion.img
             src={heroImg2}
             alt="Team handling packages professionally"
-            className="absolute dark:filter dark:grayscale top-2 md:top-32 lg:top-12 xl:top-8  2xl:top-10 right-2 sm:right-8 md:right-42 2xl:right-54 w-[50%] 2xl:w-[45%] z-10 object-contain"
+            className="absolute dark:filter dark:grayscale hover:filter-none hover:grayscale-0 top-10 md:top-16 lg:top-20 xl:top-16 2xl:top-10 left-32  md:left-44 lg:left-56 xl:left-72 2xl:left-92 w-[55%] 2xl:w-[60%] z-10 object-contain"
             width={499}
             height={330}
             loading="lazy"
@@ -175,15 +175,15 @@ export default function Hero() {
           />
 
           <motion.div
-            className="absolute top-20 md:top-44 lg:top-32 xl:top-28  2xl:top-36 left-44 sm:left-46 md:left-36 lg:left-56 xl:left-72 2xl:left-96 z-20"
+            className="absolute font-inter top-24 md:top-32 lg:top-44 xl:top-44 2xl:top-48 right-10 md:right-6 lg:right-6 xl:right-18 2xl:right-16 z-20"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            <div className="text-primary font-bold text-xl sm:text-2xl md:text-2xl xl:text-2xl 2xl:text-4xl leading-tight">
+            <div className="text-primary font-bold text-xl sm:text-2xl md:text-2xl  xl:text-4xl 2xl:text-5xl leading-tight">
               <AnimatedText text="ON TIME" delay={1.2} />
             </div>
-            <div className="text-primary font-bold text-2xl sm:text-3xl md:text-4xl xl:text-4xl  2xl:text-5xl leading-tight">
+            <div className="text-primary font-bold text-2xl sm:text-3xl md:text-4xl  xl:text-5xl 2xl:text-6xl leading-tight">
               <AnimatedText text="EVERY TIME" delay={1.4} />
             </div>
           </motion.div>
@@ -191,8 +191,8 @@ export default function Hero() {
           <motion.img
             src={heroImg}
             alt="Modern delivery van in motion"
-            className="absolute bottom-10 md:bottom-10 lg:bottom-10 xl:bottom-4 2xl:bottom-8  2xl:top-56 right-0 sm:right-4 w-full sm:w-[90%] md:w-[85%]  z-30 object-contain"
-            width={800}
+            className="absolute bottom-11 md:bottom-14 lg:bottom-20 xl:bottom-2 2xl:bottom-6 2xl:top-70  2xl:left-2 sm:left-4 w-full sm:w-[90%] md:w-[932px] z-30 object-contain"
+            width={900}
             height={600}
             loading="lazy"
             initial="hidden"

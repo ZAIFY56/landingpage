@@ -46,7 +46,7 @@ export default function NotFoundPage() {
         initial="hidden"
         animate="visible"
         variants={staggerContainer}
-        className="text-center px-4 py-16 max-w-2xl mx-auto"
+        className="text-center px-6 md:px-15 lg:px-12 xl:px-12 2xl:px-12 py-16 max-w-2xl mx-auto"
       >
         {/* 404 Number */}
         <motion.div variants={scaleIn} className="mb-8">

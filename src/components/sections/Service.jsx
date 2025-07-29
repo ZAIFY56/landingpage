@@ -111,7 +111,7 @@ export default function Service() {
 
   return (
     <section className="py-2 2xl:mt-12">
-      <div className="container px-4 mx-auto w-full">
+      <div className="container px-6 md:px-15 lg:px-12 xl:px-12 2xl:px-12 mx-auto w-full">
         <motion.header
           className="text-center mb-10"
           initial="hidden"

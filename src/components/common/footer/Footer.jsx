@@ -38,19 +38,19 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row gap-8 mb-8">
           <div className="md:w-1/2">
             <nav aria-label="Main navigation">
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 md:gap-8 xl:gap-6">
                 {navItems.map((item, index) => (
                   <button
                     key={`nav-${index}`}
                     onClick={() => handleNavigation(item.path)}
-                    className="2xl:text-[20px] text-sm hover:underline bg-transparent border-none text-white cursor-pointer p-0"
+                    className="2xl:text-[20px] xl:text-[16px] text-sm hover:underline bg-transparent border-none text-white cursor-pointer p-0"
                   >
                     {item.label}
                   </button>
                 ))}
               </div>
             </nav>
-            <div className="mt-6 cursor-pointer 2xl:mt-12 2xl:w-[488px] 2xl:h-[137px] 2xl:mb-0 md:mb-6">
+            <div className="mt-6 md:mt-12 cursor-pointer 2xl:mt-12 2xl:w-[488px] 2xl:h-[137px] 2xl:mb-0 md:mb-6">
               <img
                 onClick={() => navigate("/")}
                 src={rapidLogo}
@@ -64,14 +64,14 @@ const Footer = () => {
 
           <div className="md:w-1/2 flex flex-col items-center md:items-end">
             <div className="text-center md:text-right mb-6">
-              <h2 className="text-2xl md:text-3xl 2xl:text-5xl font-semibold mb-2">
+              <h2 className="text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl font-semibold mb-2">
                 Delivering On Promises,
               </h2>
-              <h2 className="text-2xl md:text-3xl 2xl:text-5xl font-semibold">
+              <h2 className="text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl font-semibold">
                 Powered by Precision
               </h2>
             </div>
-            <div className="relative w-full max-w-sm 2xl:max-w-xl">
+            <div className="relative w-full max-w-sm md:max-w-xs xl:max-w-xs 2xl:max-w-md">
               <Input
                 type="text"
                 placeholder="Enter your email"
@@ -89,8 +89,8 @@ const Footer = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-          <address className="md:col-span-3 text-center md:text-start not-italic">
-            <h3 className="font-bold mb-3 2xl:text-[32px]">Contact info</h3>
+          <address className="md:col-span-3 font-400 text-center md:text-start not-italic">
+            <h3 className="font-semibold mb-3 2xl:text-[32px]">Contact info</h3>
             <a
               href="mailto:helloworld@rapidresponsecourier.com"
               className="mb-1 2xl:text-[20px] hover:underline block"

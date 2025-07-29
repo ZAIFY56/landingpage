@@ -90,14 +90,14 @@ export default function Feedback() {
 
   return (
     <section className="py-2 md:mt-52">
-      <div className="container mx-auto px-2 py-2 items-center justify-between w-full">
+      <div className="container mx-auto px-6 md:px-15 lg:px-12 xl:px-12 2xl:px-12 py-2 items-center justify-between w-full">
         <div className="flex flex-col items-center justify-center">
           <motion.header
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={headerVariants}
-            className="text-xl md:text-3xl 2xl:text-6xl font-bold text-center flex"
+            className="text-xl md:text-3xl 2xl:text-6xl font-semibold text-center flex"
           >
             <AnimatedText text="What" delay={0.2} />
             <AnimatedText
@@ -111,7 +111,7 @@ export default function Feedback() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={headerVariants}
-            className="text-xl md:text-3xl 2xl:text-6xl font-bold text-center flex"
+            className="text-xl md:text-3xl 2xl:text-6xl font-semibold text-center flex"
           >
             <AnimatedText text="Say About Our" delay={0.2} />
             <AnimatedText
@@ -122,7 +122,7 @@ export default function Feedback() {
           </motion.header>
         </div>
         <motion.div
-          className="2xl:mt-16 container mx-auto flex flex-col mt-6 md:flex-row gap-8 justify-center"
+          className="2xl:mt-16 px-6 md:px-2 lg:px-12 xl:px-12 2xl:px-12 container mx-auto flex flex-col mt-6 md:flex-row gap-8 justify-center"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
@@ -138,14 +138,14 @@ export default function Feedback() {
                 transition: { duration: 0.3 },
               }}
               whileTap={{ scale: 0.98 }}
-              className="w-full md:w-[600px] lg:w-[700px] xl:w-[800px] 2xl:w-[900px]" // Added responsive width classes
+              className="w-full md:w-[400px]  !h-full"
             >
               <Card
-                className="!bg-white !p-6 !rounded-lg border !border-primary !flex !flex-col md:!flex-row !w-full !max-w-none"
+                className="!bg-white !p-6 !rounded-lg border !border-primary !flex !flex-col md:!flex-row !w-full md:!h-[184px]  !max-w-none"
                 hoverEffect={false}
                 containerProps={{
                   className:
-                    "!w-full !h-auto !min-h-0 !p-0 !bg-transparent !shadow-none",
+                    "!w-full  lg:!w-[346px] lg:!h-[184px] !h-auto !min-h-0 !p-0 !bg-transparent !shadow-none",
                 }}
                 iconContainerProps={{
                   className: "!hidden",
@@ -161,7 +161,7 @@ export default function Feedback() {
                   <motion.img
                     src={feedback.icon}
                     alt={`${feedback.title} profile`}
-                    className="2xl:w-[140px] 2xl:h-[140px] lg:w-28 h-28 rounded-full object-cover mb-3"
+                    className="2xl:w-[140px] 2xl:h-33 lg:w-28 h-28 md:h-20 rounded-full object-cover mb-3"
                     width={140}
                     height={140}
                     loading="lazy"
@@ -170,7 +170,7 @@ export default function Feedback() {
                       transition: { duration: 0.3 },
                     }}
                   />
-                  <h3 className="font-bold 2xl:text-[20px] text-md text-gray-800 text-center lg:text-left">
+                  <h3 className="font-bold 2xl:text-[14px] text-md text-gray-800 text-center lg:text-left">
                     {feedback.title}
                   </h3>
                 </div>
@@ -198,7 +198,7 @@ export default function Feedback() {
                     ))}
                   </motion.div>
 
-                  <blockquote className="text-sm text-bold 2xl:text-[20px] text-center lg:text-left">
+                  <blockquote className="text-sm font-normal 2xl:text-[14px] text-center lg:text-left">
                     "{feedback.description}"
                   </blockquote>
                 </div>

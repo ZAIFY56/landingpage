@@ -97,7 +97,7 @@ export default function SustainabilityFeatures() {
 
   return (
     <section className="py-12 2xl:pt-32">
-      <div className="container px-2 mx-auto items-center justify-between w-full">
+      <div className="container px-6 md:px-2 lg:px-12 xl:px-12 2xl:px-12 mx-auto items-center justify-between w-full">
         <motion.header
           className="text-center"
           initial="hidden"
@@ -105,7 +105,7 @@ export default function SustainabilityFeatures() {
           viewport={{ once: true, amount: 0.3 }}
           variants={headerVariants}
         >
-          <h2 className="text-4xl md:text-5xl 2xl:text-6xl font-semibold text-center text-primary mb-3">
+          <h2 className="text-4xl md:text-3xl 2xl:text-6xl font-semibold text-center text-primary mb-3">
             <AnimatedText text="Delivering, not polluting" delay={0.2} />
           </h2>
           <p className="text-md 2xl:text-[20px] 2xl:mx-[26rem] text-center md:mx-[10rem] lg:mx-[14rem] mb-6">

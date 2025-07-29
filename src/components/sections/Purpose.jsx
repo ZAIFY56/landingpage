@@ -72,10 +72,10 @@ export default function Purpose() {
 
   return (
     <section className="py-8 2xl:mt-10">
-      <div className="container mx-auto px-2 py-2 flex flex-col md:flex-row">
+      <div className="container mx-auto px-6 md:px-15 lg:px-12 xl:px-12 2xl:px-12 py-2 flex flex-col md:flex-row">
         <div className="md:w-1/2">
           <motion.h1
-            className="text-xl md:text-3xl text-center md:text-start 2xl:text-6xl font-bold mb-6 flex"
+            className="text-xl md:text-3xl justify-center md:text-start 2xl:text-6xl font-semibold mb-6 flex"
             custom={0}
             initial="hidden"
             whileInView="visible"
@@ -110,7 +110,7 @@ export default function Purpose() {
             <motion.img
               src={image1}
               alt="Courier delivering package"
-              className="md:absolute dark:filter dark:grayscale border-8 rounded border-[#F3F3F3] top-56 left-20 w-[100%] h-[18rem] 2xl:h-[25rem] z-50 object-cover"
+              className="md:absolute dark:filter dark:grayscale hover:filter-none hover:grayscale-0 border-8 rounded border-[#F3F3F3] top-56 left-20 w-[100%] h-[18rem] 2xl:h-[25rem] z-50 object-cover"
               loading="lazy"
               width={500}
               height={400}
@@ -128,7 +128,7 @@ export default function Purpose() {
 
         <div className="md:w-1/2">
           <motion.h1
-            className="text-xl md:text-3xl text-center md:text-start 2xl:text-6xl font-bold mb-6 flex"
+            className="text-xl md:text-3xl justify-center md:text-start 2xl:text-6xl font-semibold mb-6 flex"
             custom={2}
             initial="hidden"
             whileInView="visible"
@@ -155,7 +155,7 @@ export default function Purpose() {
             <motion.img
               src={image2}
               alt="Future vision of delivery services"
-              className="w-[90%] border-8 rounded border-[#F3F3F3] z-50 object-contain dark:filter dark:grayscale"
+              className="w-[90%] border-8 hover:filter-none hover:grayscale-0 rounded border-[#F3F3F3] z-50 object-contain dark:filter dark:grayscale"
               loading="lazy"
               width={600}
               height={400}

@@ -24,7 +24,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="container mx-auto sm:px-6 2xl:px-15 py-3 relative">
+    <header className="container mx-auto px-2 md:px-2 lg:px-8 xl:px-12 2xl:px-12 py-3 relative">
       <div className="flex justify-between items-center">
         <div className="w-32 md:w-[12rem] h-[4rem]">
           <img
@@ -46,7 +46,7 @@ export default function Navbar() {
             <a
               key={item.path}
               href={item.path}
-              className="flex items-center justify-center  2xl:text-[20px] text-gray-800 hover:text-primary transition-colors duration-200"
+              className="flex items-center justify-center font-normal 2xl:text-[20px] text-gray-800 hover:text-primary transition-colors duration-200"
             >
               {item.label}
             </a>

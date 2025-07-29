@@ -251,7 +251,7 @@ export default function InstantQuoteFormPage() {
   return (
     <div className="bg-white relative">
       <motion.div
-        className="relative"
+        className="relative px-6 md:px-15 lg:px-12 xl:px-12 2xl:px-12"
         initial="hidden"
         animate="visible"
         variants={heroVariants}
@@ -259,7 +259,7 @@ export default function InstantQuoteFormPage() {
         <motion.img
           src={heroimg}
           alt="Hero"
-          className="w-full   h-[360px] object-cover"
+          className="w-full  h-[360px] object-cover"
           loading="lazy"
           whileHover={{
             scale: 1.02,

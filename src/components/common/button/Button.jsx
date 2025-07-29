@@ -10,7 +10,7 @@ const Button = ({
 
   const variantClasses = {
     primary:
-      "w-[160px] md:w-[191px] md:h-[48px] rounded-lg bg-primary text-white hover:bg-primary pt-[12px] pb-[12px] pr-[28px] pl-[24px] gap-[10px] opacity-100",
+      "w-[160px] md:w-[171px] md:h-[48px]  rounded-lg bg-primary text-white hover:bg-primary pt-[12px] pb-[12px] pr-[28px] pl-[24px] gap-[10px] opacity-100",
     outline:
       "px-6 py-3 bg-white text-primary border-2 border-primary hover:bg-[#f0f9f9]",
     icon: "gap-2 bg-primary text-white p-4 hover:bg-primary",
