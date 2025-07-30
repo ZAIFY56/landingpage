@@ -204,14 +204,14 @@ export default function Hero() {
             <motion.img
               src={vantire}
               alt="Rear tire"
-              className="absolute bottom-4 md:bottom-4 lg:bottom-4 xl:bottom-7 2xl:bottom-8 left-[10%] md:left-[14%] lg:left-[13%] 2xl:left-[11%] w-[39px] md:w-[48px] lg:w-[62px] lg:h-[62px] xl:w-[70px] xl:h-[70px] 2xl:w-[88px] 2xl:h-[88px] z-40"
+              className="absolute bottom-4 md:bottom-4 lg:bottom-5 xl:bottom-7 2xl:bottom-8 left-[10%] md:left-[14%] lg:left-[14%] xl:left-[13%] 2xl:left-[11%] w-[39px] md:w-[48px] lg:w-[58px] lg:h-[58px] xl:w-[70px] xl:h-[70px] 2xl:w-[88px] 2xl:h-[88px] z-40"
               style={{ rotate: smoothTireRotation }}
             />
             <motion.img
               src={vantire}
               alt="Front tire"
               x
-              className="absolute bottom-4 md:bottom-4 lg:bottom-4 xl:bottom-7 2xl:bottom-8 left-[73%] md:left-[77%] lg:left-[76%] 2xl:left-[74%] w-[39px] md:w-[48px] lg:w-[62px] lg:h-[62px]  xl:w-[70px] xl:h-[70px] 2xl:w-[88px] 2xl:h-[88px] z-40"
+              className="absolute bottom-4 md:bottom-4 lg:bottom-5 xl:bottom-7 2xl:bottom-8 left-[73%] md:left-[77%] lg:left-[76%] 2xl:left-[74%] w-[39px] md:w-[48px] lg:w-[58px] lg:h-[58px]  xl:w-[70px] xl:h-[70px] 2xl:w-[88px] 2xl:h-[88px] z-40"
               style={{ rotate: smoothTireRotation }}
             />
           </motion.div>
