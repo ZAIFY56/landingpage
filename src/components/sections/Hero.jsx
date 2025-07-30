@@ -1,33 +1,29 @@
 import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import heroImg from "/hero/hero.png";
 import heroImg2 from "/hero/hero2.png";
-import logoImg from "/Vector.png";
 import { Button } from "@/components/common";
 import { useNavigate } from "react-router-dom";
+import vantire from "/hero/vantire.png";
 
 // Drop letter animation component
-const DropLetter = ({ children, delay = 0, className = "" }) => {
-  return (
-    <motion.span
-      className={className}
-      initial={{ opacity: 0, y: -50, rotateX: -90 }}
-      animate={{ opacity: 1, y: 0, rotateX: 0 }}
-      transition={{
-        duration: 0.6,
-        delay: delay,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      }}
-    >
-      {children}
-    </motion.span>
-  );
-};
+const DropLetter = ({ children, delay = 0, className = "" }) => (
+  <motion.span
+    className={className}
+    initial={{ opacity: 0, y: -50, rotateX: -90 }}
+    animate={{ opacity: 1, y: 0, rotateX: 0 }}
+    transition={{
+      duration: 0.6,
+      delay: delay,
+      ease: [0.25, 0.46, 0.45, 0.94],
+    }}
+  >
+    {children}
+  </motion.span>
+);
 
-// Animated text component that splits text and applies drop animation
 const AnimatedText = ({ text, className = "", delay = 0 }) => {
   const words = text.split(" ");
-
   return (
     <div className={className}>
       {words.map((word, wordIndex) => (
@@ -49,12 +45,17 @@ const AnimatedText = ({ text, className = "", delay = 0 }) => {
 export default function Hero() {
   const navigate = useNavigate();
 
-  // Scroll-based animation for van
   const { scrollY } = useScroll();
-  const vanX = useTransform(scrollY, [0, 500], [0, -400]); // Move van from right to left edge
-  const vanOpacity = useTransform(scrollY, [0, 300], [1, 0.8]); // Slight opacity change
+  const vanX = useTransform(scrollY, [0, 500], [0, -400]);
+  const vanOpacity = useTransform(scrollY, [0, 300], [1, 0.8]);
 
-  // Animation Variants
+  const tireRotation = useTransform(scrollY, [0, 500], [0, 1080]); // 3 full spins
+  const smoothTireRotation = useSpring(tireRotation, {
+    stiffness: 100,
+    damping: 20,
+    mass: 1,
+  });
+
   const textVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i) => ({
@@ -80,20 +81,10 @@ export default function Hero() {
     },
   };
 
-  const floatingAnimation = {
-    animate: {
-      y: [-10, 10, -10],
-      transition: {
-        duration: 3,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  };
-
   return (
     <section className="relative bg-white overflow-hidden">
       <div className="container mx-auto px-6 md:px-2 lg:px-12 xl:px-12 2xl:px-12 lg:py-10 xl:py-12 2xl:py-12 2xl:mb-20 sm:py-8 md:py-0 flex flex-col md:flex-row items-center justify-between">
+        {/* Left Text Section */}
         <div className="mt-6 md:w-1/2 w-full text-center md:text-left mb-8 md:mb-40">
           <motion.div
             className="text-2xl md:mb-2 justify-center md:justify-normal md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold leading-tight flex"
@@ -109,8 +100,9 @@ export default function Hero() {
               className="text-primary"
             />
           </motion.div>
+
           <motion.div
-            className="text-2xl justify-center md:justify-normal  md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold mb-4 leading-tight flex"
+            className="text-2xl justify-center md:justify-normal md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-semibold mb-4 leading-tight flex"
             custom={1}
             initial="hidden"
             animate="visible"
@@ -123,6 +115,7 @@ export default function Hero() {
             />
             <AnimatedText text="Rolling Out!" delay={0.8} />
           </motion.div>
+
           <motion.div
             className="2xl:my-8 2xl:mr-44"
             custom={2}
@@ -137,6 +130,7 @@ export default function Hero() {
               requests with speed and precision.
             </p>
           </motion.div>
+
           <motion.div
             className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4"
             custom={3}
@@ -161,11 +155,13 @@ export default function Hero() {
           </motion.div>
         </div>
 
+        {/* Right Image Section */}
         <div className="2xl:ml-18 md:w-1/2 w-full relative h-[320px] md:h-[400px] lg:h-[500px] 2xl:h-[600px] mb-8 md:mb-0">
+          {/* People and Boxes Image */}
           <motion.img
             src={heroImg2}
             alt="Team handling packages professionally"
-            className="absolute dark:filter dark:grayscale hover:filter-none hover:grayscale-0 top-10 md:top-16 lg:top-20 xl:top-16 2xl:top-10 left-32  md:left-44 lg:left-56 xl:left-72 2xl:left-92 w-[55%] 2xl:w-[60%] z-10 object-contain"
+            className="absolute top-10 md:top-16 lg:top-20 xl:top-16 2xl:top-10 left-32 md:left-44 lg:left-56 xl:left-72 2xl:left-92 w-[55%] 2xl:w-[60%] z-10 object-contain"
             width={499}
             height={330}
             loading="lazy"
@@ -174,6 +170,7 @@ export default function Hero() {
             variants={imageVariants}
           />
 
+          {/* Tagline Text */}
           <motion.div
             className="absolute font-inter top-24 md:top-32 lg:top-44 xl:top-44 2xl:top-48 right-10 md:right-6 lg:right-6 xl:right-18 2xl:right-16 z-20"
             initial={{ opacity: 0, scale: 0.5 }}
@@ -187,22 +184,37 @@ export default function Hero() {
               <AnimatedText text="EVERY TIME" delay={1.4} />
             </div>
           </motion.div>
+          <motion.div
+            className="absolute bottom-11 md:bottom-14 lg:bottom-20 xl:bottom-2 2xl:bottom-6 z-30"
+            style={{ x: vanX, opacity: vanOpacity }}
+          >
+            <motion.img
+              src={heroImg}
+              alt="Modern delivery van in motion"
+              className="w-full sm:w-[90%] md:w-[932px] object-contain sm:left-4 2xl:left-2 relative"
+              width={900}
+              height={600}
+              loading="lazy"
+              initial="hidden"
+              animate="visible"
+              variants={imageVariants}
+            />
 
-          <motion.img
-            src={heroImg}
-            alt="Modern delivery van in motion"
-            className="absolute bottom-11 md:bottom-14 lg:bottom-20 xl:bottom-2 2xl:bottom-6 2xl:top-70  2xl:left-2 sm:left-4 w-full sm:w-[90%] md:w-[932px] z-30 object-contain"
-            width={900}
-            height={600}
-            loading="lazy"
-            initial="hidden"
-            animate="visible"
-            variants={imageVariants}
-            style={{
-              x: vanX,
-              opacity: vanOpacity,
-            }}
-          />
+            {/* Tires */}
+            <motion.img
+              src={vantire}
+              alt="Rear tire"
+              className="absolute bottom-4 md:bottom-4 lg:bottom-4 xl:bottom-7 2xl:bottom-8 left-[10%] md:left-[14%] lg:left-[13%] 2xl:left-[11%] w-[39px] md:w-[48px] lg:w-[62px] lg:h-[62px] xl:w-[70px] xl:h-[70px] 2xl:w-[88px] 2xl:h-[88px] z-40"
+              style={{ rotate: smoothTireRotation }}
+            />
+            <motion.img
+              src={vantire}
+              alt="Front tire"
+              x
+              className="absolute bottom-4 md:bottom-4 lg:bottom-4 xl:bottom-7 2xl:bottom-8 left-[73%] md:left-[77%] lg:left-[76%] 2xl:left-[74%] w-[39px] md:w-[48px] lg:w-[62px] lg:h-[62px]  xl:w-[70px] xl:h-[70px] 2xl:w-[88px] 2xl:h-[88px] z-40"
+              style={{ rotate: smoothTireRotation }}
+            />
+          </motion.div>
         </div>
       </div>
     </section>
