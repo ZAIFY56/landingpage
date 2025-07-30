@@ -9,7 +9,6 @@ import vanIcon from "/getquote/vanicon.png";
 import { useState, useCallback, useEffect } from "react";
 import backIcon from "/getquote/prevoius.png";
 import personimg from "/getquote/person.jpg";
-import MapPicker from "../components/MapPicker";
 
 // ---------------------- ANIMATED TEXT ----------------------
 const DropLetter = ({ children, delay = 0, className = "" }) => {
@@ -132,11 +131,11 @@ const AutocompleteInput = ({
         value={inputValue}
         onChange={handleInputChange}
         placeholder={placeholder}
-        className="w-full p-2 rounded text-gray-800 border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary-light"
+        className="w-full p-2 rounded text-gray-800 focus:border-primary focus:ring-2 focus:ring-primary-light"
       />
       {isLoading && (
         <div className="absolute right-2 top-2">
-          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-600"></div>
+          <div className="animate-spin rounded-full h-4 w-4 "></div>
         </div>
       )}
       {showSuggestions && suggestions.length > 0 && (
@@ -478,76 +477,25 @@ function GetQuotesPage() {
         {/* Pickup Field */}
         <div className="flex-1 min-w-[200px]">
           <label className="block text-sm mb-1">Pickup from:</label>
-          {showPickupMap ? (
-            <>
-              <MapPicker
-                onChange={(placeName) => {
-                  setPickup(placeName);
-                  setShowPickupMap(false);
-                }}
-              />
-              <button
-                onClick={() => setShowPickupMap(false)}
-                className="mt-2 text-sm underline"
-              >
-                Cancel map and use input
-              </button>
-            </>
-          ) : (
-            <>
-              <AutocompleteInput
-                placeholder="Enter pickup location"
-                defaultValue={pickup}
-                onSelect={setPickup}
-                setLocation={setPickupLocation}
-              />
-              <button
-                onClick={() => setShowPickupMap(true)}
-                className="mt-2 text-sm underline"
-              >
-                Or pick on map
-              </button>
-            </>
-          )}
 
-          {pickup && <p className="text-xs mt-1 ">{pickup}</p>}
+          <AutocompleteInput
+            placeholder="Enter pickup location"
+            defaultValue={pickup}
+            onSelect={setPickup}
+            setLocation={setPickupLocation}
+          />
         </div>
 
         {/* Destination Field */}
         <div className="flex-1 min-w-[200px]">
           <label className="block text-sm mb-1">Destination:</label>
-          {showDestinationMap ? (
-            <>
-              <MapPicker
-                onChange={(placeName) => {
-                  setDestination(placeName);
-                  setShowDestinationMap(false);
-                }}
-              />
-              <button
-                className="mt-2 text-sm underline"
-                onClick={() => setShowDestinationMap(false)}
-              >
-                Cancel map and use input
-              </button>
-            </>
-          ) : (
-            <>
-              <AutocompleteInput
-                placeholder="Enter destination"
-                defaultValue={destination}
-                onSelect={setDestination}
-                setLocation={setDropoffLocation}
-              />
-              <button
-                className="mt-2 text-sm underline"
-                onClick={() => setShowDestinationMap(true)}
-              >
-                Or pick on map
-              </button>
-            </>
-          )}
-          {destination && <p className="text-xs mt-1 ">{destination}</p>}
+
+          <AutocompleteInput
+            placeholder="Enter destination"
+            defaultValue={destination}
+            onSelect={setDestination}
+            setLocation={setDropoffLocation}
+          />
         </div>
 
         {/* Info + Back */}
