@@ -161,7 +161,7 @@ export default function Hero() {
           <motion.img
             src={heroImg2}
             alt="Team handling packages professionally"
-            className="absolute top-10 md:top-16 lg:top-20 xl:top-16 2xl:top-10 left-32 md:left-44 lg:left-56 xl:left-72 2xl:left-92 w-[55%] 2xl:w-[60%] z-10 object-contain"
+            className="absolute dark:filter dark:grayscale top-10 md:top-16 lg:top-20 xl:top-16 2xl:top-10 left-32 md:left-44 lg:left-56 xl:left-72 2xl:left-92 w-[55%] 2xl:w-[60%] z-10 object-contain"
             width={499}
             height={330}
             loading="lazy"
@@ -211,7 +211,7 @@ export default function Hero() {
               src={vantire}
               alt="Front tire"
               x
-              className="absolute bottom-4 md:bottom-4 lg:bottom-5 xl:bottom-7 2xl:bottom-8 left-[73%] md:left-[77%] lg:left-[76%] 2xl:left-[74%] w-[39px] md:w-[48px] lg:w-[58px] lg:h-[58px]  xl:w-[70px] xl:h-[70px] 2xl:w-[88px] 2xl:h-[88px] z-40"
+              className="absolute bottom-4 md:bottom-4 lg:bottom-5 xl:bottom-7  2xl:bottom-8 left-[73%] md:left-[77%] lg:left-[76%] 2xl:left-[74%] w-[39px] md:w-[48px] lg:w-[58px] lg:h-[58px]  xl:w-[70px] xl:h-[70px] 2xl:w-[88px] 2xl:h-[88px] z-40"
               style={{ rotate: smoothTireRotation }}
             />
           </motion.div>

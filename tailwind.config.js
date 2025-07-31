@@ -5,7 +5,7 @@ export default {
     extend: {
       colors: {
         primary: "#4B9795",
-        p: "letter-spacing:-4%",
+        p: "letter-spacing:20%",
         p: "color: #1B1B1B",
       },
     },
