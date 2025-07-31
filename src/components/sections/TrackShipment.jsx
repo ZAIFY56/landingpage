@@ -123,7 +123,7 @@ const TrackShipment = () => {
           variants={containerVariants}
         >
           <motion.h1
-            className="text-2xl 2xl:text-6xl text-center md:text-right font-semibold text-primary mb-6"
+            className="text-3xl 2xl:text-6xl text-center md:text-start font-semibold text-primary mb-6"
             variants={titleVariants}
           >
             <AnimatedText text="Track Your Shipment" delay={0.2} />

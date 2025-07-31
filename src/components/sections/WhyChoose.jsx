@@ -108,7 +108,7 @@ export default function WhyChoose() {
       <div className="container mx-auto px-6 md:px-15 lg:px-12 xl:px-12 2xl:px-12 py-2 flex flex-col-reverse md:flex-row items-center justify-between">
         <div className="flex flex-col mt-10 md:flex-row gap-16">
           <motion.div
-            className="md:w-1/3 justify-center md:my-2 md:text-start text-3xl md:text-3xl 2xl:text-6xl font-semibold flex"
+            className="md:w-1/3 justify-center md:justify-start md:my-2 md:text-start text-3xl md:text-4xl 2xl:text-6xl font-semibold flex"
             custom={0}
             initial="hidden"
             whileInView="visible"

@@ -98,7 +98,7 @@ const ContactUs = () => {
       <div className="container mx-auto px-6 md:px-15 lg:px-12 xl:px-12 2xl:px-12">
         <div className="bg-white overflow-hidden">
           <motion.h2
-            className="text-3xl text-center md:text-right text-primary 2xl:text-6xl font-bold"
+            className="text-3xl text-center md:text-start text-primary 2xl:text-6xl font-semibold"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
