@@ -217,7 +217,7 @@ export default function Hero() {
             <Button
               variant="outline"
               onClick={() => navigate("/instant-quote")}
-              className="!w-auto md:!w-[175px] h-[48px] md:!w-[215px] sm:!text-xs md:h-[48px]"
+              className="!w-auto lg:!w-[175px] h-[48px] md:!w-[215px] sm:!text-xs md:h-[48px]"
               icon={<img src={arrowicon} className="!w-full !h-full " />}
             >
               Instant Quote
