@@ -8,10 +8,11 @@ const Footer = () => {
 
   const navItems = useMemo(
     () => [
-      { label: "Services" },
-      { label: "Track Order" },
-      { label: "About" },
-      { label: "Contact" },
+      { label: "Services", path: "/#services" },
+      { label: "About", path: "/#about" },
+      { label: "Track Order", path: "/#track-order" },
+      { label: "Latest News", path: "/#news-and-articles" },
+      { label: "Contact", path: "/#contact-us" },
     ],
     []
   );
@@ -40,13 +41,14 @@ const Footer = () => {
             <nav aria-label="Main navigation">
               <div className="flex flex-wrap gap-4 md:gap-8 xl:gap-6">
                 {navItems.map((item, index) => (
-                  <button
+                  <a
+                    href={item.path}
                     key={`nav-${index}`}
                     onClick={() => handleNavigation(item.path)}
                     className="2xl:text-[20px] xl:text-[16px] text-sm hover:underline bg-transparent border-none text-white cursor-pointer p-0"
                   >
                     {item.label}
-                  </button>
+                  </a>
                 ))}
               </div>
             </nav>
@@ -95,13 +97,13 @@ const Footer = () => {
               href="mailto:helloworld@rapidresponsecourier.com"
               className="mb-1 2xl:text-[20px] hover:underline block"
             >
-              helloworld@rapidresponsecourier.com
+              info@rrcourires.co.uk
             </a>
             <a
               href="tel:+9710000000000"
               className="mb-1 2xl:text-[20px] hover:underline block"
             >
-              +971 000 0000 0000
+              +443301335997
             </a>
           </address>
 
@@ -125,6 +127,13 @@ const Footer = () => {
             <p className="mb-1 text-sm">
               CacheLogic - Fast Track Your IT Evolution
             </p>
+            <h4>Company Number</h4>
+            <a
+              href="tel:+9710000000000"
+              className="mb-1 text-sm hover:underline block"
+            >
+              +16521183
+            </a>
             <p className="mb-1 text-sm">
               {new Date().getFullYear()} © all rights reserved
             </p>

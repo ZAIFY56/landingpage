@@ -94,7 +94,7 @@ const ContactUs = () => {
   };
 
   return (
-    <section className="py-12">
+    <section className="py-12" id="contact-us">
       <div className="container mx-auto px-6 md:px-15 lg:px-12 xl:px-12 2xl:px-12">
         <div className="bg-white overflow-hidden">
           <motion.h2
@@ -198,7 +198,7 @@ const ContactUs = () => {
                   Address
                 </h3>
                 <address className="text-gray-600 2xl:text-[20px] text-md not-italic">
-                  99 Roving St., Big City, PKU Ln. Mesa, New Jersey 45463
+                  London, United Kingdom
                 </address>
               </motion.div>
               <motion.div
@@ -212,18 +212,29 @@ const ContactUs = () => {
                 </h3>
                 <p className="text-gray-600 2xl:text-[20px] text-md">
                   <a
-                    href="mailto:helloworld@rapidresponsecourier.com"
+                    href="mailto:info@rrcourires.co.uk"
                     className="hover:text-primary transition-colors"
                   >
-                    helloworld@rapidresponsecourier.com
+                    info@rrcourires.co.uk
                   </a>
                 </p>
                 <p className="text-gray-600 2xl:text-[20px] text-md mt-2">
                   <a
-                    href="tel:+9710000000000"
+                    href="tel:+443301335997"
                     className="hover:text-primary transition-colors"
                   >
-                    +971 000 0000 0000
+                    +443301335997
+                  </a>
+                </p>
+                <h3 className="text-xl 2xl:text-[32px] font-semibold mt-2 mb-2">
+                  For Urgent Bookings
+                </h3>
+                <p className="text-gray-600 2xl:text-[20px] text-md mt-2">
+                  <a
+                    href="tel:+447701000420"
+                    className="hover:text-primary transition-colors"
+                  >
+                    +447701000420
                   </a>
                 </p>
               </motion.div>

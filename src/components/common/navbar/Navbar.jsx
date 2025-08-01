@@ -3,12 +3,14 @@ import logoImg from "/Vector.png";
 import { Button } from "@/components/common";
 import { FaArrowRight, FaTimes, FaBars } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const NAV_ITEMS = [
-  { label: "Services", path: "/services" },
-  { label: "Track Order", path: "/track-order" },
-  { label: "About", path: "/about" },
-  { label: "Contact", path: "/contact" },
+  { label: "Services", path: "/#services" },
+  { label: "About", path: "/#about" },
+  { label: "Track Order", path: "/#track-order" },
+  { label: "Latest News", path: "/#news-and-articles" },
+  { label: "Contact", path: "/#contact-us" },
 ];
 
 export default function Navbar() {
@@ -26,7 +28,7 @@ export default function Navbar() {
   return (
     <header className="container mx-auto px-2 md:px-2 lg:px-8 xl:px-12 2xl:px-12 py-3 relative">
       <div className="flex justify-between items-center">
-        <div className="w-32 md:w-[12rem] h-[4rem]">
+        <div className="w-32 md:w-[10rem] lg:w-[12rem] h-[4rem]">
           <img
             onClick={() => navigate("/")}
             src={logoImg}
@@ -46,7 +48,7 @@ export default function Navbar() {
             <a
               key={item.path}
               href={item.path}
-              className="flex items-center justify-center font-normal 2xl:text-[20px] text-gray-800 hover:text-primary transition-colors duration-200"
+              className="flex items-center justify-center  md:text-sm lg:text-[16px] 2xl:text-[20px] text-gray-800 hover:text-primary transition-colors duration-200"
             >
               {item.label}
             </a>
@@ -58,7 +60,18 @@ export default function Navbar() {
             <Button
               variant="primary"
               icon={<FaArrowRight aria-hidden="true" />}
-              className="px-5 py-2"
+              className="md:!w-[133px] lg:!w-[151px] xl:!w-[171px] 2xl:!w-[191px] h-[48px] w-auto !text-xs lg:!text-md xl:text-lg 2xl:!text-[16px]"
+              onClick={() => {
+                // Replace with your company's WhatsApp number (include country code, remove any leading zeros)
+                const phoneNumber = "+447701000420";
+                // Optional: Pre-defined message
+                const message = "Hello, I have a question about your services";
+                // Open WhatsApp with the phone number and message
+                window.open(
+                  `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`,
+                  "_blank"
+                );
+              }}
             >
               Call Now
             </Button>
@@ -67,8 +80,20 @@ export default function Navbar() {
           <div className="md:hidden flex items-center gap-3">
             <Button
               variant="primary"
+              className="md:!w-[133px]  h-[48px] w-auto !text-xs"
               size="sm"
               icon={<FaArrowRight aria-hidden="true" />}
+              onClick={() => {
+                // Replace with your company's WhatsApp number (include country code, remove any leading zeros)
+                const phoneNumber = "+447701000420";
+                // Optional: Pre-defined message
+                const message = "Hello, I have a question about your services";
+                // Open WhatsApp with the phone number and message
+                window.open(
+                  `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`,
+                  "_blank"
+                );
+              }}
             >
               Call Now
             </Button>

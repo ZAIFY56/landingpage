@@ -7,6 +7,7 @@ import image1 from "/formgetquote/form1.jpg";
 import image2 from "/formgetquote/form2.jpg";
 import image3 from "/formgetquote/form3.jpg";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 // Drop letter animation component
 const DropLetter = ({ children, delay = 0, className = "" }) => {
@@ -155,6 +156,7 @@ const AddressSection = ({ title }) => {
 
 const BackButton = () => (
   <motion.div
+    onClick={() => window.history.back()}
     initial={{ opacity: 0, x: -20 }}
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true }}
@@ -187,6 +189,8 @@ const BackButton = () => (
 
 export default function InstantQuoteFormPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const selectedVanPrice = location.state?.totalPrice || 90.0;
 
   const heroVariants = {
     hidden: { opacity: 0, scale: 0.8 },
@@ -511,10 +515,7 @@ export default function InstantQuoteFormPage() {
               transition={{ delay: 0.3, duration: 0.6 }}
             >
               <p className="text-2xl font-bold text-primary">
-                £90.00{" "}
-                <span className="text-sm font-normal text-gray-500">
-                  (no VAT)
-                </span>
+                £{selectedVanPrice.toFixed(2)}
               </p>
             </motion.div>
             <motion.div

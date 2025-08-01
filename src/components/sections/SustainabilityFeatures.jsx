@@ -1,11 +1,12 @@
-import { useMemo } from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { useSpring, animated, config } from "@react-spring/web";
+import { useDrag } from "@use-gesture/react";
 import image1 from "/sustainabilityfeatures/feature1.png";
 import image2 from "/sustainabilityfeatures/feature2.png";
 import image3 from "/sustainabilityfeatures/feature3.png";
 import { Card } from "@/components/common";
 
-// Drop letter animation component
 const DropLetter = ({ children, delay = 0, className = "" }) => {
   return (
     <motion.span
@@ -23,7 +24,6 @@ const DropLetter = ({ children, delay = 0, className = "" }) => {
   );
 };
 
-// Animated text component that splits text and applies drop animation
 const AnimatedText = ({ text, className = "", delay = 0 }) => {
   const words = text.split(" ");
 
@@ -68,6 +68,110 @@ const SUSTAINABILITY_SERVICES = [
 
 export default function SustainabilityFeatures() {
   const services = useMemo(() => SUSTAINABILITY_SERVICES, []);
+  const [isMobile, setIsMobile] = useState(false);
+  const [cardsPerSlide, setCardsPerSlide] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const autoScrollRef = useRef(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      setCardsPerSlide(mobile ? 1 : 2);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // React Spring animation
+  const [spring, api] = useSpring(() => ({
+    x: 0,
+    config: config.gentle,
+  }));
+
+  // Calculate dimensions
+  const cardWidth = isMobile ? 300 : 350;
+  const gap = 24; // gap-6 = 24px
+  const totalWidth = services.length * (cardWidth + gap) - gap;
+
+  // Auto-scroll functionality
+  useEffect(() => {
+    autoScrollRef.current = setInterval(() => {
+      setActiveIndex((prev) => {
+        const nextIndex = prev + (isMobile ? 1 : cardsPerSlide);
+        if (nextIndex >= services.length - (isMobile ? 0 : cardsPerSlide - 1)) {
+          return 0;
+        }
+        return nextIndex;
+      });
+    }, 2000); // Change slide every 2 seconds
+
+    return () => {
+      if (autoScrollRef.current) {
+        clearInterval(autoScrollRef.current);
+      }
+    };
+  }, [isMobile, cardsPerSlide, services.length]);
+
+  const resetAutoScroll = () => {
+    if (autoScrollRef.current) {
+      clearInterval(autoScrollRef.current);
+    }
+    autoScrollRef.current = setInterval(() => {
+      setActiveIndex((prev) => {
+        const nextIndex = prev + (isMobile ? 1 : cardsPerSlide);
+        if (nextIndex >= services.length - (isMobile ? 0 : cardsPerSlide - 1)) {
+          return 0;
+        }
+        return nextIndex;
+      });
+    }, 5000);
+  };
+
+  // Drag gestures
+  const bind = useDrag(
+    ({ down, movement: [mx], direction: [xDir], cancel }) => {
+      if (down && Math.abs(mx) > cardWidth / 3) {
+        const direction = xDir > 0 ? -1 : 1;
+        const newIndex = Math.max(
+          0,
+          Math.min(services.length - cardsPerSlide, activeIndex + direction)
+        );
+        setActiveIndex(newIndex);
+        cancel();
+        resetAutoScroll();
+      }
+    }
+  );
+
+  // Update spring on index change
+  useEffect(() => {
+    const offset = -activeIndex * (cardWidth + gap);
+    api.start({ x: offset });
+    resetAutoScroll();
+  }, [activeIndex, api, cardWidth, gap]);
+
+  const goToIndex = (index) => {
+    setActiveIndex(
+      isMobile
+        ? index
+        : Math.min(index * cardsPerSlide, services.length - cardsPerSlide)
+    );
+    resetAutoScroll();
+  };
+
+  // Calculate visible card indices for dot indicators
+  const getVisibleCardIndices = () => {
+    if (isMobile) {
+      return [activeIndex];
+    }
+    return [
+      activeIndex,
+      ...(activeIndex + 1 < services.length ? [activeIndex + 1] : []),
+    ];
+  };
 
   const headerVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -83,16 +187,15 @@ export default function SustainabilityFeatures() {
 
   const cardVariants = {
     hidden: { opacity: 0, y: 50, scale: 0.9 },
-    visible: (i) => ({
+    visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        delay: i * 0.2,
         duration: 0.6,
         ease: "easeOut",
       },
-    }),
+    },
   };
 
   return (
@@ -115,8 +218,66 @@ export default function SustainabilityFeatures() {
           </p>
         </motion.header>
 
+        {/* Mobile & Tablet Slider */}
+        <div className="lg:hidden relative mt-10 px-4">
+          {/* Slider Container */}
+          <div className="w-full overflow-hidden">
+            <animated.div
+              className="flex gap-6 py-4 cursor-grab active:cursor-grabbing"
+              style={{
+                width: totalWidth,
+                x: spring.x,
+                touchAction: "none",
+              }}
+              {...bind()}
+            >
+              {services.map((service, index) => (
+                <motion.div
+                  key={index}
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                  whileHover={{ y: -10, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`flex-shrink-0 ${isMobile ? "w-[300px]" : "w-[350px]"}`}
+                >
+                  <Card
+                    className="!w-full h-full"
+                    icon={service.icon}
+                    title={service.title}
+                    description={service.description}
+                    iconProps={{
+                      width: 64,
+                      height: 64,
+                      loading: "lazy",
+                    }}
+                  />
+                </motion.div>
+              ))}
+            </animated.div>
+          </div>
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center mt-6 gap-2">
+            {services.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  getVisibleCardIndices().includes(index)
+                    ? "bg-primary w-6"
+                    : "bg-gray-300"
+                }`}
+                aria-label={`Go to feature ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop Grid */}
         <motion.div
-          className="container lg:mx-[8rem] grid grid-cols-1 justify-items-center md:grid-cols-3 lg:grid-cols-4 2xl:mt-20 mt-10 gap-4"
+          className="hidden lg:grid grid-cols-1 justify-items-center md:grid-cols-3 lg:grid-cols-3 2xl:mt-20 mt-10 gap-4 lg:mx-[8rem]"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
@@ -126,11 +287,7 @@ export default function SustainabilityFeatures() {
               key={`sustainability-${index}`}
               custom={index}
               variants={cardVariants}
-              whileHover={{
-                y: -10,
-                scale: 1.05,
-                transition: { duration: 0.3 },
-              }}
+              whileHover={{ y: -10, scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <Card

@@ -9,6 +9,7 @@ import vanIcon from "/getquote/vanicon.png";
 import { useState, useCallback, useEffect } from "react";
 import backIcon from "/getquote/prevoius.png";
 import personimg from "/getquote/person.jpg";
+import { useNavigate } from "react-router-dom";
 
 // ---------------------- ANIMATED TEXT ----------------------
 const DropLetter = ({ children, delay = 0, className = "" }) => {
@@ -82,7 +83,7 @@ const AutocompleteInput = ({
     setIsLoading(true);
     try {
       const response = await fetch(
-        `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(input)}&apiKey=cbc65427c4fb45e68cb53012b5775cba`
+        `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(input)}&apiKey=cbc65427c4fb45e68cb53012b5775cba&filter=countrycode:gb&bias=countrycode:gb`
       );
       const data = await response.json();
 
@@ -159,6 +160,7 @@ const AutocompleteInput = ({
 const BackButton = ({ icon }) => (
   <motion.div
     className="mt-3 flex items-center gap-2 cursor-pointer hover:underline"
+    onClick={() => window.history.back()}
     initial={{ opacity: 0, x: 20 }}
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true }}
@@ -179,7 +181,7 @@ const BackButton = ({ icon }) => (
         transition: { duration: 0.2 },
       }}
     />
-    <h3 className="2xl:text-[18px] font-semibold text-md md:text-lg">Back</h3>
+    <h3 className="2xl:text-[18px] font-semibold text-md md:text-md">Back</h3>
   </motion.div>
 );
 
@@ -254,6 +256,7 @@ const PriceInfo = ({ price, total }) => {
 };
 
 const VanCard = ({ van, index, variants }) => {
+  const navigate = useNavigate();
   const total = van.price;
   const imageVariants = {
     hidden: { opacity: 0, scale: 0.8 },
@@ -294,7 +297,7 @@ const VanCard = ({ van, index, variants }) => {
       {van.tripDistance && (
         <motion.div className="flex justify-between mb-2">
           <span>Trip Distance:</span>
-          <span>{van.tripDistance} km</span>
+          <span>{van.tripDistance} mi</span>
         </motion.div>
       )}
       <PriceInfo price={van.price} total={total} />
@@ -306,6 +309,15 @@ const VanCard = ({ van, index, variants }) => {
           transition: { duration: 0.2 },
         }}
         whileTap={{ scale: 0.98 }}
+        onClick={() =>
+          navigate("/instant-quote/form", {
+            state: {
+              van,
+              tripDistance: van.tripDistance,
+              totalPrice: total, // Pass the total price to the form
+            },
+          })
+        }
       >
         Choose this Option
       </motion.button>
@@ -331,8 +343,8 @@ function GetQuotesPage() {
           );
           const data = await response.json();
           const meters = data.features[0].properties.distance;
-          const km = (meters / 1000).toFixed(2);
-          setTripDistance(km);
+          const mi = (meters / 1609.344).toFixed(2);
+          setTripDistance(mi);
           console.log(data.features[0].properties.distance);
         } catch (error) {
           console.error("Error calculating distance:", error);
@@ -512,35 +524,53 @@ function GetQuotesPage() {
         <BackButton icon={backIcon} />
       </motion.div>
 
-      {/* Van Cards */}
-      <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-4 pb-10"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        {vanOptions.map((van, index) => (
-          <VanCard
-            key={index}
-            van={{ ...van, tripDistance }}
-            index={index}
-            variants={cardVariants}
-          />
-        ))}
-
+      {tripDistance ? (
+        // Van Cards Section (unchanged)
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-4 pb-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
         >
-          <img
-            src={personimg}
-            alt="person"
-            className="w-full h-auto rounded-md shadow-md"
-          />
+          {vanOptions.map((van, index) => (
+            <VanCard
+              key={index}
+              van={{ ...van, tripDistance }}
+              index={index}
+              variants={cardVariants}
+            />
+          ))}
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            <img
+              src={personimg}
+              alt="person"
+              className="w-full h-auto rounded-md shadow-md"
+            />
+          </motion.div>
         </motion.div>
-      </motion.div>
+      ) : (
+        // Fallback Section with Image
+        <div className="flex flex-col items-center justify-center py-20 px-6 text-center max-w-2xl mx-auto">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/854/854878.png"
+            alt="No trip selected"
+            className="w-32 h-32 mb-6 opacity-80"
+          />
+          <h3 className="text-2xl font-semibold text-gray-700 mb-2">
+            No Route Selected
+          </h3>
+          <p className="text-gray-500 text-lg">
+            Please choose a pickup and destination to view available van options
+            and pricing.
+          </p>
+        </div>
+      )}
     </div>
   );
 }

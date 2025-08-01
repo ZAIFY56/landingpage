@@ -110,7 +110,7 @@ export default function NewsAndArticles() {
   };
 
   return (
-    <section className="py-16">
+    <section className="py-16" id="news-and-articles">
       <div className="container mx-auto px-6 md:px-15 lg:px-12 xl:px-12 2xl:px-12">
         <motion.header
           className="text-center mb-12"

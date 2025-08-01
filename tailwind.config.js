@@ -3,10 +3,11 @@ export default {
   content: ["./index.css", "./src/**/*.{jsx,tsx,js,ts}"],
   theme: {
     extend: {
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
+      },
       colors: {
         primary: "#4B9795",
-        p: "letter-spacing:20%",
-        p: "color: #1B1B1B",
       },
     },
   },
