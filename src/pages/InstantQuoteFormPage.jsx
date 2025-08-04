@@ -569,7 +569,6 @@ export default function InstantQuoteFormPage() {
                   variant="primary"
                   type="submit"
                   className="mt-4 px-8 py-3 bg-primary text-white rounded font-medium flex items-center transition"
-                  onClick={() => navigate("/thank-you")}
                 >
                   Book Now <FaArrowRight className="md:ml-2" />
                 </Button>
