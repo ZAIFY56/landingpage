@@ -379,6 +379,7 @@ export default function InstantQuoteFormPage() {
                   <Input
                     type="email"
                     placeholder="Email *"
+                    name="email"
                     className="w-full !bg-white !border !border-primary placeholder:font-medium"
                     required
                   />
