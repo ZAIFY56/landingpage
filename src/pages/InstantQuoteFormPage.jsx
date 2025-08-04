@@ -97,7 +97,7 @@ const AddressSection = ({ title, prefix = "" }) => {
           <Input
             type="text"
             placeholder="First Name *"
-            name="first_name"
+            name={`${prefix}_first_name`}
             className="w-full !bg-white !border !border-primary placeholder:font-medium"
             required
           />
@@ -106,7 +106,7 @@ const AddressSection = ({ title, prefix = "" }) => {
           <Input
             type="text"
             placeholder="Last Name *"
-            name="last_name"
+            name={`${prefix}_last_name`}
             className="w-full !bg-white !border !border-primary placeholder:font-medium"
             required
           />
@@ -119,7 +119,7 @@ const AddressSection = ({ title, prefix = "" }) => {
           <Input
             type="tel"
             placeholder="Telephone number *"
-            name="telephone"
+            name={`${prefix}_telephone`}
             className="w-full !bg-white !border !border-primary placeholder:font-medium"
             required
           />
@@ -141,7 +141,7 @@ const AddressSection = ({ title, prefix = "" }) => {
           <Input
             type="text"
             placeholder="City *"
-            name="city"
+            name={`${prefix}_city`}
             className="w-full !bg-white !border !border-primary placeholder:font-medium"
             required
           />
@@ -150,7 +150,7 @@ const AddressSection = ({ title, prefix = "" }) => {
           <Input
             type="text"
             placeholder="Postcode *"
-            name="postcode"
+            name={`${prefix}_postcode`}
             className="w-full !bg-white !border !border-primary placeholder:font-medium"
             required
           />
@@ -325,9 +325,9 @@ Email: %email%
 Telephone: %telephone%
 
 Collection Address:
-Address Line: %address_line%
-City: %city%
-Postcode: %postcode%
+Address Line: %collection_address_line%
+City: %collection_city%
+Postcode: %collection_postcode%
 
 Delivery Address:
 Address Line: %delivery_address_line%
