@@ -138,11 +138,6 @@ const ContactUs = () => {
                 <input type="hidden" name="_captcha" value="false" />
                 <input
                   type="hidden"
-                  name="_autoresponse"
-                  value="Thank you for contacting us! We'll get back to you shortly."
-                />
-                <input
-                  type="hidden"
                   name="_subject"
                   value="New Contact Submission"
                 />
