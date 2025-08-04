@@ -155,14 +155,14 @@ export default function LandingPage() {
       </motion.div>
 
       {/* TrackShipment Section - Scale in */}
-      <motion.div
+      {/* <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={scaleIn}
       >
         <TrackShipment />
-      </motion.div>
+      </motion.div> */}
 
       {/* Contact Section - Fade in up */}
       <motion.div

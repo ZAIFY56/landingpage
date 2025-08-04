@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 const NAV_ITEMS = [
   { label: "Services", path: "/#services" },
   { label: "About", path: "/#about" },
-  { label: "Track Order", path: "/#track-order" },
+  // { label: "Track Order", path: "/#track-order" },
   { label: "Latest News", path: "/#news-and-articles" },
   { label: "Contact", path: "/#contact-us" },
 ];
@@ -62,15 +62,9 @@ export default function Navbar() {
               icon={<FaArrowRight aria-hidden="true" />}
               className="md:!w-[133px] lg:!w-[151px] xl:!w-[171px] 2xl:!w-[191px] h-[48px] w-auto !text-xs lg:!text-md xl:text-lg 2xl:!text-[16px]"
               onClick={() => {
-                // Replace with your company's WhatsApp number (include country code, remove any leading zeros)
                 const phoneNumber = "+447701000420";
-                // Optional: Pre-defined message
-                const message = "Hello, I have a question about your services";
-                // Open WhatsApp with the phone number and message
-                window.open(
-                  `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`,
-                  "_blank"
-                );
+                // Open phone dialer with the number
+                window.location.href = `tel:${phoneNumber}`;
               }}
             >
               Call Now
@@ -80,19 +74,12 @@ export default function Navbar() {
           <div className="md:hidden flex items-center gap-3">
             <Button
               variant="primary"
-              className="md:!w-[133px]  h-[48px] w-auto !text-xs"
-              size="sm"
               icon={<FaArrowRight aria-hidden="true" />}
+              className="md:!w-[133px] lg:!w-[151px] xl:!w-[171px] 2xl:!w-[191px] h-[48px] w-auto !text-xs lg:!text-md xl:text-lg 2xl:!text-[16px]"
               onClick={() => {
-                // Replace with your company's WhatsApp number (include country code, remove any leading zeros)
                 const phoneNumber = "+447701000420";
-                // Optional: Pre-defined message
-                const message = "Hello, I have a question about your services";
-                // Open WhatsApp with the phone number and message
-                window.open(
-                  `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`,
-                  "_blank"
-                );
+                // Open phone dialer with the number
+                window.location.href = `tel:${phoneNumber}`;
               }}
             >
               Call Now

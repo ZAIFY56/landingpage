@@ -122,7 +122,7 @@ const AutocompleteInput = ({
     setInputValue(item.description);
     setShowSuggestions(false);
     onSelect(item.description);
-    setLocation(item); // Pass full location object to parent
+    setLocation(item);
   };
 
   return (
@@ -229,7 +229,7 @@ const PriceLine = ({ label, value, isBold = false, variants }) => (
   </motion.p>
 );
 
-const PriceInfo = ({ price, total }) => {
+const PriceInfo = ({ price, total, breakdown }) => {
   const priceVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -249,7 +249,29 @@ const PriceInfo = ({ price, total }) => {
       whileInView="visible"
       viewport={{ once: true }}
     >
-      <PriceLine label="Price:" value={price} variants={itemVariants} />
+      {breakdown && (
+        <>
+          <PriceLine
+            label="Base price:"
+            value={breakdown.basePrice}
+            variants={itemVariants}
+          />
+          {breakdown.extraMiles > 0 && (
+            <PriceLine
+              label={`Extra miles (${breakdown.extraMiles} mi):`}
+              value={breakdown.extraMilesCost}
+              variants={itemVariants}
+            />
+          )}
+          {breakdown.congestionCharge > 0 && (
+            <PriceLine
+              label="Congestion charge:"
+              value={breakdown.congestionCharge}
+              variants={itemVariants}
+            />
+          )}
+        </>
+      )}
       <PriceLine label="TOTAL:" value={total} isBold variants={itemVariants} />
     </motion.div>
   );
@@ -257,7 +279,88 @@ const PriceInfo = ({ price, total }) => {
 
 const VanCard = ({ van, index, variants }) => {
   const navigate = useNavigate();
-  const total = van.price;
+
+  const isInCongestionZone = async (lat, lon) => {
+    try {
+      const res = await fetch(
+        `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=cbc65427c4fb45e68cb53012b5775cba`
+      );
+      const data = await res.json();
+
+      if (data.features && data.features.length > 0) {
+        const props = data.features[0].properties;
+
+        // Use district or city to determine congestion zone
+        const congestionAreas = [
+          "City of London",
+          "Westminster",
+          "Soho",
+          "Mayfair",
+          "Covent Garden",
+          "Holborn",
+          "Bloomsbury",
+          "Shoreditch",
+          "Whitechapel",
+          "South Bank",
+        ];
+
+        const locationName =
+          `${props.suburb || ""} ${props.city || ""} ${props.district || ""}`.toLowerCase();
+
+        return congestionAreas.some((area) =>
+          locationName.includes(area.toLowerCase())
+        );
+      }
+    } catch (err) {
+      console.error("Error checking congestion zone", err);
+    }
+    return false;
+  };
+
+  // Calculate the total price based on distance and van type
+  const calculatePrice = (distance, vanType) => {
+    const baseMiles = 15;
+    const basePrices = {
+      "Small Van": 75,
+      "Transit Van": 85,
+      "Medium Van": 85,
+      "Xlwb Van": 95,
+      "Luton Van": 95,
+    };
+
+    const mileRates = {
+      "Small Van": 2.2,
+      "Transit Van": 2.5,
+      "Medium Van": 2.5,
+      "Xlwb Van": 2.9,
+      "Luton Van": 2.9,
+    };
+    const congestionCharge = 15; // Fixed congestion charge
+
+    const pickupInZone = isInCongestionZone(van.pickupLocation);
+    const destinationInZone = isInCongestionZone(van.dropoffLocation);
+    const appliesCongestionCharge = pickupInZone || destinationInZone;
+
+    let basePrice = basePrices[vanType] || 75;
+    let extraMiles = Math.max(0, distance - baseMiles);
+    let extraMilesCost = extraMiles * (mileRates[vanType] || 2.2);
+    let congestionCost = appliesCongestionCharge ? congestionCharge : 0;
+
+    let total = basePrice + extraMilesCost + congestionCost;
+
+    return {
+      total,
+      breakdown: {
+        basePrice,
+        extraMiles,
+        extraMilesCost,
+        congestionCharge: congestionCost,
+        appliesCongestionCharge,
+      },
+    };
+  };
+  const { total, breakdown } = calculatePrice(van.tripDistance, van.title);
+
   const imageVariants = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: {
@@ -266,6 +369,7 @@ const VanCard = ({ van, index, variants }) => {
       transition: { delay: 0.2, duration: 0.6, ease: "easeOut" },
     },
   };
+
   return (
     <motion.div
       className="border border-primary rounded-md p-4 shadow-sm"
@@ -300,7 +404,7 @@ const VanCard = ({ van, index, variants }) => {
           <span>{van.tripDistance} mi</span>
         </motion.div>
       )}
-      <PriceInfo price={van.price} total={total} />
+      <PriceInfo price={van.price} total={total} breakdown={breakdown} />
       <motion.button
         className="w-full bg-primary text-white py-2 rounded hover:bg-[#3c7e7c] transition"
         whileHover={{
@@ -314,7 +418,8 @@ const VanCard = ({ van, index, variants }) => {
             state: {
               van,
               tripDistance: van.tripDistance,
-              totalPrice: total, // Pass the total price to the form
+              totalPrice: total,
+              priceBreakdown: breakdown,
             },
           })
         }
@@ -324,6 +429,7 @@ const VanCard = ({ van, index, variants }) => {
     </motion.div>
   );
 };
+
 // ---------------------- MAIN COMPONENT ----------------------
 function GetQuotesPage() {
   const [pickup, setPickup] = useState("");
@@ -335,23 +441,37 @@ function GetQuotesPage() {
   const [showDestinationMap, setShowDestinationMap] = useState(false);
 
   useEffect(() => {
-    const calculateDistance = async () => {
+    const calculateDistanceAndZones = async () => {
       if (pickupLocation && dropoffLocation) {
         try {
-          const response = await fetch(
+          // Distance
+          const distRes = await fetch(
             `https://api.geoapify.com/v1/routing?waypoints=${pickupLocation.lat},${pickupLocation.lon}|${dropoffLocation.lat},${dropoffLocation.lon}&mode=drive&apiKey=cbc65427c4fb45e68cb53012b5775cba`
           );
-          const data = await response.json();
-          const meters = data.features[0].properties.distance;
+          const distData = await distRes.json();
+          const meters = distData.features[0].properties.distance;
           const mi = (meters / 1609.344).toFixed(2);
           setTripDistance(mi);
-          console.log(data.features[0].properties.distance);
+
+          // Congestion Zone Checks
+          const pickupZone = await isInCongestionZone(
+            pickupLocation.lat,
+            pickupLocation.lon
+          );
+          const dropoffZone = await isInCongestionZone(
+            dropoffLocation.lat,
+            dropoffLocation.lon
+          );
+
+          setPickupLocation((prev) => ({ ...prev, inZone: pickupZone }));
+          setDropoffLocation((prev) => ({ ...prev, inZone: dropoffZone }));
         } catch (error) {
-          console.error("Error calculating distance:", error);
+          console.error("Error calculating distance/zones:", error);
         }
       }
     };
-    calculateDistance();
+
+    calculateDistanceAndZones();
   }, [pickupLocation, dropoffLocation]);
 
   const vanOptions = [
@@ -375,7 +495,7 @@ function GetQuotesPage() {
         height: "1.4m",
         weight: "900kg",
       },
-      price: 83,
+      price: 85,
     },
     {
       title: "Medium Van",
@@ -386,7 +506,7 @@ function GetQuotesPage() {
         height: "1.4m",
         weight: "950kg",
       },
-      price: 90,
+      price: 85,
     },
     {
       title: "Xlwb Van",
@@ -397,7 +517,7 @@ function GetQuotesPage() {
         height: "1.7m",
         weight: "1250kg",
       },
-      price: 175,
+      price: 95,
     },
     {
       title: "Luton Van",
@@ -408,7 +528,7 @@ function GetQuotesPage() {
         height: "2.2m",
         weight: "1000kg",
       },
-      price: 170,
+      price: 95,
     },
   ];
 
@@ -489,7 +609,6 @@ function GetQuotesPage() {
         {/* Pickup Field */}
         <div className="flex-1 min-w-[200px]">
           <label className="block text-sm mb-1">Pickup from:</label>
-
           <AutocompleteInput
             placeholder="Enter pickup location"
             defaultValue={pickup}
@@ -501,7 +620,6 @@ function GetQuotesPage() {
         {/* Destination Field */}
         <div className="flex-1 min-w-[200px]">
           <label className="block text-sm mb-1">Destination:</label>
-
           <AutocompleteInput
             placeholder="Enter destination"
             defaultValue={destination}
@@ -525,7 +643,6 @@ function GetQuotesPage() {
       </motion.div>
 
       {tripDistance ? (
-        // Van Cards Section (unchanged)
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-4 pb-10"
           initial="hidden"
@@ -535,7 +652,14 @@ function GetQuotesPage() {
           {vanOptions.map((van, index) => (
             <VanCard
               key={index}
-              van={{ ...van, tripDistance }}
+              van={{
+                ...van,
+                tripDistance,
+                pickup,
+                destination,
+                pickupLocation, // Pass the full location object
+                dropoffLocation, // Pass the full location object
+              }}
               index={index}
               variants={cardVariants}
             />
@@ -555,7 +679,6 @@ function GetQuotesPage() {
           </motion.div>
         </motion.div>
       ) : (
-        // Fallback Section with Image
         <div className="flex flex-col items-center justify-center py-20 px-6 text-center max-w-2xl mx-auto">
           <img
             src="https://cdn-icons-png.flaticon.com/512/854/854878.png"

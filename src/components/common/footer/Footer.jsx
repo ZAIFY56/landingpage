@@ -10,7 +10,6 @@ const Footer = () => {
     () => [
       { label: "Services", path: "/#services" },
       { label: "About", path: "/#about" },
-      { label: "Track Order", path: "/#track-order" },
       { label: "Latest News", path: "/#news-and-articles" },
       { label: "Contact", path: "/#contact-us" },
     ],
@@ -140,26 +139,17 @@ const Footer = () => {
             </a>
           </address>
 
+          <div className="md:mt-[2rem] md:col-span-5 flex flex-wrap justify-center gap-4 whitespace-nowrap">
+            <h3 className="text-sm">Powered By</h3>
+            <p className="text-sm">CacheLogic - Fast Track Your IT Evolution</p>
+            <p className="text-sm">
+              {new Date().getFullYear()} © all rights reserved
+            </p>
+          </div>
           <nav
-            className="md:mt-[4rem] md:col-span-5 flex flex-wrap justify-center gap-4 whitespace-nowrap"
+            className="md:col-span-4 2xl:text-[20px] text-center md:text-end"
             aria-label="Support navigation"
           >
-            {supportItems.map((item, index) => (
-              <button
-                key={`support-${index}`}
-                onClick={() => handleNavigation(item.path)}
-                className="2xl:text-[20px] text-sm hover:underline bg-transparent border-none text-white cursor-pointer p-0"
-              >
-                {item.label}
-              </button>
-            ))}
-          </nav>
-
-          <div className="md:col-span-4 2xl:text-[20px] text-center md:text-end">
-            <h3 className="mb-3">Powered By</h3>
-            <p className="mb-1 text-sm">
-              CacheLogic - Fast Track Your IT Evolution
-            </p>
             <h4>Company Number</h4>
             <a
               href="tel:+9710000000000"
@@ -167,10 +157,16 @@ const Footer = () => {
             >
               +16521183
             </a>
-            <p className="mb-1 text-sm">
-              {new Date().getFullYear()} © all rights reserved
-            </p>
-          </div>
+            {supportItems.map((item, index) => (
+              <button
+                key={`support-${index}`}
+                onClick={() => handleNavigation(item.path)}
+                className="2xl:text-[20px] gap-4 text-sm hover:underline bg-transparent border-none text-white cursor-pointer p-0"
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
         </div>
       </div>
     </footer>

@@ -7,7 +7,8 @@ import InstantQuoteFormPage from "./pages/InstantQuoteFormPage";
 import TermsConditionPage from "./pages/TermsConditionPage";
 import ThankYoupage from "./pages/ThankYoupage";
 import NotFoundPage from "./pages/NotFoundPage";
-
+import BlogTemplate from "@/components/BlogTemplate";
+import BlogTemplateWrapper from "./pages/blog/BlogTemplateWrapper";
 function App() {
   return (
     <Router>
@@ -24,6 +25,7 @@ function App() {
             <Route path="/terms-condition" element={<TermsConditionPage />} />
             <Route path="/thank-you" element={<ThankYoupage />} />
             <Route path="*" element={<NotFoundPage />} />
+            <Route path="/blog/:slug" element={<BlogTemplateWrapper />} />
           </Routes>
         </main>
         <Footer />

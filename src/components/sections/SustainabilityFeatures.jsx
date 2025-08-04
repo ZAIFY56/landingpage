@@ -1,32 +1,29 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { useSpring, animated, config } from "@react-spring/web";
+import { useSpring, animated } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
 import image1 from "/sustainabilityfeatures/feature1.png";
 import image2 from "/sustainabilityfeatures/feature2.png";
 import image3 from "/sustainabilityfeatures/feature3.png";
 import { Card } from "@/components/common";
 
-const DropLetter = ({ children, delay = 0, className = "" }) => {
-  return (
-    <motion.span
-      className={className}
-      initial={{ opacity: 0, y: -50, rotateX: -90 }}
-      animate={{ opacity: 1, y: 0, rotateX: 0 }}
-      transition={{
-        duration: 0.6,
-        delay: delay,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      }}
-    >
-      {children}
-    </motion.span>
-  );
-};
+const DropLetter = ({ children, delay = 0, className = "" }) => (
+  <motion.span
+    className={className}
+    initial={{ opacity: 0, y: -50, rotateX: -90 }}
+    animate={{ opacity: 1, y: 0, rotateX: 0 }}
+    transition={{
+      duration: 0.6,
+      delay,
+      ease: [0.25, 0.46, 0.45, 0.94],
+    }}
+  >
+    {children}
+  </motion.span>
+);
 
 const AnimatedText = ({ text, className = "", delay = 0 }) => {
   const words = text.split(" ");
-
   return (
     <div className={className}>
       {words.map((word, wordIndex) => (
@@ -49,139 +46,75 @@ const SUSTAINABILITY_SERVICES = [
   {
     title: "100% carbon neutral",
     icon: image1,
-    description:
-      "Our courier service is 100% carbon neutral, delivering swiftly while actively reducing environmental impact.",
+    description: "Our courier service is 100% carbon neutral...",
   },
   {
     title: "Less waste",
     icon: image2,
-    description:
-      "Our courier service is committed to reducing waste to ensure a more sustainable and eco-friendly delivery process.",
+    description: "Our courier service is committed to reducing waste...",
   },
   {
     title: "Zero emission options",
     icon: image3,
-    description:
-      "Our courier service offers zero emission options to promote environmentally friendly deliveries.",
+    description: "Our courier service offers zero emission options...",
   },
 ];
 
 export default function SustainabilityFeatures() {
-  const services = useMemo(() => SUSTAINABILITY_SERVICES, []);
+  const services = useMemo(
+    () => [...SUSTAINABILITY_SERVICES, ...SUSTAINABILITY_SERVICES],
+    []
+  );
   const [isMobile, setIsMobile] = useState(false);
-  const [cardsPerSlide, setCardsPerSlide] = useState(1);
   const [activeIndex, setActiveIndex] = useState(0);
-  const autoScrollRef = useRef(null);
+
+  const cardWidth = isMobile ? 300 : 350;
+  const gap = 24;
+  const singleSetWidth = SUSTAINABILITY_SERVICES.length * (cardWidth + gap);
+
+  const [spring, api] = useSpring(() => ({
+    x: 0,
+    config: { tension: 20, friction: 0, duration: 0 },
+  }));
 
   useEffect(() => {
-    const handleResize = () => {
-      const mobile = window.innerWidth < 768;
-      setIsMobile(mobile);
-      setCardsPerSlide(mobile ? 1 : 2);
-    };
-
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // React Spring animation
-  const [spring, api] = useSpring(() => ({
-    x: 0,
-    config: config.gentle,
-  }));
-
-  // Calculate dimensions
-  const cardWidth = isMobile ? 300 : 350;
-  const gap = 24; // gap-6 = 24px
-  const totalWidth = services.length * (cardWidth + gap) - gap;
-
-  // Auto-scroll functionality
+  const offsetRef = useRef(0);
   useEffect(() => {
-    autoScrollRef.current = setInterval(() => {
-      setActiveIndex((prev) => {
-        const nextIndex = prev + (isMobile ? 1 : cardsPerSlide);
-        if (nextIndex >= services.length - (isMobile ? 0 : cardsPerSlide - 1)) {
-          return 0;
-        }
-        return nextIndex;
-      });
-    }, 2000); // Change slide every 2 seconds
-
-    return () => {
-      if (autoScrollRef.current) {
-        clearInterval(autoScrollRef.current);
+    let animationFrame;
+    const speed = 1.5; // px/frame
+    const loop = () => {
+      offsetRef.current -= speed;
+      if (Math.abs(offsetRef.current) >= singleSetWidth) {
+        offsetRef.current = 0;
       }
+      api.set({ x: offsetRef.current });
+
+      const normalized = Math.abs(offsetRef.current) % singleSetWidth;
+      const index = Math.floor(normalized / (cardWidth + gap));
+      setActiveIndex(index);
+
+      animationFrame = requestAnimationFrame(loop);
     };
-  }, [isMobile, cardsPerSlide, services.length]);
+    loop();
+    return () => cancelAnimationFrame(animationFrame);
+  }, [api, singleSetWidth, cardWidth, gap]);
 
-  const resetAutoScroll = () => {
-    if (autoScrollRef.current) {
-      clearInterval(autoScrollRef.current);
-    }
-    autoScrollRef.current = setInterval(() => {
-      setActiveIndex((prev) => {
-        const nextIndex = prev + (isMobile ? 1 : cardsPerSlide);
-        if (nextIndex >= services.length - (isMobile ? 0 : cardsPerSlide - 1)) {
-          return 0;
-        }
-        return nextIndex;
-      });
-    }, 5000);
-  };
-
-  // Drag gestures
-  const bind = useDrag(
-    ({ down, movement: [mx], direction: [xDir], cancel }) => {
-      if (down && Math.abs(mx) > cardWidth / 3) {
-        const direction = xDir > 0 ? -1 : 1;
-        const newIndex = Math.max(
-          0,
-          Math.min(services.length - cardsPerSlide, activeIndex + direction)
-        );
-        setActiveIndex(newIndex);
-        cancel();
-        resetAutoScroll();
-      }
-    }
-  );
-
-  // Update spring on index change
-  useEffect(() => {
-    const offset = -activeIndex * (cardWidth + gap);
-    api.start({ x: offset });
-    resetAutoScroll();
-  }, [activeIndex, api, cardWidth, gap]);
-
-  const goToIndex = (index) => {
-    setActiveIndex(
-      isMobile
-        ? index
-        : Math.min(index * cardsPerSlide, services.length - cardsPerSlide)
-    );
-    resetAutoScroll();
-  };
-
-  // Calculate visible card indices for dot indicators
-  const getVisibleCardIndices = () => {
-    if (isMobile) {
-      return [activeIndex];
-    }
-    return [
-      activeIndex,
-      ...(activeIndex + 1 < services.length ? [activeIndex + 1] : []),
-    ];
-  };
+  const bind = useDrag(({ movement: [mx] }) => {
+    api.set({ x: offsetRef.current + mx });
+  });
 
   const headerVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
+      transition: { duration: 0.8, ease: "easeOut" },
     },
   };
 
@@ -191,16 +124,13 @@ export default function SustainabilityFeatures() {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
+      transition: { duration: 0.6, ease: "easeOut" },
     },
   };
 
   return (
     <section className="py-12 2xl:pt-32">
-      <div className="container px-6 md:px-2 lg:px-12 xl:px-12 2xl:px-12 mx-auto items-center justify-between w-full">
+      <div className="container px-6 md:px-2 lg:px-12 xl:px-12 2xl:px-12 mx-auto">
         <motion.header
           className="text-center"
           initial="hidden"
@@ -213,19 +143,17 @@ export default function SustainabilityFeatures() {
           </h2>
           <p className="text-md 2xl:text-[20px] 2xl:mx-[26rem] text-center md:mx-[10rem] lg:mx-[14rem] mb-6">
             Delivering products efficiently while prioritizing eco-friendly
-            practices to minimize environmental impact. Committed to sustainable
-            logistics that protect our planet.
+            practices...
           </p>
         </motion.header>
 
-        {/* Mobile & Tablet Slider */}
+        {/* Mobile & Tablet Infinite Scroll */}
         <div className="lg:hidden relative mt-10 px-4">
-          {/* Slider Container */}
           <div className="w-full overflow-hidden">
             <animated.div
               className="flex gap-6 py-4 cursor-grab active:cursor-grabbing"
               style={{
-                width: totalWidth,
+                width: services.length * (cardWidth + gap),
                 x: spring.x,
                 touchAction: "none",
               }}
@@ -258,18 +186,16 @@ export default function SustainabilityFeatures() {
             </animated.div>
           </div>
 
-          {/* Dots Indicator */}
+          {/* Dots */}
           <div className="flex justify-center mt-6 gap-2">
-            {services.map((_, index) => (
-              <button
+            {SUSTAINABILITY_SERVICES.map((_, index) => (
+              <div
                 key={index}
-                onClick={() => goToIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  getVisibleCardIndices().includes(index)
-                    ? "bg-primary w-6"
-                    : "bg-gray-300"
+                className={`transition-all rounded-full ${
+                  activeIndex === index
+                    ? "bg-primary w-6 h-3"
+                    : "bg-gray-300 w-3 h-3"
                 }`}
-                aria-label={`Go to feature ${index + 1}`}
               />
             ))}
           </div>
@@ -277,12 +203,12 @@ export default function SustainabilityFeatures() {
 
         {/* Desktop Grid */}
         <motion.div
-          className="hidden lg:grid grid-cols-1 justify-items-center md:grid-cols-3 lg:grid-cols-3 2xl:mt-20 mt-10 gap-4 lg:mx-[8rem]"
+          className="hidden lg:grid grid-cols-1 justify-items-center md:grid-cols-3 gap-4 lg:mx-[8rem] mt-10 2xl:mt-20"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {services.map((service, index) => (
+          {SUSTAINABILITY_SERVICES.map((service, index) => (
             <motion.div
               key={`sustainability-${index}`}
               custom={index}
