@@ -129,19 +129,24 @@ const ContactUs = () => {
                   name="_next"
                   value="https://rrcsdh.netlify.app/thank-you"
                 />
-                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_captcha" value="true" />
                 <input type="hidden" name="_template" value="table" />
                 <input
                   type="hidden"
                   name="_subject"
                   value="New Contact Submission"
                 />
+                <input type="hidden" name="_replyto" value="%email%" />
                 <input
                   type="hidden"
                   name="_autoresponse"
-                  value="Thank you for contacting us!"
+                  value="Your custom response message here"
                 />
-                <input type="hidden" name="_replyto" value="%email%" />
+                <input
+                  type="hidden"
+                  name="_autoresponse_subject"
+                  value="Thank you for contacting us"
+                />
 
                 {/* Name */}
                 <motion.div custom={0} variants={fieldVariants}>
