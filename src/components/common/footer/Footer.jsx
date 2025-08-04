@@ -74,18 +74,50 @@ const Footer = () => {
               </h2>
             </div>
             <div className="relative w-full max-w-sm md:max-w-xs xl:max-w-xs 2xl:max-w-md">
-              <Input
-                type="text"
-                placeholder="Enter your email"
-                className="flex-grow bg-white w-full py-3 h-14"
-                aria-label="Enter your email"
-              />
-              <Button
-                className="absolute top-1/2 right-2 -translate-y-1/2 h-10 md:h-12 px-6"
-                aria-label="Track shipment"
+              <form
+                className="space-y-4 py-4"
+                target="_blank"
+                action="https://formsubmit.co/huzaifa26012003@gmail.com"
+                method="POST"
               >
-                Subscribe
-              </Button>
+                {/* Hidden FormSubmit Config */}
+                <input
+                  type="hidden"
+                  name="_next"
+                  value="https://rrcsdh.netlify.app/thank-you"
+                />
+                <input type="hidden" name="_captcha" value="true" />
+                <input type="hidden" name="_template" value="table" />
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="New Contact Submission"
+                />
+                <input type="hidden" name="_replyto" value="%email%" />
+                <input
+                  type="hidden"
+                  name="_autoresponse"
+                  value="Your custom response message here"
+                />
+                <input
+                  type="hidden"
+                  name="_autoresponse_subject"
+                  value="Thank you for contacting us"
+                />
+
+                <Input
+                  type="text"
+                  placeholder="Enter your email"
+                  className="flex-grow bg-white w-full py-3 h-14"
+                  aria-label="Enter your email"
+                />
+                <Button
+                  className="absolute top-1/2 right-2 -translate-y-1/2 h-10 md:h-12 px-6"
+                  aria-label="Track shipment"
+                >
+                  Subscribe
+                </Button>
+              </form>
             </div>
           </div>
         </div>
