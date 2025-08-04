@@ -313,7 +313,6 @@ export default function InstantQuoteFormPage() {
         <input type="hidden" name="_template" value="table" />
         <input type="hidden" name="_subject" value="New Contact Submission" />
         <input type="hidden" name="_replyto" value="%email%" />
-        // In your form component, update the hidden input for _autoresponse
         <input
           type="hidden"
           name="_autoresponse"
