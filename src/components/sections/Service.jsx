@@ -69,7 +69,7 @@ const SERVICE_DATA = [
       "Timely deliveries with strict deadlines for pick-up/drop-off.",
   },
   {
-    title: "Aircraft on Ground",
+    title: "AOG",
     icon: aeroplanimg,
     description:
       "Rapid Response Couriers: Fast, secure, and on-time delivery of urgent aircraft parts, tools, and documents, 24/7",

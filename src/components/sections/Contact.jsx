@@ -289,14 +289,12 @@ const ContactUs = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.6, duration: 0.6 }}
               >
-                <h3 className="text-xl 2xl:text-[32px] font-semibold mt-2 mb-2">
+                <h3 className="text-xl 2xl:text-[32px] font-semibold mt-2">
                   Opening hours
                 </h3>
-                <ul className="space-y-2 text-gray-600 mt-6">
-                  <li className="2xl:text-[20px] text-md">Monday-Friday</li>
-                  <li className="2xl:text-[20px] text-md">9am - 5pm</li>
+                <ul className="space-y-1 text-gray-600 mt-2">
                   <li className="2xl:text-[20px] text-md">
-                    We are closed on weekends and national holidays
+                    Open 24/7 -we're always here for you
                   </li>
                 </ul>
               </motion.div>

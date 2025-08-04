@@ -280,43 +280,6 @@ const PriceInfo = ({ price, total, breakdown }) => {
 const VanCard = ({ van, index, variants }) => {
   const navigate = useNavigate();
 
-  const isInCongestionZone = async (lat, lon) => {
-    try {
-      const res = await fetch(
-        `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=cbc65427c4fb45e68cb53012b5775cba`
-      );
-      const data = await res.json();
-
-      if (data.features && data.features.length > 0) {
-        const props = data.features[0].properties;
-
-        // Use district or city to determine congestion zone
-        const congestionAreas = [
-          "City of London",
-          "Westminster",
-          "Soho",
-          "Mayfair",
-          "Covent Garden",
-          "Holborn",
-          "Bloomsbury",
-          "Shoreditch",
-          "Whitechapel",
-          "South Bank",
-        ];
-
-        const locationName =
-          `${props.suburb || ""} ${props.city || ""} ${props.district || ""}`.toLowerCase();
-
-        return congestionAreas.some((area) =>
-          locationName.includes(area.toLowerCase())
-        );
-      }
-    } catch (err) {
-      console.error("Error checking congestion zone", err);
-    }
-    return false;
-  };
-
   // Calculate the total price based on distance and van type
   const calculatePrice = (distance, vanType) => {
     const baseMiles = 15;
@@ -331,22 +294,30 @@ const VanCard = ({ van, index, variants }) => {
     const mileRates = {
       "Small Van": 2.2,
       "Transit Van": 2.5,
-      "Medium Van": 2.5,
+      "Medium Van": 2.7,
       "Xlwb Van": 2.9,
       "Luton Van": 2.9,
     };
-    const congestionCharge = 15; // Fixed congestion charge
 
-    const pickupInZone = isInCongestionZone(van.pickupLocation);
-    const destinationInZone = isInCongestionZone(van.dropoffLocation);
-    const appliesCongestionCharge = pickupInZone || destinationInZone;
+    const congestionCharge = 15;
+    const isInCongestionZone =
+      van.pickup.includes("London") || van.destination.includes("London");
 
-    let basePrice = basePrices[vanType] || 75;
-    let extraMiles = Math.max(0, distance - baseMiles);
-    let extraMilesCost = extraMiles * (mileRates[vanType] || 2.2);
-    let congestionCost = appliesCongestionCharge ? congestionCharge : 0;
+    let basePrice = 0;
+    let extraMiles = 0;
+    let extraMilesCost = 0;
 
-    let total = basePrice + extraMilesCost + congestionCost;
+    if (distance <= baseMiles) {
+      // Charge only base price if within 15 miles
+      basePrice = basePrices[vanType] || 75;
+    } else {
+      // Charge only per-mile rate if beyond 15 miles
+      extraMiles = distance; // Charge for entire distance
+      extraMilesCost = extraMiles * (mileRates[vanType] || 2.2);
+    }
+
+    const congestionCost = isInCongestionZone ? congestionCharge : 0;
+    const total = basePrice + extraMilesCost + congestionCost;
 
     return {
       total,
@@ -355,10 +326,10 @@ const VanCard = ({ van, index, variants }) => {
         extraMiles,
         extraMilesCost,
         congestionCharge: congestionCost,
-        appliesCongestionCharge,
       },
     };
   };
+
   const { total, breakdown } = calculatePrice(van.tripDistance, van.title);
 
   const imageVariants = {
@@ -441,37 +412,22 @@ function GetQuotesPage() {
   const [showDestinationMap, setShowDestinationMap] = useState(false);
 
   useEffect(() => {
-    const calculateDistanceAndZones = async () => {
+    const calculateDistance = async () => {
       if (pickupLocation && dropoffLocation) {
         try {
-          // Distance
-          const distRes = await fetch(
+          const response = await fetch(
             `https://api.geoapify.com/v1/routing?waypoints=${pickupLocation.lat},${pickupLocation.lon}|${dropoffLocation.lat},${dropoffLocation.lon}&mode=drive&apiKey=cbc65427c4fb45e68cb53012b5775cba`
           );
-          const distData = await distRes.json();
-          const meters = distData.features[0].properties.distance;
+          const data = await response.json();
+          const meters = data.features[0].properties.distance;
           const mi = (meters / 1609.344).toFixed(2);
           setTripDistance(mi);
-
-          // Congestion Zone Checks
-          const pickupZone = await isInCongestionZone(
-            pickupLocation.lat,
-            pickupLocation.lon
-          );
-          const dropoffZone = await isInCongestionZone(
-            dropoffLocation.lat,
-            dropoffLocation.lon
-          );
-
-          setPickupLocation((prev) => ({ ...prev, inZone: pickupZone }));
-          setDropoffLocation((prev) => ({ ...prev, inZone: dropoffZone }));
         } catch (error) {
-          console.error("Error calculating distance/zones:", error);
+          console.error("Error calculating distance:", error);
         }
       }
     };
-
-    calculateDistanceAndZones();
+    calculateDistance();
   }, [pickupLocation, dropoffLocation]);
 
   const vanOptions = [
@@ -652,14 +608,7 @@ function GetQuotesPage() {
           {vanOptions.map((van, index) => (
             <VanCard
               key={index}
-              van={{
-                ...van,
-                tripDistance,
-                pickup,
-                destination,
-                pickupLocation, // Pass the full location object
-                dropoffLocation, // Pass the full location object
-              }}
+              van={{ ...van, tripDistance, pickup, destination }}
               index={index}
               variants={cardVariants}
             />
