@@ -120,27 +120,28 @@ const ContactUs = () => {
               <form
                 className="space-y-4 py-4"
                 target="_blank"
-                action="https://formsubmit.co/01bd15225bbe2ad46eaa9a30b3978ce5"
+                action="https://formsubmit.co/huzaifa26012003@gamil.com"
                 method="POST"
               >
-                {/* Hidden inputs for formsubmit.co */}
+                {/* Hidden FormSubmit Config */}
                 <input
                   type="hidden"
                   name="_next"
                   value="https://rrcsdh.netlify.app/thank-you"
                 />
-                <input
-                  type="hidden"
-                  name="_autoresponse"
-                  value="your custom message"
-                />
-                <input type="hidden" name="_template" value="table" />
                 <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_template" value="table" />
                 <input
                   type="hidden"
                   name="_subject"
                   value="New Contact Submission"
                 />
+                <input
+                  type="hidden"
+                  name="_autoresponse"
+                  value="Thank you for contacting us!"
+                />
+                <input type="hidden" name="_replyto" value="%email%" />
 
                 {/* Name */}
                 <motion.div custom={0} variants={fieldVariants}>
