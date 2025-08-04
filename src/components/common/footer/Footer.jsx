@@ -75,7 +75,6 @@ const Footer = () => {
             </div>
             <div className="relative w-full max-w-sm md:max-w-xs xl:max-w-xs 2xl:max-w-md">
               <form
-                className="space-y-4 py-4"
                 target="_blank"
                 action="https://formsubmit.co/huzaifa26012003@gmail.com"
                 method="POST"
@@ -106,7 +105,8 @@ const Footer = () => {
                 />
 
                 <Input
-                  type="text"
+                  type="email"
+                  name="email"
                   placeholder="Enter your email"
                   className="flex-grow bg-white w-full py-3 h-14"
                   aria-label="Enter your email"
@@ -114,6 +114,7 @@ const Footer = () => {
                 <Button
                   className="absolute top-1/2 right-2 -translate-y-1/2 h-10 md:h-12 px-6"
                   aria-label="Track shipment"
+                  type="submit"
                 >
                   Subscribe
                 </Button>
