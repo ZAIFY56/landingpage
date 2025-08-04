@@ -300,7 +300,7 @@ export default function InstantQuoteFormPage() {
       </motion.div>
       <form
         target="_blank"
-        action="https://formsubmit.co/huzaifa26012003@gmail.com"
+        action="https://formsubmit.co/01bd15225bbe2ad46eaa9a30b3978ce5"
         method="POST"
       >
         {/* Hidden FormSubmit Config */}
