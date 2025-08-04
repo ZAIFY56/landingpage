@@ -135,7 +135,7 @@ const ContactUs = () => {
                   value="your custom message"
                 />
                 <input type="hidden" name="_template" value="table" />
-                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_captcha" value="true" />
                 <input
                   type="hidden"
                   name="_autoresponse"
