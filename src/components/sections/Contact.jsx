@@ -123,31 +123,31 @@ const ContactUs = () => {
                 action="https://formsubmit.co/huzaifa26012003@gmail.com"
                 method="POST"
               >
-                {/* Required FormSubmit Settings */}
-                <input type="hidden" name="_captcha" value="false" />{" "}
-                {/* Disable if testing */}
-                <input type="hidden" name="_template" value="table" />
+                {/* Hidden FormSubmit Config */}
                 <input
                   type="hidden"
                   name="_next"
                   value="https://rrcsdh.netlify.app/thank-you"
                 />
+                <input type="hidden" name="_captcha" value="true" />
+                <input type="hidden" name="_template" value="table" />
                 <input
                   type="hidden"
                   name="_subject"
-                  value="New Contact Request from RR Couriers"
+                  value="New Contact Submission"
                 />
-                {/* Improved Autoresponse */}
+                <input type="hidden" name="_replyto" value="%email%" />
                 <input
                   type="hidden"
                   name="_autoresponse"
-                  value="Hi %name%, we’ve received your message and will respond shortly. For urgent help, call +443301335997."
+                  value="Your custom response message here"
                 />
                 <input
                   type="hidden"
                   name="_autoresponse_subject"
-                  value="Thanks for contacting RR Couriers!"
+                  value="Thank you for contacting us"
                 />
+
                 {/* Name */}
                 <motion.div custom={0} variants={fieldVariants}>
                   <Input
@@ -160,6 +160,7 @@ const ContactUs = () => {
                     aria-label="Your name"
                   />
                 </motion.div>
+
                 {/* Phone */}
                 <motion.div custom={1} variants={fieldVariants}>
                   <Input
@@ -172,6 +173,7 @@ const ContactUs = () => {
                     aria-label="Phone number"
                   />
                 </motion.div>
+
                 {/* Email */}
                 <motion.div custom={2} variants={fieldVariants}>
                   <Input
@@ -184,6 +186,7 @@ const ContactUs = () => {
                     aria-label="Email address"
                   />
                 </motion.div>
+
                 {/* Message */}
                 <motion.div
                   className="w-5/6"
@@ -200,6 +203,7 @@ const ContactUs = () => {
                     aria-label="Your message"
                   ></textarea>
                 </motion.div>
+
                 {/* Submit Button */}
                 <motion.div
                   custom={4}
