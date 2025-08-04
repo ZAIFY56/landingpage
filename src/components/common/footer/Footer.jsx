@@ -96,7 +96,7 @@ const Footer = () => {
                 <input
                   type="hidden"
                   name="_autoresponse"
-                  value="Your custom response message here"
+                  value="Thank you for subscribing to our newsletter! We will keep you updated with the latest news and offers."
                 />
                 <input
                   type="hidden"

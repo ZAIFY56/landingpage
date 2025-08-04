@@ -140,7 +140,7 @@ const ContactUs = () => {
                 <input
                   type="hidden"
                   name="_autoresponse"
-                  value="Your custom response message here"
+                  value="Thank you for contacting us! We will get back to you shortly."
                 />
                 <input
                   type="hidden"
