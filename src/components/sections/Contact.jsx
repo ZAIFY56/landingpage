@@ -119,7 +119,8 @@ const ContactUs = () => {
               </h2>
               <form
                 className="space-y-4 py-4"
-                action="https://formsubmit.co/fayyazfayyaz1786@gmail.com"
+                target="_blank"
+                action="https://formsubmit.co/01bd15225bbe2ad46eaa9a30b3978ce5"
                 method="POST"
               >
                 {/* Hidden inputs for formsubmit.co */}
