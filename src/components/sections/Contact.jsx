@@ -127,8 +127,13 @@ const ContactUs = () => {
                 <input
                   type="hidden"
                   name="_next"
-                  value="https://rrcsdh.netlify.app/ThankYoupage.jsx"
-                ></input>
+                  value="https://rrcsdh.netlify.app/thank-you"
+                />
+                <input
+                  type="hidden"
+                  name="_autoresponse"
+                  value="your custom message"
+                />
                 <input type="hidden" name="_template" value="table" />
                 <input type="hidden" name="_captcha" value="false" />
                 <input
