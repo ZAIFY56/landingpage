@@ -123,20 +123,19 @@ const ContactUs = () => {
                 action="https://formsubmit.co/01bd15225bbe2ad46eaa9a30b3978ce5"
                 method="POST"
               >
+                {/* Hidden inputs for formsubmit.co */}
                 <input
                   type="hidden"
                   name="_next"
                   value="https://rrcsdh.netlify.app/thank-you"
                 />
-                <input type="hidden" name="_template" value="table" />
-                <input type="hidden" name="_captcha" value="false" />
                 <input
                   type="hidden"
-                  name="_subject"
-                  value="New Contact Submission"
+                  name="_autoresponse"
+                  value="your custom message"
                 />
-
-                {/* Auto-response configuration - this should reference the email field */}
+                <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_captcha" value="false" />
                 <input
                   type="hidden"
                   name="_autoresponse"
@@ -144,9 +143,10 @@ const ContactUs = () => {
                 />
                 <input
                   type="hidden"
-                  name="_replyto"
-                  value="%email%" // This tells FormSubmit to reply to the user's email
+                  name="_subject"
+                  value="New Contact Submission"
                 />
+
                 {/* Name */}
                 <motion.div custom={0} variants={fieldVariants}>
                   <Input
