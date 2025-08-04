@@ -117,7 +117,26 @@ const ContactUs = () => {
               <h2 className="text-xl 2xl:text-[44px] font-semibold mt-2">
                 Submit your Details
               </h2>
-              <form className="space-y-4 py-4 " noValidate>
+              <form
+                className="space-y-4 py-4"
+                action="https://formsubmit.co/01bd15225bbe2ad46eaa9a30b3978ce5"
+                method="POST"
+              >
+                {/* Hidden inputs for formsubmit.co */}
+                <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input
+                  type="hidden"
+                  name="_autoresponse"
+                  value="Thank you for contacting us! We'll get back to you shortly."
+                />
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="New Contact Submission"
+                />
+
+                {/* Name */}
                 <motion.div custom={0} variants={fieldVariants}>
                   <Input
                     type="text"
@@ -125,19 +144,25 @@ const ContactUs = () => {
                     name="name"
                     placeholder="Name"
                     className="w-5/6 !border-none"
+                    required
                     aria-label="Your name"
                   />
                 </motion.div>
+
+                {/* Phone */}
                 <motion.div custom={1} variants={fieldVariants}>
                   <Input
                     type="tel"
                     id="number"
                     name="phone"
-                    placeholder="Number"
+                    placeholder="Phone Number"
                     className="w-5/6 !border-none"
+                    required
                     aria-label="Phone number"
                   />
                 </motion.div>
+
+                {/* Email */}
                 <motion.div custom={2} variants={fieldVariants}>
                   <Input
                     type="email"
@@ -145,11 +170,14 @@ const ContactUs = () => {
                     name="email"
                     placeholder="Email"
                     className="w-5/6 !border-none"
+                    required
                     aria-label="Email address"
                   />
                 </motion.div>
+
+                {/* Message */}
                 <motion.div
-                  className="w-5/6 !border-none"
+                  className="w-5/6"
                   custom={3}
                   variants={fieldVariants}
                 >
@@ -157,11 +185,14 @@ const ContactUs = () => {
                     id="message"
                     name="message"
                     rows={4}
-                    placeholder="Message"
-                    className="w-full !border-none px-4 py-2 border-none bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-primary min-h-[120px] align-top pt-3 resize-none"
+                    placeholder="Your Message"
+                    required
+                    className="w-full px-4 py-2 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-primary min-h-[120px] align-top pt-3 resize-none"
                     aria-label="Your message"
-                  />
+                  ></textarea>
                 </motion.div>
+
+                {/* Submit Button */}
                 <motion.div
                   custom={4}
                   variants={fieldVariants}
