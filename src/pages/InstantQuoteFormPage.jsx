@@ -49,7 +49,7 @@ const AnimatedText = ({ text, className = "", delay = 0 }) => {
   );
 };
 
-const AddressSection = ({ title }) => {
+const AddressSection = ({ title, prefix = "" }) => {
   const sectionVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
