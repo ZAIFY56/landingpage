@@ -8,7 +8,6 @@ import image2 from "/formgetquote/form2.jpg";
 import image3 from "/formgetquote/form3.jpg";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
 
 // Drop letter animation component
 const DropLetter = ({ children, delay = 0, className = "" }) => {
@@ -50,7 +49,7 @@ const AnimatedText = ({ text, className = "", delay = 0 }) => {
   );
 };
 
-const AddressSection = ({ title, prefix, formData, setFormData }) => {
+const AddressSection = ({ title }) => {
   const sectionVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -76,14 +75,6 @@ const AddressSection = ({ title, prefix, formData, setFormData }) => {
     }),
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [`${prefix}_${name}`]: value,
-    }));
-  };
-
   return (
     <motion.div
       className="p-6 pb-6"
@@ -105,44 +96,63 @@ const AddressSection = ({ title, prefix, formData, setFormData }) => {
         <motion.div custom={0} variants={fieldVariants}>
           <Input
             type="text"
-            name="address_line1"
-            placeholder="Address Line 1 *"
+            placeholder="First Name *"
+            name="first_name"
             className="w-full !bg-white !border !border-primary placeholder:font-medium"
             required
-            value={formData[`${prefix}_address_line1`] || ""}
-            onChange={handleChange}
           />
         </motion.div>
         <motion.div custom={1} variants={fieldVariants}>
           <Input
             type="text"
-            name="address_line2"
-            placeholder="Address Line 2"
+            placeholder="Last Name *"
+            name="last_name"
             className="w-full !bg-white !border !border-primary placeholder:font-medium"
-            value={formData[`${prefix}_address_line2`] || ""}
-            onChange={handleChange}
+            required
           />
         </motion.div>
-        <motion.div custom={2} variants={fieldVariants}>
+        <motion.div
+          className="md:col-span-2"
+          custom={2}
+          variants={fieldVariants}
+        >
+          <Input
+            type="tel"
+            placeholder="Telephone number *"
+            name="telephone"
+            className="w-full !bg-white !border !border-primary placeholder:font-medium"
+            required
+          />
+        </motion.div>
+        <motion.div
+          className="md:col-span-2"
+          custom={3}
+          variants={fieldVariants}
+        >
           <Input
             type="text"
-            name="city"
+            placeholder="Address Line *"
+            name="address_line"
+            className="w-full !bg-white !border !border-primary placeholder:font-medium"
+            required
+          />
+        </motion.div>
+        <motion.div custom={4} variants={fieldVariants}>
+          <Input
+            type="text"
             placeholder="City *"
+            name="city"
             className="w-full !bg-white !border !border-primary placeholder:font-medium"
             required
-            value={formData[`${prefix}_city`] || ""}
-            onChange={handleChange}
           />
         </motion.div>
-        <motion.div custom={3} variants={fieldVariants}>
+        <motion.div custom={5} variants={fieldVariants}>
           <Input
             type="text"
-            name="postcode"
             placeholder="Postcode *"
+            name="postcode"
             className="w-full !bg-white !border !border-primary placeholder:font-medium"
             required
-            value={formData[`${prefix}_postcode`] || ""}
-            onChange={handleChange}
           />
         </motion.div>
       </div>
@@ -150,123 +160,43 @@ const AddressSection = ({ title, prefix, formData, setFormData }) => {
   );
 };
 
-const BackButton = () => {
-  const navigate = useNavigate();
-
-  return (
-    <motion.div
-      onClick={() => navigate(-1)}
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      whileHover={{
-        scale: 1.05,
-        x: -5,
-        transition: { duration: 0.2 },
-      }}
-      whileTap={{ scale: 0.95 }}
-    >
-      <Button className="flex items-center gap-2 !bg-white !text-primary">
-        <motion.img
-          src={backIcon}
-          alt="Back"
-          className="h-3 w-3 2xl:w-[12px]"
-          style={{
-            filter:
-              "brightness(0) saturate(100%) invert(48%) sepia(13%) saturate(1532%) hue-rotate(122deg) brightness(90%) contrast(87%)",
-          }}
-          whileHover={{
-            x: -3,
-            transition: { duration: 0.2 },
-          }}
-        />
-        Back
-      </Button>
-    </motion.div>
-  );
-};
+const BackButton = () => (
+  <motion.div
+    onClick={() => window.history.back()}
+    initial={{ opacity: 0, x: -20 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6 }}
+    whileHover={{
+      scale: 1.05,
+      x: -5,
+      transition: { duration: 0.2 },
+    }}
+    whileTap={{ scale: 0.95 }}
+  >
+    <Button className="flex items-center gap-2 !bg-white !text-primary">
+      <motion.img
+        src={backIcon}
+        alt="Back"
+        className="h-3 w-3 2xl:w-[12px]"
+        style={{
+          filter:
+            "brightness(0) saturate(100%) invert(48%) sepia(13%) saturate(1532%) hue-rotate(122deg) brightness(90%) contrast(87%)",
+        }}
+        whileHover={{
+          x: -3,
+          transition: { duration: 0.2 },
+        }}
+      />
+      Back
+    </Button>
+  </motion.div>
+);
 
 export default function InstantQuoteFormPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const selectedVanPrice = location.state?.totalPrice || 90.0;
-  const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    phone: "",
-    notes: "",
-    collection_address_line1: "",
-    collection_address_line2: "",
-    collection_city: "",
-    collection_postcode: "",
-    delivery_address_line1: "",
-    delivery_address_line2: "",
-    delivery_city: "",
-    delivery_postcode: "",
-    terms_accepted: false,
-    loading_notice_accepted: false,
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Validate form
-    if (!formData.terms_accepted || !formData.loading_notice_accepted) {
-      alert("Please accept the terms and conditions");
-      setIsSubmitting(false);
-      return;
-    }
-
-    try {
-      const response = await fetch(
-        "https://formsubmit.co/ajax/huzaifa26012003@gmail.com",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            ...formData,
-            _subject: "New Instant Quote Request - RR Couriers",
-            _template: "table",
-            _autoresponse: `Hi ${formData.first_name},\n\nThank you for your quote request with RR Couriers! We've received your details and will contact you shortly to confirm your booking.\n\nEstimated Price: £${selectedVanPrice.toFixed(2)}\n\nFor urgent inquiries, please call us at +443301335997.\n\nBest regards,\nRR Couriers Team`,
-            price: `£${selectedVanPrice.toFixed(2)}`,
-            _honey: "", // Honeypot field
-          }),
-        }
-      );
-
-      const data = await response.json();
-      if (data.success) {
-        navigate("/thank-you", {
-          state: {
-            name: `${formData.first_name} ${formData.last_name}`,
-            price: selectedVanPrice.toFixed(2),
-          },
-        });
-      } else {
-        alert("There was an error submitting your form. Please try again.");
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("There was an error submitting your form. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   const heroVariants = {
     hidden: { opacity: 0, scale: 0.8 },
@@ -339,7 +269,7 @@ export default function InstantQuoteFormPage() {
         <motion.img
           src={heroimg}
           alt="Hero"
-          className="w-full h-[360px] object-cover"
+          className="w-full  h-[360px] object-cover"
           loading="lazy"
           whileHover={{
             scale: 1.02,
@@ -368,16 +298,39 @@ export default function InstantQuoteFormPage() {
       >
         <BackButton className="flex ml-52 gap-2" />
       </motion.div>
-
-      <div className="container mx-auto mt-4 md:mt-14 flex flex-col lg:flex-row gap-8 px-4">
-        <motion.div
-          className="lg:w-3/4 bg-white"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={formVariants}
-        >
-          <form onSubmit={handleSubmit}>
+      <form
+        target="_blank"
+        action="https://formsubmit.co/huzaifa26012003@gmail.com"
+        method="POST"
+      >
+        {/* Hidden FormSubmit Config */}
+        <input
+          type="hidden"
+          name="_next"
+          value="https://rrcsdh.netlify.app/thank-you"
+        />
+        <input type="hidden" name="_captcha" value="true" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_subject" value="New Contact Submission" />
+        <input type="hidden" name="_replyto" value="%email%" />
+        <input
+          type="hidden"
+          name="_autoresponse"
+          value="Thank you for contacting us! We will get back to you shortly."
+        />
+        <input
+          type="hidden"
+          name="_autoresponse_subject"
+          value="Thank you for contacting us"
+        />
+        <div className="container mx-auto mt-4 md:mt-14 flex flex-col lg:flex-row gap-8 px-4">
+          <motion.div
+            className="lg:w-3/4 bg-white"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={formVariants}
+          >
             <motion.div
               className="p-6 pb-6"
               initial={{ opacity: 0, y: 30 }}
@@ -397,12 +350,10 @@ export default function InstantQuoteFormPage() {
                 >
                   <Input
                     type="text"
-                    name="first_name"
                     placeholder="First Name *"
+                    name="first_name"
                     className="w-full !bg-white !border !border-primary placeholder:font-medium"
                     required
-                    value={formData.first_name}
-                    onChange={handleChange}
                   />
                 </motion.div>
                 <motion.div
@@ -413,12 +364,10 @@ export default function InstantQuoteFormPage() {
                 >
                   <Input
                     type="text"
-                    name="last_name"
                     placeholder="Last Name *"
+                    name="last_name"
                     className="w-full !bg-white !border !border-primary placeholder:font-medium"
                     required
-                    value={formData.last_name}
-                    onChange={handleChange}
                   />
                 </motion.div>
                 <motion.div
@@ -429,12 +378,9 @@ export default function InstantQuoteFormPage() {
                 >
                   <Input
                     type="email"
-                    name="email"
                     placeholder="Email *"
                     className="w-full !bg-white !border !border-primary placeholder:font-medium"
                     required
-                    value={formData.email}
-                    onChange={handleChange}
                   />
                 </motion.div>
                 <motion.div
@@ -445,12 +391,10 @@ export default function InstantQuoteFormPage() {
                 >
                   <Input
                     type="tel"
-                    name="phone"
                     placeholder="Telephone number *"
+                    name="telephone"
                     className="w-full !bg-white !border !border-primary placeholder:font-medium"
                     required
-                    value={formData.phone}
-                    onChange={handleChange}
                   />
                 </motion.div>
               </div>
@@ -475,13 +419,7 @@ export default function InstantQuoteFormPage() {
               />
             </motion.div>
 
-            <AddressSection
-              title="Collection Address"
-              prefix="collection"
-              formData={formData}
-              setFormData={setFormData}
-            />
-
+            <AddressSection title="Collection Address" />
             <motion.div
               className="lg:hidden p-4"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -501,13 +439,7 @@ export default function InstantQuoteFormPage() {
               />
             </motion.div>
 
-            <AddressSection
-              title="Delivery Address"
-              prefix="delivery"
-              formData={formData}
-              setFormData={setFormData}
-            />
-
+            <AddressSection title="Delivery Address" />
             <motion.div
               className="lg:hidden p-4"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -549,11 +481,10 @@ export default function InstantQuoteFormPage() {
               >
                 <Input
                   type="text"
-                  name="notes"
                   placeholder="Any additional details to help your delivery..."
+                  name="notes"
                   className="w-full 2xl:text-[16px] !2xl:w-[464px] !bg-white !border !border-primary placeholder:font-medium h-12 pt-2"
-                  value={formData.notes}
-                  onChange={handleChange}
+                  required
                 />
               </motion.div>
             </motion.div>
@@ -575,11 +506,9 @@ export default function InstantQuoteFormPage() {
                 <input
                   type="checkbox"
                   id="terms"
-                  name="terms_accepted"
+                  name="terms"
                   className="mr-2 h-4 w-4 appearance-none border border-primary rounded checked:bg-primary checked:border-transparent focus:ring-0 focus:ring-offset-0"
                   required
-                  checked={formData.terms_accepted}
-                  onChange={handleChange}
                 />
                 <span className="text-sm 2xl:text-[20px]">
                   I have read and accepted the T&Cs{" "}
@@ -596,11 +525,9 @@ export default function InstantQuoteFormPage() {
                 <input
                   type="checkbox"
                   id="loading"
-                  name="loading_notice_accepted"
+                  name="loading_notice"
                   className="mr-2 h-4 w-4 appearance-none border border-primary rounded checked:bg-primary checked:border-transparent focus:ring-0 focus:ring-offset-0"
                   required
-                  checked={formData.loading_notice_accepted}
-                  onChange={handleChange}
                 />
                 <span className="text-sm 2xl:text-[20px]">
                   I have read and agree to the loading notice below{" "}
@@ -642,75 +569,73 @@ export default function InstantQuoteFormPage() {
                   variant="primary"
                   type="submit"
                   className="mt-4 px-8 py-3 bg-primary text-white rounded font-medium flex items-center transition"
-                  disabled={isSubmitting}
+                  onClick={() => navigate("/thank-you")}
                 >
-                  {isSubmitting ? "Submitting..." : "Book Now"}{" "}
-                  <FaArrowRight className="md:ml-2" />
+                  Book Now <FaArrowRight className="md:ml-2" />
                 </Button>
               </motion.div>
             </motion.div>
-          </form>
-        </motion.div>
-
-        <motion.div
-          className="hidden lg:flex lg:w-1/4 flex-col gap-6 h-fit"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={sidebarVariants}
-        >
-          <motion.div
-            className="bg-white p-4 rounded-lg"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <BackButton className="2xl:text-xl" />
           </motion.div>
           <motion.div
-            className="bg-white p-4 rounded-lg space-y-6"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            className="hidden lg:flex lg:w-1/4 flex-col gap-6 h-fit"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={sidebarVariants}
           >
-            <motion.img
-              src={image1}
-              alt="Courier service"
-              className="w-full h-auto rounded-md"
-              loading="lazy"
-              variants={imageVariants}
-              whileHover={{
-                scale: 1.05,
-                transition: { duration: 0.3 },
-              }}
-            />
-            <motion.img
-              src={image2}
-              alt="Delivery van"
-              className="md:pt-20 2xl:pt-0 w-full h-auto rounded-md"
-              loading="lazy"
-              variants={imageVariants}
-              whileHover={{
-                scale: 1.05,
-                transition: { duration: 0.3 },
-              }}
-            />
-            <motion.img
-              src={image3}
-              alt="Shipping package"
-              className="md:pt-44 2xl:pt-0 w-full h-auto rounded-md"
-              loading="lazy"
-              variants={imageVariants}
-              whileHover={{
-                scale: 1.05,
-                transition: { duration: 0.3 },
-              }}
-            />
+            <motion.div
+              className="bg-white p-4 rounded-lg"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <BackButton className="2xl:text-xl" />
+            </motion.div>
+            <motion.div
+              className="bg-white p-4 rounded-lg space-y-6"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <motion.img
+                src={image1}
+                alt="Courier service"
+                className="w-full h-auto rounded-md"
+                loading="lazy"
+                variants={imageVariants}
+                whileHover={{
+                  scale: 1.05,
+                  transition: { duration: 0.3 },
+                }}
+              />
+              <motion.img
+                src={image2}
+                alt="Delivery van"
+                className="md:pt-20 2xl:pt-0 w-full h-auto rounded-md"
+                loading="lazy"
+                variants={imageVariants}
+                whileHover={{
+                  scale: 1.05,
+                  transition: { duration: 0.3 },
+                }}
+              />
+              <motion.img
+                src={image3}
+                alt="Shipping package"
+                className="md:pt-44 2xl:pt-0 w-full h-auto rounded-md"
+                loading="lazy"
+                variants={imageVariants}
+                whileHover={{
+                  scale: 1.05,
+                  transition: { duration: 0.3 },
+                }}
+              />
+            </motion.div>
           </motion.div>
-        </motion.div>
-      </div>
+        </div>
+      </form>
     </div>
   );
 }
