@@ -132,7 +132,7 @@ const AddressSection = ({ title }) => {
           <Input
             type="text"
             placeholder="Address Line *"
-            name="address_line"
+            name={`${prefix}_address_line`}
             className="w-full !bg-white !border !border-primary placeholder:font-medium"
             required
           />
@@ -313,10 +313,31 @@ export default function InstantQuoteFormPage() {
         <input type="hidden" name="_template" value="table" />
         <input type="hidden" name="_subject" value="New Contact Submission" />
         <input type="hidden" name="_replyto" value="%email%" />
+        // In your form component, update the hidden input for _autoresponse
         <input
           type="hidden"
           name="_autoresponse"
-          value="Thank you for contacting us! We will get back to you shortly."
+          value={`Thank you for your quote request! Here are the details we received:
+
+Your details:
+First Name: %first_name%
+Last Name: %last_name%
+Email: %email%
+Telephone: %telephone%
+
+Collection Address:
+Address Line: %address_line%
+City: %city%
+Postcode: %postcode%
+
+Delivery Address:
+Address Line: %delivery_address_line%
+City: %delivery_city%
+Postcode: %delivery_postcode%
+
+Notes: %notes%
+
+We'll process your request and get back to you shortly.`}
         />
         <input
           type="hidden"
@@ -400,7 +421,6 @@ export default function InstantQuoteFormPage() {
                 </motion.div>
               </div>
             </motion.div>
-
             <motion.div
               className="lg:hidden p-4"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -419,8 +439,7 @@ export default function InstantQuoteFormPage() {
                 loading="lazy"
               />
             </motion.div>
-
-            <AddressSection title="Collection Address" />
+            <AddressSection title="Collection Address" prefix="collection" />{" "}
             <motion.div
               className="lg:hidden p-4"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -439,8 +458,7 @@ export default function InstantQuoteFormPage() {
                 loading="lazy"
               />
             </motion.div>
-
-            <AddressSection title="Delivery Address" />
+            <AddressSection title="Delivery Address" prefix="delivery" />{" "}
             <motion.div
               className="lg:hidden p-4"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -459,7 +477,6 @@ export default function InstantQuoteFormPage() {
                 loading="lazy"
               />
             </motion.div>
-
             <motion.div
               className="p-6 pb-6"
               initial={{ opacity: 0, y: 30 }}
@@ -489,7 +506,6 @@ export default function InstantQuoteFormPage() {
                 />
               </motion.div>
             </motion.div>
-
             <motion.div
               className="p-6 space-y-4 mb-6"
               initial={{ opacity: 0, y: 30 }}
@@ -536,7 +552,6 @@ export default function InstantQuoteFormPage() {
                 </span>
               </motion.div>
             </motion.div>
-
             <motion.div
               className="p-6 flex flex-col items-start pt-6"
               initial={{ opacity: 0, y: 30 }}
