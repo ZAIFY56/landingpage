@@ -120,10 +120,15 @@ const ContactUs = () => {
               <form
                 className="space-y-4 py-4"
                 target="_blank"
-                action="https://formsubmit.co/huzaifa26012003@gmail.com"
+                action="https://formsubmit.co/01bd15225bbe2ad46eaa9a30b3978ce5"
                 method="POST"
               >
                 {/* Hidden inputs for formsubmit.co */}
+                <input
+                  type="hidden"
+                  name="_next"
+                  value="https://yourdomain.co/ThankYoupage.jsx"
+                ></input>
                 <input type="hidden" name="_template" value="table" />
                 <input type="hidden" name="_captcha" value="false" />
                 <input
