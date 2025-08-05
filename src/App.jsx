@@ -9,6 +9,7 @@ import ThankYoupage from "./pages/ThankYoupage";
 import NotFoundPage from "./pages/NotFoundPage";
 import BlogTemplate from "@/components/BlogTemplate";
 import BlogTemplateWrapper from "./pages/blog/BlogTemplateWrapper";
+import JobApplication from "./pages/JobApplicationPage";
 function App() {
   return (
     <Router>
@@ -22,6 +23,7 @@ function App() {
               path="/instant-quote/form"
               element={<InstantQuoteFormPage />}
             />
+            <Route path="/careers/apply" element={<JobApplication />} />
             <Route path="/terms-condition" element={<TermsConditionPage />} />
             <Route path="/thank-you" element={<ThankYoupage />} />
             <Route path="*" element={<NotFoundPage />} />
