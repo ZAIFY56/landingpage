@@ -17,14 +17,19 @@ const Card = ({
       )}
     >
       {icon && (
-        <div className="2xl:w-16 2xl:h-16 h-12 w-12 rounded-full p-2 mb-2 bg-white">
-          <img
-            src={icon}
-            alt={title || "Card icon"}
-            className="h-full w-full object-contain"
-          />
+        <div className="2xl:w-16 2xl:h-16 h-12 w-12 rounded-full p-2 mb-2 bg-white flex items-center justify-center text-primary text-2xl">
+          {typeof icon === "string" ? (
+            <img
+              src={icon}
+              alt={title || "Card icon"}
+              className="h-full w-full object-contain"
+            />
+          ) : (
+            icon
+          )}
         </div>
       )}
+
       {title && (
         <h3 className="text-md mt-2 2xl:text-[20px] font-bold text-center mb-2">
           {title}

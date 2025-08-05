@@ -8,9 +8,9 @@ import Feedback from "@/components/sections/Feedback";
 import SustainabilityFeatures from "@/components/sections/SustainabilityFeatures";
 import CourierPartners from "@/components/sections/CourierPartners";
 import NewsAndArticles from "../components/sections/NewsAndArticles";
-import TrackShipment from "../components/sections/TrackShipment";
+// import TrackShipment from "../components/sections/TrackShipment";
 import Contact from "../components/sections/Contact";
-
+import Careers from "../components/sections/Careers";
 // Animation variants for different effects
 const fadeInUp = {
   hidden: { opacity: 0, y: 60 },
@@ -143,6 +143,16 @@ export default function LandingPage() {
       >
         <CourierPartners />
       </motion.div>
+      {/* TrackShipment Section - Scale in */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={scaleIn}
+      >
+        {/* <TrackShipment /> */}
+        <Careers />
+      </motion.div>
 
       {/* NewsAndArticles Section - Fade in from right */}
       <motion.div
@@ -153,16 +163,6 @@ export default function LandingPage() {
       >
         <NewsAndArticles />
       </motion.div>
-
-      {/* TrackShipment Section - Scale in */}
-      {/* <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={scaleIn}
-      >
-        <TrackShipment />
-      </motion.div> */}
 
       {/* Contact Section - Fade in up */}
       <motion.div
