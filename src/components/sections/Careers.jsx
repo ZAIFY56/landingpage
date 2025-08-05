@@ -300,30 +300,6 @@ export default function CareersSection() {
             ))}
           </div>
         </div>
-
-        {/* CTA */}
-        <motion.div
-          className="text-center mt-16 flex justify-center items-center flex-col"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h3 className="text-2xl font-semibold mb-4">
-            Don't see your perfect role?
-          </h3>
-          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-            We're always looking for talented individuals. Send us your resume
-            and we'll contact you when a matching position opens.
-          </p>
-          <Button
-            variant="primary"
-            className="!w-auto !text-md"
-            onClick={() => alert("Resume submission form coming soon!")}
-          >
-            Submit Your Resume
-          </Button>
-        </motion.div>
       </div>
     </section>
   );
