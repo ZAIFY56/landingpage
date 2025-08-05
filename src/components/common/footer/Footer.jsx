@@ -39,20 +39,20 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row gap-8 mb-8">
           <div className="md:w-1/2">
             <nav aria-label="Main navigation">
-              <div className="flex flex-wrap gap-4 md:gap-8 xl:gap-6">
+              <div className="flex flex-wrap gap-4 md:gap-4 xl:gap-4">
                 {navItems.map((item, index) => (
                   <a
                     href={item.path}
                     key={`nav-${index}`}
                     onClick={() => handleNavigation(item.path)}
-                    className="2xl:text-[20px] xl:text-[16px] text-sm hover:underline bg-transparent border-none text-white cursor-pointer p-0"
+                    className="2xl:text-[16px] xl:text-[16px] text-sm hover:underline bg-transparent border-none text-white cursor-pointer p-0"
                   >
                     {item.label}
                   </a>
                 ))}
               </div>
             </nav>
-            <div className="mt-6 md:mt-12 cursor-pointer 2xl:mt-12 2xl:w-[488px] 2xl:h-[137px] 2xl:mb-0 md:mb-6">
+            <div className="mt-6 md:mt-12 cursor-pointer  2xl:mt-12 2xl:w-[488px] 2xl:h-[137px] 2xl:mb-0 md:mb-6">
               <img
                 onClick={() => navigate("/")}
                 src={rapidLogo}
@@ -123,7 +123,7 @@ const Footer = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-          <address className="md:col-span-3 font-400 text-center md:text-start not-italic">
+          <address className="md:col-span-2 font-400 text-center md:text-start not-italic">
             <h3 className="font-semibold mb-3 2xl:text-[32px]">Contact info</h3>
             <a
               href="mailto:helloworld@rapidresponsecourier.com"
@@ -139,7 +139,7 @@ const Footer = () => {
             </a>
           </address>
 
-          <div className="md:mt-[2rem] md:col-span-5 flex flex-wrap justify-center gap-4 whitespace-nowrap">
+          <div className="md:mt-[6rem] md:col-span-7 flex flex-wrap flex-col text-center justify-center gap-1 whitespace-nowrap">
             <h3 className="text-sm">Powered By</h3>
             <p className="text-sm">CacheLogic - Fast Track Your IT Evolution</p>
             <p className="text-sm">
@@ -147,7 +147,7 @@ const Footer = () => {
             </p>
           </div>
           <nav
-            className="md:col-span-4 2xl:text-[20px] text-center md:text-end"
+            className="md:col-span-3 2xl:text-[20px] text-center md:text-end"
             aria-label="Support navigation"
           >
             <h4>Company Number</h4>
