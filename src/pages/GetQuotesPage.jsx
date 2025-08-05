@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import heroimg from "/getquote/getqoute1.jpg";
 import svan from "/getquote/van.jpg";
-import tvan from "/getquote/tvan.png";
-import mvan from "/getquote/mvan.jpg";
-import xvan from "/getquote/xvan.png";
+import tvan from "/getquote/Van.png";
+import mvan from "/getquote/tvan.png";
+import xvan from "/getquote/mvan.jpg";
 import lvan from "/getquote/lvan.jpg";
 import vanIcon from "/getquote/vanicon.png";
 import { useState, useCallback, useEffect } from "react";
