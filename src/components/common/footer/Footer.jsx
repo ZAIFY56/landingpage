@@ -75,7 +75,6 @@ const Footer = () => {
             </div>
             <div className="relative w-full max-w-sm md:max-w-xs xl:max-w-xs 2xl:max-w-md">
               <form
-                target="_blank"
                 action="https://formsubmit.co/huzaifa26012003@gmail.com"
                 method="POST"
               >

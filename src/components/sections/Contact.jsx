@@ -119,7 +119,6 @@ const ContactUs = () => {
               </h2>
               <form
                 className="space-y-4 py-4"
-                target="_blank"
                 action="https://formsubmit.co/huzaifa26012003@gmail.com"
                 method="POST"
               >

@@ -299,7 +299,6 @@ export default function InstantQuoteFormPage() {
         <BackButton className="flex ml-52 gap-2" />
       </motion.div>
       <form
-        target="_blank"
         action="https://formsubmit.co/01bd15225bbe2ad46eaa9a30b3978ce5"
         method="POST"
       >
