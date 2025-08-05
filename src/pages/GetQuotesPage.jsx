@@ -282,6 +282,14 @@ const VanCard = ({ van, index, variants }) => {
 
   // Calculate the total price based on distance and van type
   const calculatePrice = (distance, vanType) => {
+    // Special case for Luton Van
+    if (vanType === "Luton Van") {
+      return {
+        total: null, // Indicates on-demand pricing
+        breakdown: null,
+      };
+    }
+
     const baseMiles = 15;
     const basePrices = {
       "Small Van": 75,
@@ -374,27 +382,55 @@ const VanCard = ({ van, index, variants }) => {
           <span>{van.tripDistance} mi</span>
         </motion.div>
       )}
-      <PriceInfo price={van.price} total={total} breakdown={breakdown} />
+
+      {van.title === "Luton Van" ? (
+        <div className="text-center py-4">
+          <p className="text-sm font-semibold text-gray-700">
+            Available on demand
+          </p>
+          <p className="text-xs text-gray-500 mt-1">Contact us for pricing</p>
+        </div>
+      ) : (
+        <PriceInfo price={van.price} total={total} breakdown={breakdown} />
+      )}
+
       <motion.button
-        className="w-full bg-primary text-white py-2 rounded hover:bg-[#3c7e7c] transition"
+        className={`w-full py-2 rounded transition ${
+          van.title === "Luton Van"
+            ? "bg-gray-500 text-white hover:bg-gray-600"
+            : "bg-primary text-white hover:bg-[#3c7e7c]"
+        }`}
         whileHover={{
           scale: 1.02,
-          backgroundColor: "#3c7e7c",
           transition: { duration: 0.2 },
         }}
         whileTap={{ scale: 0.98 }}
-        onClick={() =>
-          navigate("/instant-quote/form", {
-            state: {
-              van,
-              tripDistance: van.tripDistance,
-              totalPrice: total,
-              priceBreakdown: breakdown,
-            },
-          })
-        }
+        onClick={() => {
+          if (van.title === "Luton Van") {
+            // Navigate to contact page or show modal for Luton Van
+            navigate("/contact", {
+              state: {
+                vanType: "Luton Van",
+                tripDetails: {
+                  pickup: van.pickup,
+                  destination: van.destination,
+                  distance: van.tripDistance,
+                },
+              },
+            });
+          } else {
+            navigate("/instant-quote/form", {
+              state: {
+                van,
+                tripDistance: van.tripDistance,
+                totalPrice: total,
+                priceBreakdown: breakdown,
+              },
+            });
+          }
+        }}
       >
-        Choose this Option
+        {van.title === "Luton Van" ? "Contact Us" : "Choose this Option"}
       </motion.button>
     </motion.div>
   );
