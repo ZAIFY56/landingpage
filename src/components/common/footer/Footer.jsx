@@ -139,10 +139,10 @@ const Footer = () => {
             </a>
           </address>
 
-          <div className="md:mt-[6rem] md:col-span-7 flex flex-wrap flex-col text-center justify-center gap-1 whitespace-nowrap">
-            <h3 className="text-sm">Powered By</h3>
-            <p className="text-sm">CacheLogic - Fast Track Your IT Evolution</p>
-            <p className="text-sm">
+          <div className="md:mt-[4rem] md:col-span-7 md:ml-[4rem] flex flex-wrap flex-col text-center justify-center gap-1 whitespace-nowrap">
+            <h3 className="text-xs">Powered By</h3>
+            <p className="text-xs">CacheLogic - Fast Track Your IT Evolution</p>
+            <p className="text-xs">
               {new Date().getFullYear()} © all rights reserved
             </p>
           </div>
