@@ -2,17 +2,28 @@ import React, { useMemo, useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useSpring, animated } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
-import image1 from "/courierpartner/courierpartner1 (2).png";
-import image2 from "/courierpartner/courierpartner2.png";
-import image3 from "/courierpartner/courierpartner3 (2).png";
-import image4 from "/courierpartner/courierpartner4.png";
-import image5 from "/courierpartner/courierpartner5 (2).png";
-import image6 from "/courierpartner/courierpartner6 (2).png";
+import image1 from "/courierpartner/courierpartner1.png";
+import image2 from "/courierpartner/courierpartner2 (2).png";
+import image3 from "/courierpartner/courierpartner3.png";
+import image4 from "/courierpartner/courierpartner4.jpg";
+import image5 from "/courierpartner/courierpartner5.png";
+import image6 from "/courierpartner/courierpartner6 (3).png";
 import image7 from "/courierpartner/courierpartner7.png";
 import image8 from "/courierpartner/courierpartner8.png";
 import image9 from "/courierpartner/courierpartner9.png";
 import image10 from "/courierpartner/courierpartner10.png";
 import image11 from "/courierpartner/courierpartner11.png";
+import font1 from "/courierpartner/font1.png";
+import font2 from "/courierpartner/font2.png";
+import font3 from "/courierpartner/font3.png";
+import font4 from "/courierpartner/font4.png";
+import font5 from "/courierpartner/font5.png";
+import font6 from "/courierpartner/font6.png";
+import font7 from "/courierpartner/font7.png";
+import font8 from "/courierpartner/font8.png";
+import font9 from "/courierpartner/font9.png";
+import font10 from "/courierpartner/font10.png";
+import font11 from "/courierpartner/font11.png";
 import { Card } from "@/components/common";
 
 // Drop letter animation
@@ -44,19 +55,51 @@ const AnimatedText = ({ text, delay = 0 }) => {
 };
 
 const PARTNER_DATA = [
-  { logo: image1 },
-  { logo: image2 },
-  { logo: image3 },
-  { logo: image4 },
-  { logo: image5 },
-  { logo: image6 },
-  { logo: image7 },
-  { logo: image8 },
-  { logo: image9 },
-  { logo: image10 },
-  { logo: image11 },
+  {
+    logo: image1,
+    brand: font1,
+  },
+  {
+    logo: image2,
+    brand: font2,
+  },
+  {
+    logo: image3,
+    brand: font3,
+  },
+  {
+    logo: image4,
+    brand: font4,
+  },
+  {
+    logo: image5,
+    brand: font5,
+  },
+  {
+    logo: image6,
+    brand: font8,
+  },
+  {
+    logo: image7,
+    brand: font7,
+  },
+  {
+    logo: image8,
+    brand: font6,
+  },
+  {
+    logo: image9,
+    brand: font9,
+  },
+  {
+    logo: image10,
+    brand: font10,
+  },
+  {
+    logo: image11,
+    brand: font11,
+  },
 ];
-
 export default function CourierPartners() {
   // duplicate array for seamless loop
   const partners = useMemo(() => [...PARTNER_DATA, ...PARTNER_DATA], []);
@@ -158,25 +201,38 @@ export default function CourierPartners() {
           >
             {partners.map((partner, index) => (
               <motion.div
-                key={index}
+                custom={index}
                 variants={cardVariants}
                 initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
+                animate="visible"
                 whileHover={{ y: -10, scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`flex-shrink-0 ${isMobile ? "w-[250px]" : "w-[280px]"}`}
+                className="w-full"
               >
                 <Card
-                  className="!p-0 !min-h-[200px] !w-full aspect-[4/3] relative overflow-hidden group"
+                  className="!p-0 dark:filter dark:grayscale hover:filter-none hover:grayscale-0 !min-h-[200px] !max-w-none !w-full aspect-[4/3] relative overflow-hidden"
                   hoverEffect={true}
                 >
                   <motion.img
                     src={partner.logo}
                     alt={`Partner company ${index + 1}`}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="absolute inset-0 w-full h-full object-cover"
                     loading="lazy"
+                    width={600}
+                    height={450}
+                    whileHover={{ scale: 1.1 }}
                   />
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
+                    <motion.img
+                      src={partner.brand}
+                      alt={`${partner.brand} brand name`}
+                      className="max-w-[70%] max-h-[40%] object-contain z-10"
+                      loading="lazy"
+                      width={300}
+                      height={100}
+                      whileHover={{ scale: 1.1 }}
+                    />
+                  </div>
                 </Card>
               </motion.div>
             ))}
