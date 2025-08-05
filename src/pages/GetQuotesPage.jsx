@@ -308,12 +308,11 @@ const VanCard = ({ van, index, variants }) => {
     let extraMilesCost = 0;
 
     if (distance <= baseMiles) {
-      // Charge only base price if within 15 miles
       basePrice = basePrices[vanType] || 75;
     } else {
-      // Charge only per-mile rate if beyond 15 miles
-      extraMiles = distance; // Charge for entire distance
+      extraMiles = distance;
       extraMilesCost = extraMiles * (mileRates[vanType] || 2.2);
+      basePrice = 0;
     }
 
     const congestionCost = isInCongestionZone ? congestionCharge : 0;
