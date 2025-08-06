@@ -9,7 +9,7 @@ const NAV_ITEMS = [
   { label: "Services", path: "/#services" },
   { label: "About", path: "/#about" },
   // { label: "Track Order", path: "/#track-order" },
-  { label: "Careers", path: "/#careers" },
+  // { label: "Careers", path: "/#careers" },
   { label: "Latest News", path: "/#news-and-articles" },
   { label: "Contact", path: "/#contact-us" },
 ];

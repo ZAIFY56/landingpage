@@ -136,7 +136,7 @@ const AutocompleteInput = ({
       />
       {isLoading && (
         <div className="absolute right-2 top-2">
-          <div className="animate-spin rounded-full h-4 w-4 "></div>
+          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-900"></div>
         </div>
       )}
       {showSuggestions && suggestions.length > 0 && (
@@ -258,7 +258,7 @@ const PriceInfo = ({ price, total, breakdown }) => {
           />
           {breakdown.extraMiles > 0 && (
             <PriceLine
-              label={`Extra miles (${breakdown.extraMiles} mi):`}
+              label={`Extra miles (${breakdown.extraMiles.toFixed(2)} mi):`}
               value={breakdown.extraMilesCost}
               variants={itemVariants}
             />
@@ -273,6 +273,10 @@ const PriceInfo = ({ price, total, breakdown }) => {
         </>
       )}
       <PriceLine label="TOTAL:" value={total} isBold variants={itemVariants} />
+      <p className="text-xs text-red-400 text-center">
+        A congestion charge applies if your delivery area falls within the
+        Congestion Zone.
+      </p>
     </motion.div>
   );
 };
@@ -290,10 +294,10 @@ const VanCard = ({ van, index, variants }) => {
       };
     }
 
-    const baseMiles = 15;
+    const baseMiles = 12;
     const basePrices = {
       "Small Van": 75,
-      "Transit Van": 85,
+      "Transit / SWB Van": 85,
       "Medium Van": 85,
       "Xlwb Van": 95,
       "Luton Van": 95,
@@ -301,15 +305,22 @@ const VanCard = ({ van, index, variants }) => {
 
     const mileRates = {
       "Small Van": 2.2,
-      "Transit Van": 2.5,
+      "Transit / SWB Van": 2.5,
       "Medium Van": 2.7,
       "Xlwb Van": 2.9,
       "Luton Van": 2.9,
     };
 
-    const congestionCharge = 15;
+    const congestionCharge = 0;
     const isInCongestionZone =
-      van.pickup.includes("London") || van.destination.includes("London");
+      (van.pickup && van.pickup.includes("London")) ||
+      (van.destination && van.destination.includes("London"));
+
+    const bothInLondon =
+      van.pickup &&
+      van.pickup.includes("London") &&
+      van.destination &&
+      van.destination.includes("London");
 
     let basePrice = 0;
     let extraMiles = 0;
@@ -318,9 +329,9 @@ const VanCard = ({ van, index, variants }) => {
     if (distance <= baseMiles) {
       basePrice = basePrices[vanType] || 75;
     } else {
-      extraMiles = distance;
+      extraMiles = distance - baseMiles;
       extraMilesCost = extraMiles * (mileRates[vanType] || 2.2);
-      basePrice = 0;
+      basePrice = bothInLondon ? basePrices[vanType] || 75 : 0;
     }
 
     const congestionCost = isInCongestionZone ? congestionCharge : 0;
@@ -357,7 +368,7 @@ const VanCard = ({ van, index, variants }) => {
       whileTap="tap"
     >
       <motion.h4
-        className="font-semibold bg-primary p-2 text-center rounded-se-md text-white 2xl:text-lg w-[140px] 2xl:w-[156px] mb-2"
+        className="font-semibold bg-primary p-2 text-center rounded-se-md text-white 2xl:text-lg w-[153px] 2xl:w-[170px] mb-2"
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -408,7 +419,7 @@ const VanCard = ({ van, index, variants }) => {
         onClick={() => {
           if (van.title === "Luton Van") {
             // Navigate to contact page or show modal for Luton Van
-            navigate("/contact", {
+            navigate("/#contact-us", {
               state: {
                 vanType: "Luton Van",
                 tripDetails: {
@@ -443,22 +454,26 @@ function GetQuotesPage() {
   const [pickupLocation, setPickupLocation] = useState(null);
   const [dropoffLocation, setDropoffLocation] = useState(null);
   const [tripDistance, setTripDistance] = useState(null);
-  const [showPickupMap, setShowPickupMap] = useState(false);
-  const [showDestinationMap, setShowDestinationMap] = useState(false);
+  const [isCalculatingDistance, setIsCalculatingDistance] = useState(false);
 
   useEffect(() => {
     const calculateDistance = async () => {
       if (pickupLocation && dropoffLocation) {
+        setIsCalculatingDistance(true);
         try {
           const response = await fetch(
             `https://api.geoapify.com/v1/routing?waypoints=${pickupLocation.lat},${pickupLocation.lon}|${dropoffLocation.lat},${dropoffLocation.lon}&mode=drive&apiKey=cbc65427c4fb45e68cb53012b5775cba`
           );
           const data = await response.json();
-          const meters = data.features[0].properties.distance;
-          const mi = (meters / 1609.344).toFixed(2);
-          setTripDistance(mi);
+          if (data.features && data.features.length > 0) {
+            const meters = data.features[0].properties.distance;
+            const mi = (meters / 1609.344).toFixed(2);
+            setTripDistance(parseFloat(mi));
+          }
         } catch (error) {
           console.error("Error calculating distance:", error);
+        } finally {
+          setIsCalculatingDistance(false);
         }
       }
     };
@@ -470,20 +485,20 @@ function GetQuotesPage() {
       title: "Small Van",
       image: svan,
       specs: {
-        length: "1.3m",
-        width: "1.2m",
-        height: "1.2m",
+        length: "1.3m/130cm",
+        width: "1.2m/120cm",
+        height: "1.2m/120cm",
         weight: "400kg",
       },
       price: 75,
     },
     {
-      title: "Transit Van",
+      title: "Transit / SWB Van",
       image: tvan,
       specs: {
-        length: "1.8m",
-        width: "1.4m",
-        height: "1.4m",
+        length: "1.8m/180cm",
+        width: "1.4m/140cm",
+        height: "1.4m/140cm",
         weight: "900kg",
       },
       price: 85,
@@ -492,9 +507,9 @@ function GetQuotesPage() {
       title: "Medium Van",
       image: mvan,
       specs: {
-        length: "2.0m",
-        width: "1.5m",
-        height: "1.4m",
+        length: "2.0m/200cm",
+        width: "1.5m/150cm",
+        height: "1.4m/140cm",
         weight: "950kg",
       },
       price: 85,
@@ -503,9 +518,9 @@ function GetQuotesPage() {
       title: "Xlwb Van",
       image: xvan,
       specs: {
-        length: "3.4m",
-        width: "1.7m",
-        height: "1.7m",
+        length: "3.4m/340cm",
+        width: "1.7m/170cm",
+        height: "1.7m/170cm",
         weight: "1250kg",
       },
       price: 95,
@@ -514,9 +529,9 @@ function GetQuotesPage() {
       title: "Luton Van",
       image: lvan,
       specs: {
-        length: "4.0m",
-        width: "2.0m",
-        height: "2.2m",
+        length: "4.0m/400cm",
+        width: "2.0m/200cm",
+        height: "2.2m/220cm",
         weight: "1000kg",
       },
       price: 95,
@@ -633,7 +648,11 @@ function GetQuotesPage() {
         <BackButton icon={backIcon} />
       </motion.div>
 
-      {tripDistance ? (
+      {isCalculatingDistance ? (
+        <div className="flex justify-center items-center py-20">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        </div>
+      ) : tripDistance ? (
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-4 pb-10"
           initial="hidden"
@@ -670,11 +689,14 @@ function GetQuotesPage() {
             className="w-32 h-32 mb-6 opacity-80"
           />
           <h3 className="text-2xl font-semibold text-gray-700 mb-2">
-            No Route Selected
+            {pickup || destination
+              ? "Calculating Route..."
+              : "No Route Selected"}
           </h3>
           <p className="text-gray-500 text-lg">
-            Please choose a pickup and destination to view available van options
-            and pricing.
+            {pickup || destination
+              ? "Please wait while we calculate the distance..."
+              : "Please choose a pickup and destination to view available van options and pricing."}
           </p>
         </div>
       )}

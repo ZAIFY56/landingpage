@@ -10,7 +10,7 @@ const Footer = () => {
     () => [
       { label: "Services", path: "/#services" },
       { label: "About", path: "/#about" },
-      { label: "Careers", path: "/#careers" },
+      // { label: "Careers", path: "/#careers" },
       { label: "Latest News", path: "/#news-and-articles" },
       { label: "Contact", path: "/#contact-us" },
     ],
@@ -151,17 +151,12 @@ const Footer = () => {
             aria-label="Support navigation"
           >
             <h4>Company Number</h4>
-            <a
-              href="tel:+9710000000000"
-              className="mb-1 text-sm hover:underline block"
-            >
-              +16521183
-            </a>
+            <p className="mb-1 text-sm hover:underline block">16521183</p>
             {supportItems.map((item, index) => (
               <button
                 key={`support-${index}`}
                 onClick={() => handleNavigation(item.path)}
-                className="2xl:text-[20px] gap-4 text-sm hover:underline bg-transparent border-none text-white cursor-pointer p-0"
+                className="2xl:text-[20px]  text-sm hover:underline bg-transparent border-none text-white cursor-pointer pl-2"
               >
                 {item.label}
               </button>

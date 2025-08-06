@@ -184,12 +184,16 @@ export default function ThankYouPage() {
             <motion.p className="text-md text-gray-600 mb-8">
               Your form has been received. We will contact you shortly.
             </motion.p>
-            <motion.div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <motion.div className="flex md:flex-row flex-row gap-4 justify-center">
               <Link to="/">
-                <Button variant="primary">Go Back Home</Button>
+                <Button variant="primary" className="text-sm">
+                  Go Back Home
+                </Button>
               </Link>
               <Link to="/instant-quote">
-                <Button variant="outline">Get a Quote</Button>
+                <Button variant="outline" className="text-sm">
+                  Get a Quote
+                </Button>
               </Link>
             </motion.div>
           </motion.div>
@@ -199,7 +203,7 @@ export default function ThankYouPage() {
       {/* Action Buttons */}
       <motion.div
         variants={fadeInUp}
-        className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-40"
+        className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-60 md:mt-40"
       ></motion.div>
     </div>
   );

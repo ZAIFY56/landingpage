@@ -143,16 +143,15 @@ export default function LandingPage() {
       >
         <CourierPartners />
       </motion.div>
-      {/* TrackShipment Section - Scale in */}
+      {/* TrackShipment Section - Scale in
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={scaleIn}
       >
-        {/* <TrackShipment /> */}
         <Careers />
-      </motion.div>
+      </motion.div> */}
 
       {/* NewsAndArticles Section - Fade in from right */}
       <motion.div

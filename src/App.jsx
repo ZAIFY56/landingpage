@@ -23,7 +23,7 @@ function App() {
               path="/instant-quote/form"
               element={<InstantQuoteFormPage />}
             />
-            <Route path="/careers/apply" element={<JobApplication />} />
+            {/* <Route path="/careers/apply" element={<JobApplication />} /> */}
             <Route path="/terms-condition" element={<TermsConditionPage />} />
             <Route path="/thank-you" element={<ThankYoupage />} />
             <Route path="*" element={<NotFoundPage />} />
